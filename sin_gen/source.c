@@ -1,7 +1,11 @@
 #include <stdio.h>
 
-#define PI 3.1415926
 #define NUM 100
+
+static const double
+pi = 3.1415926535897932384626433832795,
+pi_2 = 1.5707963267948966192313216916398,
+two_pi = 6.283185307179586476925286766559;
 
 extern double sin_gen(double);
 
@@ -26,17 +30,17 @@ int main(int argc, char *argv[]) {
 
 	midpoint = (a + b) / 2;
 	length = (b - a) / 2;
- 	Xtemp = (long int)(midpoint / (2 * PI));
-	X = ((double)(Xtemp)) * (2 * PI);
+ 	Xtemp = (long int)(midpoint / two_pi);
+	X = ((double)(Xtemp)) * two_pi;
 	a1 = (0 - length) + X - midpoint;
 	b1 = (0 + length) + X - midpoint;
-	atemp = (long int)(a1 / (2 * PI) - 1);
-	btemp = (long int)(b1 / (2 * PI) + 1);
-	a2 = ((double)atemp) * (2 * PI);
-	b2 = ((double)btemp) * (2 * PI);
+	atemp = (long int)(a1 / pi_2 - 1);
+	btemp = (long int)(b1 / pi_2 + 1);
+	a2 = ((double)atemp) * pi_2;
+	b2 = ((double)btemp) * pi_2;
 	// table[i] restores the correct rounding x values where the step is PI/2, from 0 to b2
 	for (i = 0; i < btemp * 4 + 1; i++) {
-		table[i] = PI / 2 * i;
+		table[i] = pi_2 * i;
 	}
 
 	// generate code for sin_gen
@@ -82,6 +86,9 @@ int main(int argc, char *argv[]) {
 		fprintf(func, "\tfor (i = 0; ix > table[i]; i++) {\n");
 		fprintf(func, "\t\tpio2_times++;\n");
 		fprintf(func, "\t}\n");
+		fprintf(func, "\tix = ix - table[i];\n");
+		fprintf(func, "\n");
+
 		fprintf(func, "\tswitch (pio2_times&3) {\n");
 		fprintf(func, "\t\tcase 1:\n");
 		fprintf(func, "\t\t\ty = flag * k_sin(ix);\n");
