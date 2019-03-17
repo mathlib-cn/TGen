@@ -5,8 +5,32 @@
 static const double
 pi = 3.1415926535897932384626433832795,
 pi_2 = 1.5707963267948966192313216916398,
-two_pi = 6.283185307179586476925286766559;
-
+two_pi = 6.283185307179586476925286766559,
+invpio2 = 6.36619772367581382433e-01, 
+// table[i] restores the correct rounding x values where the step is PI/2
+table[NUM] = { //pi/2 * T, T = 0, 1, 2, ......
+	0,
+	1.5707963267948966192313216916398,
+	3.1415926535897932384626433832795,
+	4.7123889803846898576939650749193,
+	6.283185307179586476925286766559,
+	7.8539816339744830961566084581988,
+	9.4247779607693797153879301498385,
+	10.995574287564276334619251841478,
+	12.566370614359172953850573533118,
+	14.137166941154069573081895224758,
+	15.707963267948966192313216916398,
+	17.278759594743862811544538608037,
+	18.849555921538759430775860299677,
+	20.420352248333656050007181991317,
+	21.991148575128552669238503682957,
+	23.561944901923449288469825374596,
+	25.132741228718345907701147066236,
+	26.703537555513242526932468757876,
+	28.274333882308139146163790449516,
+	29.845130209103035765395112141155,
+	31.415926535897932384626433832795
+};
 extern double sin_gen(double);
 
 int main(int argc, char *argv[]) {
@@ -15,7 +39,6 @@ int main(int argc, char *argv[]) {
 	double a1, b1, a2, b2;
 	double X;
 	long int Xtemp, atemp, btemp, i;
-	double table[NUM] = {0};
 	FILE *func;
 
 	if ((func = fopen("sin_gen.c", "w")) == (FILE *)0) {
@@ -34,14 +57,10 @@ int main(int argc, char *argv[]) {
 	X = ((double)(Xtemp)) * two_pi;
 	a1 = (0 - length) + X - midpoint;
 	b1 = (0 + length) + X - midpoint;
-	atemp = (long int)(a1 / pi_2 - 1);
-	btemp = (long int)(b1 / pi_2 + 1);
+	atemp = (long int)(a1 / pi_2) - 1;
+	btemp = (long int)(b1 / pi_2) + 1;
 	a2 = ((double)atemp) * pi_2;
 	b2 = ((double)btemp) * pi_2;
-	// table[i] restores the correct rounding x values where the step is PI/2, from 0 to b2
-	for (i = 0; i < btemp * 4 + 1; i++) {
-		table[i] = pi_2 * i;
-	}
 
 	// generate code for sin_gen
 	{
@@ -53,15 +72,15 @@ int main(int argc, char *argv[]) {
 
 		// init
 		fprintf(func, "#define NUM %d\n", NUM);
-		fprintf(func, "#define TableNum %d\n", (btemp * 4 + 1));
+		fprintf(func, "#define TableNum %d\n", (btemp + 1));
 		fprintf(func, "static const double\n");
 		fprintf(func, "X = %.17lf,\n", X);
-		fprintf(func, "table[TableNum] = {\t// pi/2 * T, T = 0, 1, 2, ..., %d\n", (btemp * 4));
-		for (i = 0; i < (btemp * 4); i++)
+		fprintf(func, "table[TableNum] = {\t// pi_2 * T, T = 0, 1, 2, ..., %d\n", btemp);
+		for (i = 0; i < btemp; i++)
 		{
 			fprintf(func, "\t%.17lf,\n", table[i]);
 		}
-		fprintf(func, "\t%.17lf\n", table[i]);
+		fprintf(func, "\t%.17lf\n ", table[i]);
 		fprintf(func, "};\n");
 		fprintf(func, "extern double k_sin(double);\n");
 		fprintf(func, "extern double k_cos(double);\n");
@@ -86,7 +105,7 @@ int main(int argc, char *argv[]) {
 		fprintf(func, "\tfor (i = 0; ix > table[i]; i++) {\n");
 		fprintf(func, "\t\tpio2_times++;\n");
 		fprintf(func, "\t}\n");
-		fprintf(func, "\tix = ix - table[i];\n");
+		fprintf(func, "\tix = ix - table[i - 1];\n");
 		fprintf(func, "\n");
 
 		fprintf(func, "\tswitch (pio2_times&3) {\n");
