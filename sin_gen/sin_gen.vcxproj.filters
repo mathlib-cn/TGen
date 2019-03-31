@@ -27,10 +27,91 @@
     <ClCompile Include="k_sin.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="binary.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="binaryshow.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="computeErrors.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="computeULP.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="data_gen.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main_test_sin_gen.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_5.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_6.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_7.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_32.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_64.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_128.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_256.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_512.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_fpminimax.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_fpminimax_32.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_fpminimax_256.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_fpminimax_pi_16.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_fpminimax_pi_32.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_fpminimax_pi_64.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_fpminimax_pi_128.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_fpminimax_pi_256.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_fpminimax_pi_512.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mpfr_data_gen.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="myhead.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="auto.sh" />
+    <None Include="cos_64" />
+    <None Include="test.sh" />
+    <None Include="test_fpminimax.sh" />
   </ItemGroup>
 </Project>

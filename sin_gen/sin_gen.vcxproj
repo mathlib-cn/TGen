@@ -116,13 +116,44 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="binary.c" />
+    <ClCompile Include="binaryshow.c" />
+    <ClCompile Include="computeErrors.c" />
+    <ClCompile Include="computeULP.c" />
+    <ClCompile Include="data_gen.c" />
     <ClCompile Include="k_cos.c" />
     <ClCompile Include="k_sin.c" />
+    <ClCompile Include="main_test_sin_gen.c" />
     <ClCompile Include="model.c" />
+    <ClCompile Include="model_128.c" />
+    <ClCompile Include="model_256.c" />
+    <ClCompile Include="model_32.c" />
+    <ClCompile Include="model_5.c" />
+    <ClCompile Include="model_512.c" />
+    <ClCompile Include="model_6.c" />
+    <ClCompile Include="model_64.c" />
+    <ClCompile Include="model_7.c" />
+    <ClCompile Include="model_fpminimax.c" />
+    <ClCompile Include="model_fpminimax_256.c" />
+    <ClCompile Include="model_fpminimax_32.c" />
+    <ClCompile Include="model_fpminimax_pi_128.c" />
+    <ClCompile Include="model_fpminimax_pi_16.c" />
+    <ClCompile Include="model_fpminimax_pi_256.c" />
+    <ClCompile Include="model_fpminimax_pi_32.c" />
+    <ClCompile Include="model_fpminimax_pi_512.c" />
+    <ClCompile Include="model_fpminimax_pi_64.c" />
+    <ClCompile Include="mpfr_data_gen.c" />
     <ClCompile Include="source.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="myhead.h" />
     <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="auto.sh" />
+    <None Include="cos_64" />
+    <None Include="test.sh" />
+    <None Include="test_fpminimax.sh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
