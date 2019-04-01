@@ -45,15 +45,6 @@
     <ClCompile Include="main_test_sin_gen.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="model_5.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_6.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_7.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="model_32.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -67,15 +58,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="model_512.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_fpminimax.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_fpminimax_32.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_fpminimax_256.c">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="model_fpminimax_pi_16.c">
@@ -93,10 +75,22 @@
     <ClCompile Include="model_fpminimax_pi_256.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="mpfr_data_gen.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_fpminimax_test_pi_512.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="model_fpminimax_pi_512.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="mpfr_data_gen.c">
+    <ClCompile Include="model_16.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_8.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="model_4.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,7 +104,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="auto.sh" />
-    <None Include="cos_64" />
     <None Include="test.sh" />
     <None Include="test_fpminimax.sh" />
   </ItemGroup>

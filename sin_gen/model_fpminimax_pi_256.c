@@ -18,6 +18,8 @@ X = 0;
 // pi/4/64
 // sin:
 // 0xb9d4fc64a5efeb6a + x * (0x3ff0000000000000 + x * (0x3d0847eb23176753 + x * (0xbfc5555555599c6c + x * (0x3e1cb882e949c36c + x * 0x3f811100f32d3a83))))
+// cos:
+// 0x3ff0000000000000 + x * (0xbd0619f83dcccbf2 + x * (0xbfdffffffffcec12 + x * (0xbe31ea26f2eb19dd + x * (0x3fa5556c2498abda + x * 0xbf0a66e583c1d006))))
 static const DL
 coefficient[2][DEGREE] = {
 	{
@@ -29,12 +31,12 @@ coefficient[2][DEGREE] = {
 		{.l = 0x3f811100f32d3a83}
 	},
 	{
-		{.l = 0},
-		{.l = 0},
-		{.l = 0},
-		{.l = 0},
-		{.l = 0},
-		{.l = 0}
+		{.l = 0x3ff0000000000000},
+		{.l = 0xbd0619f83dcccbf2},
+		{.l = 0xbfdffffffffcec12},
+		{.l = 0xbe31ea26f2eb19dd},
+		{.l = 0x3fa5556c2498abda},
+		{.l = 0xbf0a66e583c1d006}
 	}
 };
 

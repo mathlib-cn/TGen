@@ -17,7 +17,7 @@ double computeULP(double);
 
 int main(int argc, char *argv[]) {
 	double a, b, x, y1, y2;
-	int i, j, bit_num;
+	int i, j, bit_num, max_times;
 	int result[64];
 	_UL ulpdiff, ulpdiff_max, temp_ul, ulpdiff_sum;
 	double input;
@@ -27,11 +27,14 @@ int main(int argc, char *argv[]) {
 	mpfr_t mpfr_temp, mpfr_result;
 
 	ulpdiff_sum = 0;
+	ulpdiff_max = 0;
+	max_times = 0;
 	mpfr_init2(mpfr_temp, 100);
 	mpfr_init2(mpfr_result, 100);
 
 	inputData = fopen("data.txt", "r");
 	
+
 	for (i = 0; i < RUN_COUNT; i++) {
 		for (j = 63; j >= 0; j--) {
 			temp_c = getc(inputData);
@@ -56,6 +59,13 @@ int main(int argc, char *argv[]) {
 		//bit_num = computeAccurateBit(y1, y2);
 		//printf("the accurate binary bit is %d\n", bit_num);
 		ulpdiff = computeULPDiff(y1, y2);
+		if (ulpdiff_max > ulpdiff) {
+			ulpdiff_max = ulpdiff;
+			max_times = 1;
+		}
+		else if (ulpdiff_max == ulpdiff) {
+			max_times++;
+		}
 		ulpdiff_sum += ulpdiff;
 		printf("%ld\n", ulpdiff);
 		//printf("The ULPDiff is 0x%lx\n\n", ulpdiff);
@@ -64,6 +74,8 @@ int main(int argc, char *argv[]) {
 		//printf("The ULPD is %f\n\n", ulpd);
 	}
 	printf("sum = %ld\n", ulpdiff_sum);
+	printf("ulpdiff_max = %ld\n", ulpdiff_max);
+	printf("max_times = %ld\n", max_times);
 
 	fclose(inputData);
 	return 0;
