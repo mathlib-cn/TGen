@@ -14,6 +14,10 @@ pi_4 = 0.78539816339744830961566084581988,
 pi_2 = 1.5707963267948966192313216916398,
 X = 0;
 
+static const DL 
+pi_4_h = {.l = 0x3fe921fb54442d18},
+pi_4_l = {.l = 0x3c81a62633145c07};
+
 // 区间小的话则直接提供，区间大的话则交由程序计算
 //static const double
 //pio2_table[NUM] = { //pi/2 * T, T = 0, 1, 2, ..., 20
@@ -64,7 +68,7 @@ coefficient[2][DEGREE] = {
 		{.l = 0xbe01ea30fe505df3},
 		{.l = 0x3fa5555b0928dfe9},
 		{.l = 0xbefa66ee34c3b903}
-		
+
 	}
 };
 
@@ -365,7 +369,9 @@ double sin_gen(double x) {
 	temp = *((long int *)(&iix));
 	temp = temp & 0x7fffffffffffffff;
 	iix = *((double *)(&temp)); // 此时 iix 为绝对值
-	iiix = iix - ((double)table_order) / BITNUM * pi_4;
+	//iiix = iix - ((double)table_order) / BITNUM * pi_4;
+	iiix = iix - ((double)table_order) / BITNUM * pi_4_h.d;
+	iiix = iiix - ((double)table_order) / BITNUM * pi_4_l.d;
 	sign = flag ^ status_pi_1; // 异或，0为正，1为负
 	sin_or_cos = status_pi_2 ^ status_pi_4; // 异或，0为sin，1为cos
 
