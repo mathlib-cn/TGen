@@ -32,7 +32,12 @@ int main(int argc, char *argv[]) {
 	mpfr_init2(mpfr_temp, 100);
 	mpfr_init2(mpfr_result, 100);
 
-	inputData = fopen("data.txt", "r");
+	inputData = fopen("data_10000_-pi2_to_pi2.txt", "r");
+
+	if (inputData == (FILE *)0) {
+		printf("open error!!!\n");
+		return 0;
+	}
 	
 
 	for (i = 0; i < RUN_COUNT; i++) {
@@ -50,16 +55,16 @@ int main(int argc, char *argv[]) {
 		mpfr_sin(mpfr_result, mpfr_temp, MPFR_RNDN);
 		y2 = mpfr_get_d(mpfr_result, MPFR_RNDN);
 
-		//printf("for x = %.17e:\n", input[i]);
-		//printf("\tsin_gen = %.17e\n\tsin     = %.17e\n", y1, y2);
-		//printf("binary of sin_gen is ");
-		//binaryshow(y1);
-		//printf("binary of sin     is ");
-		//binaryshow(y2);
+		printf("for x = %.17e:\n", input);
+		printf("\tsin_gen = %.17e\n\tsin     = %.17e\n", y1, y2);
+		printf("binary of sin_gen is ");
+		binaryshow(y1);
+		printf("binary of sin     is ");
+		binaryshow(y2);
 		//bit_num = computeAccurateBit(y1, y2);
 		//printf("the accurate binary bit is %d\n", bit_num);
 		ulpdiff = computeULPDiff(y1, y2);
-		if (ulpdiff_max > ulpdiff) {
+		if (ulpdiff_max < ulpdiff) {
 			ulpdiff_max = ulpdiff;
 			max_times = 1;
 		}
@@ -75,7 +80,7 @@ int main(int argc, char *argv[]) {
 	}
 	printf("sum = %ld\n", ulpdiff_sum);
 	printf("ulpdiff_max = %ld\n", ulpdiff_max);
-	printf("max_times = %ld\n", max_times);
+	printf("max_times = %d\n", max_times);
 
 	fclose(inputData);
 	return 0;

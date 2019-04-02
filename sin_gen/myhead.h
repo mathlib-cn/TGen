@@ -1,7 +1,7 @@
 #ifndef MYHEAD
 #define MYHEAD
 
-#define RUN_COUNT 1000000
+#define RUN_COUNT 10000
 typedef unsigned long int _UL;
 typedef long int _L;
 union dl
