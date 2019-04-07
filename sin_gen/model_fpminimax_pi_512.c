@@ -14,6 +14,7 @@ pi_4 = 0.78539816339744830961566084581988,
 pi_2 = 1.5707963267948966192313216916398,
 X = 0;
 
+// GNU
 static const double
 pio2_1 = 1.57079632673412561417e+00, /* 0x3FF921FB, 0x54400000 */
 pio2_1t = 6.07710050650619224932e-11, /* 0x3DD0B461, 0x1A626331 */
@@ -23,9 +24,12 @@ pio2_3 = 2.02226624871116645580e-21, /* 0x3BA3198A, 0x2E000000 */
 pio2_3t = 8.47842766036889956997e-32; /* 0x397B839A, 0x252049C1 */
 
 
+// sollya
 static const DL 
 pi_4_h = {.l = 0x3fe921fb54442d18},
-pi_4_l = {.l = 0x3c81a62633145c07};
+pi_4_l = {.l = 0x3c81a62633145c07},
+pi_2_h = {.l = 0x3ff921fb54442d18},
+pi_2_l = {.l = 0x3c91a62633145c07};
 
 // 区间小的话则直接提供，区间大的话则交由程序计算
 //static const double
@@ -372,8 +376,10 @@ double sin_gen(double x) {
 	status_pi_2 = (temp >> (BIT + 1)) & 0x1;
 	status_pi_1 = (temp >> (BIT + 2)) & 0x1;
 	//iix = ix - (temp >> (BIT + 1)) * pi_2 - status_pi_4 * pi_2;
-	iix = ix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_1;
-	iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_1t;
+	//iix = ix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_1;
+	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_1t;
+	iix = ix - ((temp >> (BIT + 1)) + status_pi_4) * pi_2_h.d;
+	iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pi_2_l.d;
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_2;
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_3;
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_3t;
@@ -383,9 +389,9 @@ double sin_gen(double x) {
 	temp = *((long int *)(&iix));
 	temp = temp & 0x7fffffffffffffff;
 	iix = *((double *)(&temp)); // 此时 iix 为绝对值
-	//iiix = iix - ((double)table_order / BITNUM) * pi_4;
-	iiix = iix - ((double)table_order) / BITNUM * pi_4_h.d;
-	iiix = iiix - ((double)table_order) / BITNUM * pi_4_l.d;
+	iiix = iix - ((double)table_order / BITNUM) * pi_4;
+	//iiix = iix - ((double)table_order) / BITNUM * pi_4_h.d;
+	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_l.d;
 	sign = flag ^ status_pi_1; // 异或，0为正，1为负
 	sin_or_cos = status_pi_2 ^ status_pi_4; // 异或，0为sin，1为cos
 
