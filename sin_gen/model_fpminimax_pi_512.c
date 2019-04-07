@@ -14,6 +14,15 @@ pi_4 = 0.78539816339744830961566084581988,
 pi_2 = 1.5707963267948966192313216916398,
 X = 0;
 
+static const double
+pio2_1 = 1.57079632673412561417e+00, /* 0x3FF921FB, 0x54400000 */
+pio2_1t = 6.07710050650619224932e-11, /* 0x3DD0B461, 0x1A626331 */
+pio2_2 = 6.07710050630396597660e-11, /* 0x3DD0B461, 0x1A600000 */
+pio2_2t = 2.02226624879595063154e-21, /* 0x3BA3198A, 0x2E037073 */
+pio2_3 = 2.02226624871116645580e-21, /* 0x3BA3198A, 0x2E000000 */
+pio2_3t = 8.47842766036889956997e-32; /* 0x397B839A, 0x252049C1 */
+
+
 static const DL 
 pi_4_h = {.l = 0x3fe921fb54442d18},
 pi_4_l = {.l = 0x3c81a62633145c07};
@@ -362,16 +371,21 @@ double sin_gen(double x) {
 	status_pi_4 = (temp >> BIT) & 0x1; 
 	status_pi_2 = (temp >> (BIT + 1)) & 0x1;
 	status_pi_1 = (temp >> (BIT + 2)) & 0x1;
-	iix = ix - (temp >> (BIT + 1)) * pi_2 - status_pi_4 * pi_2;
+	//iix = ix - (temp >> (BIT + 1)) * pi_2 - status_pi_4 * pi_2;
+	iix = ix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_1;
+	iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_1t;
+	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_2;
+	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_3;
+	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_3t;
 	table_order = temp & (BITNUM - 1); // 对应 (2^BIT -1) ，即BIT位的1
 	table_order = table_order - status_pi_4 * (BITNUM - 1);
 	table_order = (1 - status_pi_4 * 2) * table_order;
 	temp = *((long int *)(&iix));
 	temp = temp & 0x7fffffffffffffff;
 	iix = *((double *)(&temp)); // 此时 iix 为绝对值
-	//iiix = iix - ((double)table_order) / BITNUM * pi_4;
-	iiix = iix - ((double)table_order) / BITNUM * pi_4_h.d;
-	iiix = iiix - ((double)table_order) / BITNUM * pi_4_l.d;
+	iiix = iix - ((double)table_order / BITNUM) * pi_4;
+	//iiix = iix - ((double)table_order) / BITNUM * pi_4_h.d;
+	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_l.d;
 	sign = flag ^ status_pi_1; // 异或，0为正，1为负
 	sin_or_cos = status_pi_2 ^ status_pi_4; // 异或，0为sin，1为cos
 

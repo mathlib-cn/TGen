@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
 			max_times++;
 		}
 		ulpdiff_sum += ulpdiff;
-		printf("%ld\n", ulpdiff);
+		printf("The ULPDiff is %ld\n", ulpdiff);
 		//printf("The ULPDiff is 0x%lx\n\n", ulpdiff);
 		//ulp = computeULP(y2);
 		//ulpd = (y1 - y2) / ulp;
