@@ -383,9 +383,9 @@ double sin_gen(double x) {
 	temp = *((long int *)(&iix));
 	temp = temp & 0x7fffffffffffffff;
 	iix = *((double *)(&temp)); // 此时 iix 为绝对值
-	iiix = iix - ((double)table_order / BITNUM) * pi_4;
-	//iiix = iix - ((double)table_order) / BITNUM * pi_4_h.d;
-	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_l.d;
+	//iiix = iix - ((double)table_order / BITNUM) * pi_4;
+	iiix = iix - ((double)table_order) / BITNUM * pi_4_h.d;
+	iiix = iiix - ((double)table_order) / BITNUM * pi_4_l.d;
 	sign = flag ^ status_pi_1; // 异或，0为正，1为负
 	sin_or_cos = status_pi_2 ^ status_pi_4; // 异或，0为sin，1为cos
 
