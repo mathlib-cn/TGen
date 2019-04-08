@@ -23,13 +23,12 @@ pio2_2t = 2.02226624879595063154e-21, /* 0x3BA3198A, 0x2E037073 */
 pio2_3 = 2.02226624871116645580e-21, /* 0x3BA3198A, 0x2E000000 */
 pio2_3t = 8.47842766036889956997e-32; /* 0x397B839A, 0x252049C1 */
 
-
 // sollya
-static const DL 
-pi_4_h = {.l = 0x3fe921fb54442d18},
-pi_4_l = {.l = 0x3c81a62633145c07},
-pi_2_h = {.l = 0x3ff921fb54442d18},
-pi_2_l = {.l = 0x3c91a62633145c07};
+static const DL
+pi_4_h = { .l = 0x3fe921fb54442d18 },
+pi_4_l = { .l = 0x3c81a62633145c07 },
+pi_2_h = { .l = 0x3ff921fb54442d18 },
+pi_2_l = { .l = 0x3c91a62633145c07 };
 
 // 区间小的话则直接提供，区间大的话则交由程序计算
 //static const double
@@ -389,9 +388,9 @@ double sin_gen(double x) {
 	temp = *((long int *)(&iix));
 	temp = temp & 0x7fffffffffffffff;
 	iix = *((double *)(&temp)); // 此时 iix 为绝对值
-	iiix = iix - ((double)table_order / BITNUM) * pi_4;
-	//iiix = iix - ((double)table_order) / BITNUM * pi_4_h.d;
-	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_l.d;
+	//iiix = iix - ((double)table_order / BITNUM) * pi_4;
+	iiix = iix - ((double)table_order) / BITNUM * pi_4_h.d;
+	iiix = iiix - ((double)table_order) / BITNUM * pi_4_l.d;
 	sign = flag ^ status_pi_1; // 异或，0为正，1为负
 	sin_or_cos = status_pi_2 ^ status_pi_4; // 异或，0为sin，1为cos
 

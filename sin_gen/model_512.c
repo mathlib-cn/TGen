@@ -1,5 +1,6 @@
 // 自动化的话，从BIT、BITNUM入手，控制表项的多少，以及生成对应级数的多项式系数
 #include <stdio.h>
+#include "myhead.h"
 
 #define NUM 100
 #define BIT 7
@@ -12,6 +13,13 @@ invpio4 = 1.2732395447351626861510701069801,
 pi_4 = 0.78539816339744830961566084581988,
 pi_2 = 1.5707963267948966192313216916398,
 X = 0;
+
+// sollya
+static const DL
+pi_4_h = { .l = 0x3fe921fb54442d18 },
+pi_4_l = { .l = 0x3c81a62633145c07 },
+pi_2_h = { .l = 0x3ff921fb54442d18 },
+pi_2_l = { .l = 0x3c91a62633145c07 };
 
 // 区间小的话则直接提供，区间大的话则交由程序计算
 //static const double
@@ -336,14 +344,17 @@ double sin_gen(double x) {
 	status_pi_4 = (temp >> BIT) & 0x1; 
 	status_pi_2 = (temp >> (BIT + 1)) & 0x1;
 	status_pi_1 = (temp >> (BIT + 2)) & 0x1;
-	iix = ix - (temp >> (BIT + 1)) * pi_2 - status_pi_4 * pi_2;
+	iix = ix - ((temp >> (BIT + 1)) + status_pi_4) * pi_2_h.d;
+	iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pi_2_l.d;
 	table_order = temp & (BITNUM - 1); // 对应 (2^BIT -1) ，即BIT位的1
 	table_order = table_order - status_pi_4 * (BITNUM - 1);
 	table_order = (1 - status_pi_4 * 2) * table_order;
 	temp = *((long int *)(&iix));
 	temp = temp & 0x7fffffffffffffff;
 	iix = *((double *)(&temp)); // 此时 iix 为绝对值
-	iiix = iix - ((double)table_order) / BITNUM * pi_4;
+	//iiix = iix - ((double)table_order) / BITNUM * pi_4;
+	iiix = iix - ((double)table_order) / BITNUM * pi_4_h.d;
+	iiix = iiix - ((double)table_order) / BITNUM * pi_4_l.d;
 	sign = flag ^ status_pi_1; // 异或，0为正，1为负
 	sin_or_cos = status_pi_2 ^ status_pi_4; // 异或，0为sin，1为cos
 
