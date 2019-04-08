@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 	mpfr_init2(mpfr_temp, 100);
 	mpfr_init2(mpfr_result, 100);
 
-	inputData = fopen("data_10000_-pi2_to_pi2.txt", "r");
+	inputData = fopen("data_1000000_-50_to_50.txt", "r");
 
 	if (inputData == (FILE *)0) {
 		printf("open error!!!\n");
