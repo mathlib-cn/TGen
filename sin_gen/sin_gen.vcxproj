@@ -138,6 +138,7 @@
     <ClCompile Include="model_fpminimax_pi_16.c" />
     <ClCompile Include="model_fpminimax_pi_256.c" />
     <ClCompile Include="model_fpminimax_pi_32.c" />
+    <ClCompile Include="model_fpminimax_pi_512_cleanversion.c" />
     <ClCompile Include="model_fpminimax_test_pi_512.c" />
     <ClCompile Include="model_fpminimax_pi_64.c" />
     <ClCompile Include="mpfr_data_gen.c" />

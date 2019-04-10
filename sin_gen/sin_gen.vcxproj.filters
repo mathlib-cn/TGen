@@ -93,6 +93,9 @@
     <ClCompile Include="model_4.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="model_fpminimax_pi_512_cleanversion.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
