@@ -5,13 +5,16 @@
 #define NUM 100
 #define BIT 7
 #define BITNUM 128
+#define BITNUM_1 127
 #define DEGREE 6
 
 // 经验证，该精度为double下极限
 static const double
 invpio4 = 1.2732395447351626861510701069801,
+invpio512 = 162.97466172610082382733697369345,
 pi_4 = 0.78539816339744830961566084581988,
 pi_2 = 1.5707963267948966192313216916398,
+pi_512 = 0.00613592315154256491887235035797,
 X = 0;
 
 // GNU
@@ -364,7 +367,7 @@ interpolate[2][BITNUM] = {
 
 double sin_gen(double x) {
 	double ix, iix, iiix, y, appro_s, appro_c;
-	long int temp, table_order, status_pi_4, status_pi_2, status_pi_1, flag, sign, sin_or_cos;
+	long int temp, temp1, temp2, table_order, status_pi_4, status_pi_2, status_pi_1, flag, sign, sin_or_cos;
 	int i;
 
 	ix = x - X;
@@ -383,33 +386,46 @@ double sin_gen(double x) {
 	// iix = ix - [ix * invpio4] * pi_4
 	// iiix = iix - i / 128* pi_4
 	temp = (long int)(ix * invpio4 * BITNUM); // why not ix * invpio_512; ??
-	status_pi_4 = (temp >> BIT) & 0x1; 
-	status_pi_2 = (temp >> (BIT + 1)) & 0x1;
-	status_pi_1 = (temp >> (BIT + 2)) & 0x1;
+	//temp = (long int)(ix * invpio512); // why not ix * invpio_512; ??
+	temp1 = temp >> BIT;
+	//status_pi_4 = (temp >> BIT) & 0x1; 
+	//status_pi_2 = (temp >> (BIT + 1)) & 0x1;
+	//status_pi_1 = (temp >> (BIT + 2)) & 0x1;
+	status_pi_4 = temp1 & 0x1;
+	status_pi_2 = (temp1 >> 1) & 0x1;
+	status_pi_1 = (temp1 >> 2) & 0x1;
+	
+	table_order = temp & BITNUM_1; // 对应 (2^BIT -1) ，即BIT位的1
+	table_order = table_order - status_pi_4 * BITNUM_1;
+	table_order = (1 - status_pi_4 * 2) * table_order;
+
 	//iix = ix - (temp >> (BIT + 1)) * pi_2 - status_pi_4 * pi_2;
 	//iix = ix - ((temp >> (BIT + 1)) + status_pi_4) * pi_2_h.d;
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pi_2_l.d;
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pi_2_ll.d;
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pi_2_lll.d;
-	iix = ix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_1;
-	iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_1t;
+	temp2 = (temp1 >> 1) + status_pi_4;
+	iix = ix - temp2 * pio2_1;
+	iix = iix - temp2 * pio2_1t;
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_2;
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_2t;
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_3;
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_3t;
-	table_order = temp & (BITNUM - 1); // 对应 (2^BIT -1) ，即BIT位的1
-	table_order = table_order - status_pi_4 * (BITNUM - 1);
-	table_order = (1 - status_pi_4 * 2) * table_order;
-	temp = *((long int *)(&iix));
-	temp = temp & 0x7fffffffffffffff;
-	iix = *((double *)(&temp)); // 此时 iix 为绝对值
-	iiix = iix - ((double)table_order / BITNUM) * pi_4;
-	//iiix = iix - ((double)table_order) / BITNUM * pi_4_1.d;
-	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_1t.d;
+	
+	//temp = *((long int *)(&iix));
+	//temp = temp & 0x7fffffffffffffff;
+	//iix = *((double *)(&temp)); // 此时 iix 为绝对值
+	iix = (1 - status_pi_4 * 2) * iix;
+
+	//iiix = iix - ((double)table_order / BITNUM) * pi_4;
+	//iiix = iix - (double)table_order * pi_512;
+	iiix = iix - ((double)table_order) / BITNUM * pi_4_1.d;
+	iiix = iiix - ((double)table_order) / BITNUM * pi_4_1t.d;
 	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_2.d;
 	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_2t.d;
 	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_3.d;
 	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_3t.d;
+	//iiix = (1 - status_pi_4 * 2) * iiix;
 	sign = flag ^ status_pi_1; // 异或，0为正，1为负
 	sin_or_cos = status_pi_2 ^ status_pi_4; // 异或，0为sin，1为cos
 
