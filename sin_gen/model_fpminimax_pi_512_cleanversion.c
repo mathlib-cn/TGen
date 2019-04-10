@@ -23,16 +23,6 @@ pio2_2t = 2.02226624879595063154e-21, /* 0x3BA3198A, 0x2E037073 */
 pio2_3 = 2.02226624871116645580e-21, /* 0x3BA3198A, 0x2E000000 */
 pio2_3t = 8.47842766036889956997e-32; /* 0x397B839A, 0x252049C1 */
 
-// sollya
-static const DL
-pi_4_h = { .l = 0x3fe921fb54442d18 },
-pi_4_l = { .l = 0x3c81a62633145c07 },
-pi_4_ll = {.l = 0xb90f1976b7ed8fbc },
-pi_2_h = { .l = 0x3ff921fb54442d18 },
-pi_2_l = { .l = 0x3c91a62633145c07 },
-pi_2_ll = { .l = 0xb91f1976b7ed8fbc },
-pi_2_lll = { .l = 0x35b0000000000000 };
-
 // GNU
 static const DL
 pi_4_1 = { .l = 0x3FE921FB54400000 },
@@ -74,7 +64,6 @@ pi_4_3t = { .l = 0x397B839A252049C1 };
 // 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
 // cos:
 // 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
-
 static const DL
 coefficient[2][DEGREE] = {
 	{
@@ -386,11 +375,6 @@ double sin_gen(double x) {
 	status_pi_4 = (temp >> BIT) & 0x1; 
 	status_pi_2 = (temp >> (BIT + 1)) & 0x1;
 	status_pi_1 = (temp >> (BIT + 2)) & 0x1;
-	//iix = ix - (temp >> (BIT + 1)) * pi_2 - status_pi_4 * pi_2;
-	//iix = ix - ((temp >> (BIT + 1)) + status_pi_4) * pi_2_h.d;
-	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pi_2_l.d;
-	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pi_2_ll.d;
-	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pi_2_lll.d;
 	iix = ix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_1;
 	iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_1t;
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_2;
@@ -403,9 +387,8 @@ double sin_gen(double x) {
 	temp = *((long int *)(&iix));
 	temp = temp & 0x7fffffffffffffff;
 	iix = *((double *)(&temp)); // 此时 iix 为绝对值
-	iiix = iix - ((double)table_order / BITNUM) * pi_4;
-	//iiix = iix - ((double)table_order) / BITNUM * pi_4_1.d;
-	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_1t.d;
+	iiix = iix - ((double)table_order) / BITNUM * pi_4_1.d;
+	iiix = iiix - ((double)table_order) / BITNUM * pi_4_1t.d;
 	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_2.d;
 	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_2t.d;
 	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_3.d;
