@@ -33,7 +33,7 @@ table[NUM] = { //pi/2 * T, T = 0, 1, 2, ......
 };
 extern double sin_gen(double);
 
-int main(int argc, char *argv[]) {
+void gen(void) {
 	double a, b, midpoint, length;
 	int p;
 	double a1, b1, a2, b2;
@@ -129,6 +129,12 @@ int main(int argc, char *argv[]) {
 		fprintf(func, "}\n");
 	}
 	fclose(func);
+
+	return 0;
+}
+
+int main(int argc, char *argv[]) {
+	gen();
 
 	return 0;
 }

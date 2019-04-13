@@ -263,3 +263,4 @@ __pycache__/
 *.txt
 *.swp
 *.out
+/sin_gen/temp
