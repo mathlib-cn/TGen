@@ -1,4 +1,4 @@
-// 自动化的话，从BIT、BITNUM入手，控制表项的多少，以及生成对应级数的多项式系数
+// For autogen, considering BIT, BITNUM, the size of table, and poly's coefficients
 #include <stdio.h>
 #include "myhead.h"
 
@@ -7,7 +7,7 @@
 #define BITNUM 128
 #define DEGREE 6
 
-// 经验证，该精度为double下极限
+// tested, this precision is the best in double format
 static const double
 invpio4 = 1.2732395447351626861510701069801,
 pi_4 = 0.78539816339744830961566084581988,
@@ -32,7 +32,7 @@ pi_4_1t = { .l = 0x3DC0B4611A626331 },
 pi_4_2t = { .l = 0x3B93198A2E037073 },
 pi_4_3t = { .l = 0x397B839A252049C1 };
 
-// 区间小的话则直接提供，区间大的话则交由程序计算
+// offer when the interval is small, if the interval is big, then auto compute by program.
 //static const double
 //pio2_table[NUM] = { //pi/2 * T, T = 0, 1, 2, ..., 20
 //	0,
@@ -358,12 +358,12 @@ double sin_gen(double x) {
 
 	ix = x - X;
 	temp = *((long int *)(&ix));
-	flag = temp >> 63; // 负为1，正为0
+	flag = temp >> 63; // - is 1, + is 0
 	flag = flag & 0x0000000000000001;
 	temp = temp & 0x7fffffffffffffff;
-	ix = *((double *)(&temp)); // 此时 ix 为绝对值
+	ix = *((double *)(&temp)); // at this time, ix is absolute value
 	
-	// ix过小，则return ix;
+	// if ix is too little, then return ix;
 	if (temp < 0x3e40000000000000) {
 		return (1 - flag * 2) * ix;
 	}
@@ -381,20 +381,20 @@ double sin_gen(double x) {
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_2t;
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_3;
 	//iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_3t;
-	table_order = temp & (BITNUM - 1); // 对应 (2^BIT -1) ，即BIT位的1
+	table_order = temp & (BITNUM - 1); // BITNUM - 1 = (2^BIT -1)
 	table_order = table_order - status_pi_4 * (BITNUM - 1);
 	table_order = (1 - status_pi_4 * 2) * table_order;
 	temp = *((long int *)(&iix));
 	temp = temp & 0x7fffffffffffffff;
-	iix = *((double *)(&temp)); // 此时 iix 为绝对值
+	iix = *((double *)(&temp)); // at this time, iix is absolute value
 	iiix = iix - ((double)table_order) / BITNUM * pi_4_1.d;
 	iiix = iiix - ((double)table_order) / BITNUM * pi_4_1t.d;
 	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_2.d;
 	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_2t.d;
 	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_3.d;
 	//iiix = iiix - ((double)table_order) / BITNUM * pi_4_3t.d;
-	sign = flag ^ status_pi_1; // 异或，0为正，1为负
-	sin_or_cos = status_pi_2 ^ status_pi_4; // 异或，0为sin，1为cos
+	sign = flag ^ status_pi_1; // ornot，0 is +, 1 is -
+	sin_or_cos = status_pi_2 ^ status_pi_4; // ornot, 0 is sin, 1 is cos
 
 	// new, sin(x+x') = sin(x)cos(x') + sin(x')cos(x), x' = iiix
 	// OR, cos(x+x') = cos(x)cos(x') - sin(x)sin(x'), x' = iiix

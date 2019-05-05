@@ -5,12 +5,6 @@
 #include <mpfr.h>
 #include "myhead.h"
 
-struct test_data {
-	int sum;
-	int max;
-	int max_times;
-};
-
 double sin_gen(double);
 void getbinary(_UL, int *);
 _UL getUL(int *);
@@ -21,11 +15,8 @@ void binaryshow(double);
 double itofd(_UL);
 double computeULP(double);
 
-struct test_data test(void)
-{
-	struct test_data performance_result;
-	//double a, b, x;
-	double y1, y2;
+int main(int argc, char *argv[]) {
+	double a, b, x, y1, y2;
 	int i, j, bit_num, max_times;
 	int result[64];
 	_UL ulpdiff, ulpdiff_max, temp_ul, ulpdiff_sum;
@@ -35,9 +26,6 @@ struct test_data test(void)
 	char temp_c;
 	mpfr_t mpfr_temp, mpfr_result;
 
-	performance_result.sum = 0;
-	performance_result.max = 0;
-	performance_result.max_times = 0;
 	ulpdiff_sum = 0;
 	ulpdiff_max = 0;
 	max_times = 0;
@@ -48,8 +36,9 @@ struct test_data test(void)
 
 	if (inputData == (FILE *)0) {
 		printf("open error!!!\n");
-		exit(1);
+		return 0;
 	}
+	
 
 	for (i = 0; i < RUN_COUNT; i++) {
 		for (j = 63; j >= 0; j--) {
@@ -66,20 +55,15 @@ struct test_data test(void)
 		mpfr_sin(mpfr_result, mpfr_temp, MPFR_RNDN);
 		y2 = mpfr_get_d(mpfr_result, MPFR_RNDN);
 
-		//printf("for x = %.17e:\n", input);
-		//printf("\tsin_gen = %.17e\n\tsin     = %.17e\n", y1, y2);
-		//printf("binary of sin_gen is ");
-		//binaryshow(y1);
-		//printf("binary of sin     is ");
-		//binaryshow(y2);
+		printf("for x = %.17e:\n", input);
+		printf("\tsin_gen = %.17e\n\tsin     = %.17e\n", y1, y2);
+		printf("binary of sin_gen is ");
+		binaryshow(y1);
+		printf("binary of sin     is ");
+		binaryshow(y2);
 		//bit_num = computeAccurateBit(y1, y2);
 		//printf("the accurate binary bit is %d\n", bit_num);
 		ulpdiff = computeULPDiff(y1, y2);
-		//printf("%d\n", ulpdiff);
-		if (ulpdiff < 0)
-		{
-			//printf("shit!!!\n");
-		}
 		if (ulpdiff_max < ulpdiff) {
 			ulpdiff_max = ulpdiff;
 			max_times = 1;
@@ -88,31 +72,16 @@ struct test_data test(void)
 			max_times++;
 		}
 		ulpdiff_sum += ulpdiff;
-		//printf("The ULPDiff is %ld\n", ulpdiff);
+		printf("The ULPDiff is %ld\n", ulpdiff);
 		//printf("The ULPDiff is 0x%lx\n\n", ulpdiff);
 		//ulp = computeULP(y2);
 		//ulpd = (y1 - y2) / ulp;
 		//printf("The ULPD is %f\n\n", ulpd);
 	}
-	//printf("sum = %ld\n", ulpdiff_sum);
-	//printf("%ld\n", ulpdiff_sum);
-	//printf("ulpdiff_max = %ld\n", ulpdiff_max);
-	//printf("%ld\n", ulpdiff_max);
-	//printf("max_times = %d\n", max_times);
-	performance_result.sum = ulpdiff_sum;
-	performance_result.max = ulpdiff_max;
-	performance_result.max_times = max_times;
+	printf("sum = %ld\n", ulpdiff_sum);
+	printf("ulpdiff_max = %ld\n", ulpdiff_max);
+	printf("max_times = %d\n", max_times);
+
 	fclose(inputData);
-
-	return performance_result;
-}
-
-int main(int argc, char *argv[]) {
-	struct test_data performance_result;
-	performance_result = test();
-	//printf("%d %d %d\n", p->max, p->max_times, p->sum);
-	printf("%d\n", performance_result.max);
-	printf("%d\n", performance_result.max_times);
-	printf("%d\n", performance_result.sum);
 	return 0;
 }

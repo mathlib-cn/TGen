@@ -96,6 +96,15 @@
     <ClCompile Include="model_fpminimax_pi_512_cleanversion.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="sin_gen.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="performance_test.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="testpy.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -109,5 +118,9 @@
     <None Include="auto.sh" />
     <None Include="test.sh" />
     <None Include="test_fpminimax.sh" />
+    <None Include="per.py" />
+    <None Include="test_hjw.py">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

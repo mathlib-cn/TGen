@@ -142,7 +142,10 @@
     <ClCompile Include="model_fpminimax_test_pi_512.c" />
     <ClCompile Include="model_fpminimax_pi_64.c" />
     <ClCompile Include="mpfr_data_gen.c" />
+    <ClCompile Include="performance_test.c" />
+    <ClCompile Include="sin_gen.c" />
     <ClCompile Include="source.c" />
+    <ClCompile Include="testpy.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="myhead.h" />
@@ -150,8 +153,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="auto.sh" />
+    <None Include="per.py" />
     <None Include="test.sh" />
     <None Include="test_fpminimax.sh" />
+    <None Include="test_hjw.py" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
