@@ -6,9 +6,9 @@
 #include "myhead.h"
 
 struct test_data {
-	int sum;
-	int max;
-	int max_times;
+	unsigned long sum;
+	unsigned long max;
+	unsigned long max_times;
 };
 
 double sin_gen(double);
@@ -26,7 +26,8 @@ struct test_data test(void)
 	struct test_data performance_result;
 	//double a, b, x;
 	double y1, y2;
-	int i, j, bit_num, max_times;
+	int i, j, bit_num;
+	unsigned long max_times;
 	int result[64];
 	_UL ulpdiff, ulpdiff_max, temp_ul, ulpdiff_sum;
 	double input;
@@ -111,8 +112,8 @@ int main(int argc, char *argv[]) {
 	struct test_data performance_result;
 	performance_result = test();
 	//printf("%d %d %d\n", p->max, p->max_times, p->sum);
-	printf("%d\n", performance_result.max);
-	printf("%d\n", performance_result.max_times);
-	printf("%d\n", performance_result.sum);
+	printf("%lu\n", performance_result.max);
+	printf("%lu\n", performance_result.max_times);
+	printf("%lu\n", performance_result.sum);
 	return 0;
 }
