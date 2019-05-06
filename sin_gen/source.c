@@ -2,7 +2,7 @@
 #include "myhead.h"
 
 #define NUM 100
-#define DEGREE 6
+#define DEGREE 7
 #define BITNUM 128
 #define	FORMAT 64
 
@@ -18,6 +18,11 @@ struct constraint {
 // sin & cos
 // coefficient[0] is for sin; coefficient[1] is for cos;
 // pi/4/128
+// 7 coefficients
+// sin:
+// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
+// cos:
+// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
 // 6 coefficients
 // sin:
 // 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
@@ -132,6 +137,28 @@ coefficient[DEGREE][2][DEGREE] = {
 			{.l = 0xbe01ea30fe505df3},
 			{.l = 0x3fa5555b0928dfe9},
 			{.l = 0xbefa66ee34c3b903}
+
+		}
+	},
+	// 7 coefficients
+	{
+		{
+			{.l = 0x39558228bf002ff9},
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbc893a0de469b1fb},
+			{.l = 0xbfc5555555554746},
+			{.l = 0xbdd47714d2fce3ba},
+			{.l = 0x3f811114530de4ce},
+			{.l = 0xbece2bb5fc6e149b}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3b63918d3d8b63e0},
+			{.l = 0xbfe0000000000000},
+			{.l = 0xbcb1f0881cdb7fed},
+			{.l = 0x3fa555555555c054},
+			{.l = 0xbdcd70054d47aeb5},
+			{.l = 0xbf56c165ff0982a8}
 
 		}
 	}
@@ -444,7 +471,6 @@ int gen(struct constraint input_parameter) {
 	int num, bit, bitnum, bitnum_1, degree, fnum, format;
 	num = 100;
 	
-
 	if ((func = fopen("sin_gen.c", "w")) == (FILE *)0) {
 		printf("open file error!\n");
 		return 1;

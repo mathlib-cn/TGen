@@ -17,7 +17,7 @@ sum_sort = []
 
 bit_range = 3
 fnum_range = 3
-degree_range = 6
+degree_range = 7
 start = input("please input the start of interval: ")
 end = input("please input the end of interval: ")
 precision = input("please input the precision of computing: ")
@@ -34,13 +34,7 @@ for bit in range(1, bit_range + 1):
 			#rc, out = subprocess.getstatusoutput("./testpy.out" + ' ' + str(bit) + ' ' + str(fnum) + ' ' + str(degree))
 			#print(out)
 			temp = [eval(i) for i in out.split()]
-			print(temp)
-			#arr.append(int(out))
-			#temp = list(out)
-			#temp.remove('\n')
-			#temp.remove('\n')
-			#temp.remove('\n')
-			#temp = list(map(int, temp))		
+			print(temp)		
 			max_arr.append(temp[0])
 			max_times_arr.append(temp[1])
 			sum_arr.append(temp[2])
