@@ -3,6 +3,8 @@
 
 #define NUM 100
 #define DEGREE 7
+#define COEFFICIENTS 7
+#define BIT 7
 #define BITNUM 128
 #define	FORMAT 64
 
@@ -54,7 +56,1075 @@ struct constraint {
 // cos:
 // 0x3e4ffffd74191a12
 static const DL
-coefficient[DEGREE][2][DEGREE] = {
+coefficient[COEFFICIENTS][2][COEFFICIENTS] = {
+	// 1 coefficients
+	{
+		{
+			{.l = 0x3e4ffffd74191a12}
+		},
+		{
+			{.l = 0x3e4ffffd74191a12}
+		}
+	},
+	// 2 coefficients
+	{
+		{
+			{.l = 0x3d2a51aaa4577386},
+			{.l = 0x3feffff96b389608}
+		},
+		{
+			{.l = 0x3ff0000277a907c0},
+			{.l = 0xbf6921fc09879ff4}
+		}
+	},
+	// 3 coefficients
+	{
+		{
+			{.l = 0xbd0a6081327b77eb},
+			{.l = 0x3ff00000d3f2460f},
+			{.l = 0xbf50c60cab8e9315}
+		},
+		{
+			{.l = 0x3ff00000000041f1},
+			{.l = 0xbe43664f6b411c35},
+			{.l = 0xbfdffff4148eb6b7}
+		}
+	},
+	// 4 coefficients
+	{
+		{
+			{.l = 0xbbca7d59979393ef},
+			{.l = 0x3ff0000000000d53},
+			{.l = 0xbe1f1f04f59599b9},
+			{.l = 0xbfc555508f75ffbc}
+		},
+		{
+			{.l = 0x3fefffffffffefc4},
+			{.l = 0x3e24abb2cf0603fd},
+			{.l = 0xbfe000041cc0f168},
+			{.l = 0x3f40c14fcbc76a91}
+		}
+	},
+	// 5 coefficients
+	{
+		{
+			{.l = 0x3b9a24fd6f71e4f0},
+			{.l = 0x3feffffffffffcb4},
+			{.l = 0x3e00999ee5af3132},
+			{.l = 0xbfc55558a0d459da},
+			{.l = 0x3f1ad2a9831248b0}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3ce5434093bdf722},
+			{.l = 0xbfe00000000077d5},
+			{.l = 0x3e1923479c224098},
+			{.l = 0x3fa5554e47f80e37}
+		}
+	},
+	// 6 coefficients
+	{
+		{
+			{.l = 0xb984d64a29b505c5},
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3cb845aef92c1d42},
+			{.l = 0xbfc55555555599c3},
+			{.l = 0x3decb7924858362b},
+			{.l = 0x3f81110d09aab89d}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbcb61a0a5c31efb7},
+			{.l = 0xbfdfffffffffcec1},
+			{.l = 0xbe01ea30fe505df3},
+			{.l = 0x3fa5555b0928dfe9},
+			{.l = 0xbefa66ee34c3b903}
+
+		}
+	},
+	// 7 coefficients
+	{
+		{
+			{.l = 0x39558228bf002ff9},
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbc893a0de469b1fb},
+			{.l = 0xbfc5555555554746},
+			{.l = 0xbdd47714d2fce3ba},
+			{.l = 0x3f811114530de4ce},
+			{.l = 0xbece2bb5fc6e149b}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3b63918d3d8b63e0},
+			{.l = 0xbfe0000000000000},
+			{.l = 0xbcb1f0881cdb7fed},
+			{.l = 0x3fa555555555c054},
+			{.l = 0xbdcd70054d47aeb5},
+			{.l = 0xbf56c165ff0982a8}
+
+		}
+	}
+};
+
+// sin & cos
+// coefficient[0] is for sin; coefficient[1] is for cos;
+// pi/4/64
+// 7 coefficients
+// sin:
+// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
+// cos:
+// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
+// 6 coefficients
+// sin:
+// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
+// cos:
+// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
+// 5 coefficients
+// sin:
+// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
+// cos:
+// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
+// 4 coefficients
+// sin:
+// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
+// cos:
+// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
+// 3 coefficients
+// sin:
+// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
+// cos:
+// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
+// 2 coefficients
+// sin:
+// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
+// cos:
+// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
+// 1 coefficient
+// sin:
+// 0x3e4ffffd74191a12
+// cos:
+// 0x3e4ffffd74191a12
+static const DL
+coefficient_pi_4_64[COEFFICIENTS][2][COEFFICIENTS] = {
+	// 1 coefficients
+	{
+		{
+			{.l = 0x3e4ffffeba0aedef}
+		},
+		{
+			{.l = 0x3fefffb10a8af759}
+		}
+	},
+	// 2 coefficients
+	{
+		{
+			{.l = 0x3d4a51b016418ff7},
+			{.l = 0x3fefffe5ad663073}
+		},
+		{
+			{.l = 0x3ff00009dea4cf1d},
+			{.l = 0xbf7921f72953d200}
+		}
+	},
+	// 3 coefficients
+	{
+		{
+			{.l = 0xbd2a5c2194f2e9a0},
+			{.l = 0x3ff000034e258aca},
+			{.l = 0xbf60c4a5e2afe6cb}
+		},
+		{
+			{.l = 0x3ff0000000041f0d},
+			{.l = 0xbe7366517d2c1105},
+			{.l = 0xbfdfffd05239dd23}
+		}
+	},
+	// 4 coefficients
+	{
+		{
+			{.l = 0xbc0a74cb6bfe2a66},
+			{.l = 0x3ff000000000d48c},
+			{.l = 0xbe4f18dbb1db2dca},
+			{.l = 0xbfc555423f5fca0f}
+		},
+		{
+			{.l = 0x3feffffffffefc3c},
+			{.l = 0x3e54abc68b0b1952},
+			{.l = 0xbfe00010730708f5},
+			{.l = 0x3f50c14e50ee4777}
+		}
+	},
+	// 5 coefficients
+	{
+		{
+			{.l = 0x3bda18d9de49ab89},
+			{.l = 0x3fefffffffffcb7b},
+			{.l = 0x3e3094ecf9a8384e},
+			{.l = 0xbfc5556281d0b611},
+			{.l = 0x3f2ad18e4f0827b1}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3d35436df932e463},
+			{.l = 0xbfe0000000077d5a},
+			{.l = 0x3e49235b48445bed},
+			{.l = 0x3fa555391fd536fd}
+		}
+	},
+	// 6 coefficients
+	{
+		{
+			{.l = 0xb9d4fc64a5efeb6a},
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3d0847eb23176753},
+			{.l = 0xbfc5555555599c6c},
+			{.l = 0x3e1cb882e949c36c},
+			{.l = 0x3f811100f32d3a83}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbd0619f83dcccbf2},
+			{.l = 0xbfdffffffffcec12},
+			{.l = 0xbe31ea26f2eb19dd},
+			{.l = 0x3fa5556c2498abda},
+			{.l = 0xbf0a66e583c1d006}
+
+		}
+	},
+	// 7 coefficients
+	{
+		{
+			{.l = 0x39a5b32c373a103b},
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbcd93d23df47f8f2},
+			{.l = 0xbfc5555555547450},
+			{.l = 0xbe0477ee9a14db48},
+			{.l = 0x3f81111e194f108f},
+			{.l = 0xbede2bfcaa5c4d71}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbbe6aedc6ad30a82},
+			{.l = 0xbfdfffffffffffff},
+			{.l = 0xbd1e56ec42a5c878},
+			{.l = 0x3fa5555555626754},
+			{.l = 0xbe05c0b21cd411e2},
+			{.l = 0xbf56c14de38f7e23}
+		}
+	}
+};
+
+// sin & cos
+// coefficient[0] is for sin; coefficient[1] is for cos;
+// pi/4/32
+// 7 coefficients
+// sin:
+// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
+// cos:
+// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
+// 6 coefficients
+// sin:
+// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
+// cos:
+// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
+// 5 coefficients
+// sin:
+// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
+// cos:
+// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
+// 4 coefficients
+// sin:
+// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
+// cos:
+// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
+// 3 coefficients
+// sin:
+// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
+// cos:
+// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
+// 2 coefficients
+// sin:
+// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
+// cos:
+// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
+// 1 coefficient
+// sin:
+// 0x3e4ffffd74191a12
+// cos:
+// 0x3e4ffffd74191a12
+static const DL
+coefficient_pi_4_32[COEFFICIENTS][2][COEFFICIENTS] = {
+	// 1 coefficients
+	// 0x3e4fffff5d024f68
+	// 0x3feffec424152730
+	{
+		{
+			{.l = 0x3e4fffff5d024f68}
+		},
+		{
+			{.l = 0x3feffec424152730}
+		}
+	},
+	// 2 coefficients
+	// 0x3d6a51c988d7d7ca + x * 0x3fefff96b68cea95
+	// 0x3ff000277abf3c54 + x * 0xbf8921e7288b3eed
+	{
+		{
+			{.l = 0x3d6a51c988d7d7ca},
+			{.l = 0x3fefff96b68cea95}
+		},
+		{
+			{.l = 0x3ff000277abf3c54},
+			{.l = 0xbf8921e7288b3eed}
+		}
+	},
+	// 3 coefficients
+	// 0xbd4a58fa078e1bfe + x * (0x3ff0000d33ec85c8 + x * 0xbf70c39c66553991)
+	// 0x3ff000000041f1ec + x * (0xbea3667f01b48d34 + x * 0xbfdfff4148411c57)
+	{
+		{
+			{.l = 0xbd4a58fa078e1bfe},
+			{.l = 0x3ff0000d33ec85c8},
+			{.l = 0xbf70c39c66553991}
+		},
+		{
+			{.l = 0x3ff000000041f1ec},
+			{.l = 0xbea3667f01b48d34},
+			{.l = 0xbfdfff4148411c57}
+		}
+	},
+	// 4 coefficients
+	// 0xbc4a6ed4a82f0a57 + x * (0x3ff00000000d418e + x * (0xbe7f148843c5557a + x * 0xbfc5550901db79c2))
+	// 0x3fefffffffefc3b8 + x * (0x3e84abc68a85b7ed + x * (0xbfe00041cbebd6e8 + x * 0x3f60c13f41810855))
+	{
+		{
+			{.l = 0xbc4a6ed4a82f0a57},
+			{.l = 0x3ff00000000d418e},
+			{.l = 0xbe7f148843c5557a},
+			{.l = 0xbfc5550901db79c2}
+		},
+		{
+			{.l = 0x3fefffffffefc3b8},
+			{.l = 0x3e84abc68a85b7ed},
+			{.l = 0xbfe00041cbebd6e8},
+			{.l = 0x3f60c13f41810855}
+		}
+	},
+	// 5 coefficients
+	// 0x3c1a0fa756bd3f67 + x * (0x3feffffffffcba5e + x * (0x3e60917579930fe4 + x * (0xbfc5558a02b11613 + x * 0x3f3ad0abbc522eb7)))
+	// 0x3feffffffffffff0 + x * (0x3d8dc087f14a5031 + x * (0xbfe00000008b49eb + x * (0x3e7b33bfc68376b4 + x * 0x3fa554dfd36ee1b1)))
+	{
+		{
+			{.l = 0x3c1a0fa756bd3f67},
+			{.l = 0x3feffffffffcba5e},
+			{.l = 0x3e60917579930fe4},
+			{.l = 0xbfc5558a02b11613},
+			{.l = 0x3f3ad0abbc522eb7}
+		},
+		{
+			{.l = 0x3feffffffffffff0},
+			{.l = 0x3d8dc087f14a5031},
+			{.l = 0xbfe00000008b49eb},
+			{.l = 0x3e7b33bfc68376b4},
+			{.l = 0x3fa554dfd36ee1b1}
+		}
+	},
+	// 6 coefficients
+	// 0x3b0fd4acbb1215cd + x * (0x3feffffffffffffe + x * (0x3d6064617071654d + x * (0xbfc5555555a38704 + x * (0x3e4eca6b4cb8c93e + x * 0x3f8110ce41aee4f3))))
+	// 0x3ff0000000000001 + x * (0xbd616abbb1cc8ecc + x * (0xbfdfffffffc3682c + x * (0xbe63fa7ba182ef14 + x * (0x3fa555b5d381c878 + x * 0xbf1b02895e60699f))))
+	{
+		{
+			{.l = 0x3b0fd4acbb1215cd},
+			{.l = 0x3feffffffffffffe},
+			{.l = 0x3d6064617071654d},
+			{.l = 0xbfc5555555a38704},
+			{.l = 0x3e4eca6b4cb8c93e},
+			{.l = 0x3f8110ce41aee4f3}
+		},
+		{
+			{.l = 0x3ff0000000000001},
+			{.l = 0xbd616abbb1cc8ecc},
+			{.l = 0xbfdfffffffc3682c},
+			{.l = 0xbe63fa7ba182ef14},
+			{.l = 0x3fa555b5d381c878},
+			{.l = 0xbf1b02895e60699f}
+
+		}
+	},
+	// 7 coefficients
+	// 0x39f5d597b0149658 + x * (0x3ff0000000000000 + x * (0xbd293e830c12c95d + x * (0xbfc555555547449a + x * (0xbe347837ff39b44f + x * (0x3f81114532518e39 + x * 0xbeee2c01eb2f7feb)))))
+	// 0x3ff0000000000000 + x * (0xbc54257f5753f4a9 + x * (0xbfdfffffffffffc5 + x * (0xbd6cab8626df20da + x * (0x3fa55555561e7a88 + x * (0xbe3533fe6b89710e + x * 0xbf56c0f51c7eacc2)))))
+	{
+		{
+			{.l = 0x39f5d597b0149658},
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbd293e830c12c95d},
+			{.l = 0xbfc555555547449a},
+			{.l = 0xbe347837ff39b44f},
+			{.l = 0x3f81114532518e39},
+			{.l = 0xbeee2c01eb2f7feb}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbc54257f5753f4a9},
+			{.l = 0xbfdfffffffffffc5},
+			{.l = 0xbd6cab8626df20da},
+			{.l = 0x3fa55555561e7a88},
+			{.l = 0xbe3533fe6b89710e},
+			{.l = 0xbf56c0f51c7eacc2}
+		}
+	}
+};
+
+// sin & cos
+// coefficient[0] is for sin; coefficient[1] is for cos;
+// pi/4/16
+// 7 coefficients
+// sin:
+// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
+// cos:
+// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
+// 6 coefficients
+// sin:
+// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
+// cos:
+// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
+// 5 coefficients
+// sin:
+// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
+// cos:
+// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
+// 4 coefficients
+// sin:
+// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
+// cos:
+// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
+// 3 coefficients
+// sin:
+// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
+// cos:
+// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
+// 2 coefficients
+// sin:
+// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
+// cos:
+// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
+// 1 coefficient
+// sin:
+// 0x3e4ffffd74191a12
+// cos:
+// 0x3e4ffffd74191a12
+static const DL
+coefficient_pi_4_16[COEFFICIENTS][2][COEFFICIENTS] = {
+	// 1 coefficients
+	// 0x3e4fffffae7addd5
+	// 0x3feffb102ee13dbc
+	{
+		{
+			{.l = 0x3e4fffffae7addd5}
+		},
+		{
+			{.l = 0x3feffb102ee13dbc}
+		}
+	},
+	// 2 coefficients
+	// 0x3d8a523129a77c77 + x * 0x3feffe5ad7215caf
+	// 0x3ff0009dedff43be + x * 0xbf9921a8e5b84b2d
+	{
+		{
+			{.l = 0x3d8a523129a77c77},
+			{.l = 0x3feffe5ad7215caf}
+		},
+		{
+			{.l = 0x3ff0009dedff43be},
+			{.l = 0xbf9921a8e5b84b2d}
+		}
+	},
+	// 3 coefficients
+	// 0xbd6a567ed53fd466 + x * (0x3ff00034c2036306 + x * 0xbf80c2b10ee9a5de)
+	// 0x3ff00000041f6b79 + x * (0xbed3673c23f0b55a + x * 0xbfdffd05162da912)
+	{
+		{
+			{.l = 0xbd6a567ed53fd466},
+			{.l = 0x3ff00034c2036306},
+			{.l = 0xbf80c2b10ee9a5de}
+		},
+		{
+			{.l = 0x3ff00000041f6b79},
+			{.l = 0xbed3673c23f0b55a},
+			{.l = 0xbfdffd05162da912}
+		}
+	},
+	// 4 coefficients
+	// 0xbc8a6aea61243945 + x * (0x3ff0000000d3c9f7 + x * (0xbeaf1192aac26e18 + x * 0xbfc55424145a70a2))
+	// 0x3feffffffefc35c3 + x * (0x3eb4abd997932194 + x * (0xbfe001072d0ba831 + x * 0x3f70c105394e49f9))
+	{
+		{
+			{.l = 0xbc8a6aea61243945},
+			{.l = 0x3ff0000000d3c9f7},
+			{.l = 0xbeaf1192aac26e18},
+			{.l = 0xbfc55424145a70a2}
+		},
+		{
+			{.l = 0x3feffffffefc35c3},
+			{.l = 0x3eb4abd997932194},
+			{.l = 0xbfe001072d0ba831},
+			{.l = 0x3f70c105394e49f9}
+		}
+	},
+	// 5 coefficients
+	// 0x3c5a08c70e2300f0 + x * (0x3fefffffffcbc4e6 + x * (0x3e908ebe4d100a7e + x * (0xbfc55627fa67fdd4 + x * 0x3f4acfb5cc36f278)))
+	// 0x3feffffffffffbf7 + x * (0x3dddd4845478db8f + x * (0xbfe0000008b78aef + x * (0x3eab38b419a37c78 + x * 0x3fa5537f22216dce)))
+	{
+		{
+			{.l = 0x3c5a08c70e2300f0},
+			{.l = 0x3fefffffffcbc4e6},
+			{.l = 0x3e908ebe4d100a7e},
+			{.l = 0xbfc55627fa67fdd4},
+			{.l = 0x3f4acfb5cc36f278}
+		},
+		{
+			{.l = 0x3feffffffffffbf7},
+			{.l = 0x3dddd4845478db8f},
+			{.l = 0xbfe0000008b78aef},
+			{.l = 0x3eab38b419a37c78},
+			{.l = 0x3fa5537f22216dce}
+		}
+	},
+	// 6 coefficients
+	// 0x3b728e29523aaf26 + x * (0x3fefffffffffff6b + x * (0x3db116fc9b61762c + x * (0xbfc555555a52084a + x * (0x3e7f21422dc9145f + x * 0x3f8110044b2b6bd5))))
+	// 0x3ff000000000002b + x * (0xbdaea813481f61a6 + x * (0xbfdffffffc721afb + x * (0xbe934cd8de340b65 + x * (0x3fa556d0616203b7 + x * 0xbf2acf051176b508))))
+	{
+		{
+			{.l = 0x3b728e29523aaf26},
+			{.l = 0x3fefffffffffff6b},
+			{.l = 0x3db116fc9b61762c},
+			{.l = 0xbfc555555a52084a},
+			{.l = 0x3e7f21422dc9145f},
+			{.l = 0x3f8110044b2b6bd5}
+		},
+		{
+			{.l = 0x3ff000000000002b},
+			{.l = 0xbdaea813481f61a6},
+			{.l = 0xbfdffffffc721afb},
+			{.l = 0xbe934cd8de340b65},
+			{.l = 0x3fa556d0616203b7},
+			{.l = 0xbf2acf051176b508}
+
+		}
+	},
+	// 7 coefficients
+	// 0xbb37e3679de565ed + x * (0x3ff0000000000006 + x * (0xbd816700b6864321 + x * (0xbfc555555452325e + x * (0xbe6604f31d4bce51 + x * (0x3f8111e978ee7681 + x * 0xbefea0a7102bb852)))))
+	// 0x3ff0000000000000 + x * (0xbcc3f2a79a39d131 + x * (0xbfdffffffffff159 + x * (0xbdbc8a23e46b1056 + x * (0x3fa5555561ddaa7a + x * (0xbe6528ed7f67d61b + x * 0xbf56bf90c1d7fc9d)))))
+	{
+		{
+			{.l = 0xbb37e3679de565ed},
+			{.l = 0x3ff0000000000006 },
+			{.l = 0xbd816700b6864321 },
+			{.l = 0xbfc555555452325e },
+			{.l = 0xbe6604f31d4bce51 },
+			{.l = 0x3f8111e978ee7681 },
+			{.l = 0xbefea0a7102bb852 }
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbcc3f2a79a39d131},
+			{.l = 0xbfdffffffffff159},
+			{.l = 0xbdbc8a23e46b1056},
+			{.l = 0x3fa5555561ddaa7a},
+			{.l = 0xbe6528ed7f67d61b},
+			{.l = 0xbf56bf90c1d7fc9d}
+		}
+	}
+};
+
+// sin & cos
+// coefficient[0] is for sin; coefficient[1] is for cos;
+// pi/4/8
+// 7 coefficients
+// sin:
+// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
+// cos:
+// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
+// 6 coefficients
+// sin:
+// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
+// cos:
+// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
+// 5 coefficients
+// sin:
+// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
+// cos:
+// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
+// 4 coefficients
+// sin:
+// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
+// cos:
+// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
+// 3 coefficients
+// sin:
+// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
+// cos:
+// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
+// 2 coefficients
+// sin:
+// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
+// cos:
+// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
+// 1 coefficient
+// sin:
+// 0x3e4ffffd74191a12
+// cos:
+// 0x3e4ffffd74191a12
+static const DL
+coefficient_pi_4_8[COEFFICIENTS][2][COEFFICIENTS] = {
+	// 1 coefficients
+	{
+		{
+			{.l = 0x3e4ffffd74191a12}
+		},
+		{
+			{.l = 0x3e4ffffd74191a12}
+		}
+	},
+	// 2 coefficients
+	{
+		{
+			{.l = 0x3d2a51aaa4577386},
+			{.l = 0x3feffff96b389608}
+		},
+		{
+			{.l = 0x3ff0000277a907c0},
+			{.l = 0xbf6921fc09879ff4}
+		}
+	},
+	// 3 coefficients
+	{
+		{
+			{.l = 0xbd0a6081327b77eb},
+			{.l = 0x3ff00000d3f2460f},
+			{.l = 0xbf50c60cab8e9315}
+		},
+		{
+			{.l = 0x3ff00000000041f1},
+			{.l = 0xbe43664f6b411c35},
+			{.l = 0xbfdffff4148eb6b7}
+		}
+	},
+	// 4 coefficients
+	{
+		{
+			{.l = 0xbbca7d59979393ef},
+			{.l = 0x3ff0000000000d53},
+			{.l = 0xbe1f1f04f59599b9},
+			{.l = 0xbfc555508f75ffbc}
+		},
+		{
+			{.l = 0x3fefffffffffefc4},
+			{.l = 0x3e24abb2cf0603fd},
+			{.l = 0xbfe000041cc0f168},
+			{.l = 0x3f40c14fcbc76a91}
+		}
+	},
+	// 5 coefficients
+	{
+		{
+			{.l = 0x3b9a24fd6f71e4f0},
+			{.l = 0x3feffffffffffcb4},
+			{.l = 0x3e00999ee5af3132},
+			{.l = 0xbfc55558a0d459da},
+			{.l = 0x3f1ad2a9831248b0}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3ce5434093bdf722},
+			{.l = 0xbfe00000000077d5},
+			{.l = 0x3e1923479c224098},
+			{.l = 0x3fa5554e47f80e37}
+		}
+	},
+	// 6 coefficients
+	{
+		{
+			{.l = 0xb984d64a29b505c5},
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3cb845aef92c1d42},
+			{.l = 0xbfc55555555599c3},
+			{.l = 0x3decb7924858362b},
+			{.l = 0x3f81110d09aab89d}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbcb61a0a5c31efb7},
+			{.l = 0xbfdfffffffffcec1},
+			{.l = 0xbe01ea30fe505df3},
+			{.l = 0x3fa5555b0928dfe9},
+			{.l = 0xbefa66ee34c3b903}
+
+		}
+	},
+	// 7 coefficients
+	{
+		{
+			{.l = 0x39558228bf002ff9},
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbc893a0de469b1fb},
+			{.l = 0xbfc5555555554746},
+			{.l = 0xbdd47714d2fce3ba},
+			{.l = 0x3f811114530de4ce},
+			{.l = 0xbece2bb5fc6e149b}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3b63918d3d8b63e0},
+			{.l = 0xbfe0000000000000},
+			{.l = 0xbcb1f0881cdb7fed},
+			{.l = 0x3fa555555555c054},
+			{.l = 0xbdcd70054d47aeb5},
+			{.l = 0xbf56c165ff0982a8}
+
+		}
+	}
+};
+
+// sin & cos
+// coefficient[0] is for sin; coefficient[1] is for cos;
+// pi/4/4
+// 7 coefficients
+// sin:
+// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
+// cos:
+// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
+// 6 coefficients
+// sin:
+// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
+// cos:
+// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
+// 5 coefficients
+// sin:
+// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
+// cos:
+// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
+// 4 coefficients
+// sin:
+// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
+// cos:
+// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
+// 3 coefficients
+// sin:
+// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
+// cos:
+// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
+// 2 coefficients
+// sin:
+// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
+// cos:
+// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
+// 1 coefficient
+// sin:
+// 0x3e4ffffd74191a12
+// cos:
+// 0x3e4ffffd74191a12
+static const DL
+coefficient_pi_4_4[COEFFICIENTS][2][COEFFICIENTS] = {
+	// 1 coefficients
+	{
+		{
+			{.l = 0x3e4ffffd74191a12}
+		},
+		{
+			{.l = 0x3e4ffffd74191a12}
+		}
+	},
+	// 2 coefficients
+	{
+		{
+			{.l = 0x3d2a51aaa4577386},
+			{.l = 0x3feffff96b389608}
+		},
+		{
+			{.l = 0x3ff0000277a907c0},
+			{.l = 0xbf6921fc09879ff4}
+		}
+	},
+	// 3 coefficients
+	{
+		{
+			{.l = 0xbd0a6081327b77eb},
+			{.l = 0x3ff00000d3f2460f},
+			{.l = 0xbf50c60cab8e9315}
+		},
+		{
+			{.l = 0x3ff00000000041f1},
+			{.l = 0xbe43664f6b411c35},
+			{.l = 0xbfdffff4148eb6b7}
+		}
+	},
+	// 4 coefficients
+	{
+		{
+			{.l = 0xbbca7d59979393ef},
+			{.l = 0x3ff0000000000d53},
+			{.l = 0xbe1f1f04f59599b9},
+			{.l = 0xbfc555508f75ffbc}
+		},
+		{
+			{.l = 0x3fefffffffffefc4},
+			{.l = 0x3e24abb2cf0603fd},
+			{.l = 0xbfe000041cc0f168},
+			{.l = 0x3f40c14fcbc76a91}
+		}
+	},
+	// 5 coefficients
+	{
+		{
+			{.l = 0x3b9a24fd6f71e4f0},
+			{.l = 0x3feffffffffffcb4},
+			{.l = 0x3e00999ee5af3132},
+			{.l = 0xbfc55558a0d459da},
+			{.l = 0x3f1ad2a9831248b0}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3ce5434093bdf722},
+			{.l = 0xbfe00000000077d5},
+			{.l = 0x3e1923479c224098},
+			{.l = 0x3fa5554e47f80e37}
+		}
+	},
+	// 6 coefficients
+	{
+		{
+			{.l = 0xb984d64a29b505c5},
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3cb845aef92c1d42},
+			{.l = 0xbfc55555555599c3},
+			{.l = 0x3decb7924858362b},
+			{.l = 0x3f81110d09aab89d}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbcb61a0a5c31efb7},
+			{.l = 0xbfdfffffffffcec1},
+			{.l = 0xbe01ea30fe505df3},
+			{.l = 0x3fa5555b0928dfe9},
+			{.l = 0xbefa66ee34c3b903}
+
+		}
+	},
+	// 7 coefficients
+	{
+		{
+			{.l = 0x39558228bf002ff9},
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbc893a0de469b1fb},
+			{.l = 0xbfc5555555554746},
+			{.l = 0xbdd47714d2fce3ba},
+			{.l = 0x3f811114530de4ce},
+			{.l = 0xbece2bb5fc6e149b}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3b63918d3d8b63e0},
+			{.l = 0xbfe0000000000000},
+			{.l = 0xbcb1f0881cdb7fed},
+			{.l = 0x3fa555555555c054},
+			{.l = 0xbdcd70054d47aeb5},
+			{.l = 0xbf56c165ff0982a8}
+
+		}
+	}
+};
+
+// sin & cos
+// coefficient[0] is for sin; coefficient[1] is for cos;
+// pi/4/2
+// 7 coefficients
+// sin:
+// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
+// cos:
+// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
+// 6 coefficients
+// sin:
+// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
+// cos:
+// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
+// 5 coefficients
+// sin:
+// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
+// cos:
+// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
+// 4 coefficients
+// sin:
+// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
+// cos:
+// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
+// 3 coefficients
+// sin:
+// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
+// cos:
+// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
+// 2 coefficients
+// sin:
+// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
+// cos:
+// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
+// 1 coefficient
+// sin:
+// 0x3e4ffffd74191a12
+// cos:
+// 0x3e4ffffd74191a12
+static const DL
+coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
+	// 1 coefficients
+	{
+		{
+			{.l = 0x3e4ffffd74191a12}
+		},
+		{
+			{.l = 0x3e4ffffd74191a12}
+		}
+	},
+	// 2 coefficients
+	{
+		{
+			{.l = 0x3d2a51aaa4577386},
+			{.l = 0x3feffff96b389608}
+		},
+		{
+			{.l = 0x3ff0000277a907c0},
+			{.l = 0xbf6921fc09879ff4}
+		}
+	},
+	// 3 coefficients
+	{
+		{
+			{.l = 0xbd0a6081327b77eb},
+			{.l = 0x3ff00000d3f2460f},
+			{.l = 0xbf50c60cab8e9315}
+		},
+		{
+			{.l = 0x3ff00000000041f1},
+			{.l = 0xbe43664f6b411c35},
+			{.l = 0xbfdffff4148eb6b7}
+		}
+	},
+	// 4 coefficients
+	{
+		{
+			{.l = 0xbbca7d59979393ef},
+			{.l = 0x3ff0000000000d53},
+			{.l = 0xbe1f1f04f59599b9},
+			{.l = 0xbfc555508f75ffbc}
+		},
+		{
+			{.l = 0x3fefffffffffefc4},
+			{.l = 0x3e24abb2cf0603fd},
+			{.l = 0xbfe000041cc0f168},
+			{.l = 0x3f40c14fcbc76a91}
+		}
+	},
+	// 5 coefficients
+	{
+		{
+			{.l = 0x3b9a24fd6f71e4f0},
+			{.l = 0x3feffffffffffcb4},
+			{.l = 0x3e00999ee5af3132},
+			{.l = 0xbfc55558a0d459da},
+			{.l = 0x3f1ad2a9831248b0}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3ce5434093bdf722},
+			{.l = 0xbfe00000000077d5},
+			{.l = 0x3e1923479c224098},
+			{.l = 0x3fa5554e47f80e37}
+		}
+	},
+	// 6 coefficients
+	{
+		{
+			{.l = 0xb984d64a29b505c5},
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3cb845aef92c1d42},
+			{.l = 0xbfc55555555599c3},
+			{.l = 0x3decb7924858362b},
+			{.l = 0x3f81110d09aab89d}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbcb61a0a5c31efb7},
+			{.l = 0xbfdfffffffffcec1},
+			{.l = 0xbe01ea30fe505df3},
+			{.l = 0x3fa5555b0928dfe9},
+			{.l = 0xbefa66ee34c3b903}
+
+		}
+	},
+	// 7 coefficients
+	{
+		{
+			{.l = 0x39558228bf002ff9},
+			{.l = 0x3ff0000000000000},
+			{.l = 0xbc893a0de469b1fb},
+			{.l = 0xbfc5555555554746},
+			{.l = 0xbdd47714d2fce3ba},
+			{.l = 0x3f811114530de4ce},
+			{.l = 0xbece2bb5fc6e149b}
+		},
+		{
+			{.l = 0x3ff0000000000000},
+			{.l = 0x3b63918d3d8b63e0},
+			{.l = 0xbfe0000000000000},
+			{.l = 0xbcb1f0881cdb7fed},
+			{.l = 0x3fa555555555c054},
+			{.l = 0xbdcd70054d47aeb5},
+			{.l = 0xbf56c165ff0982a8}
+
+		}
+	}
+};
+
+// sin & cos
+// coefficient[0] is for sin; coefficient[1] is for cos;
+// pi/4/1
+// 7 coefficients
+// sin:
+// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
+// cos:
+// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
+// 6 coefficients
+// sin:
+// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
+// cos:
+// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
+// 5 coefficients
+// sin:
+// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
+// cos:
+// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
+// 4 coefficients
+// sin:
+// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
+// cos:
+// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
+// 3 coefficients
+// sin:
+// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
+// cos:
+// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
+// 2 coefficients
+// sin:
+// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
+// cos:
+// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
+// 1 coefficient
+// sin:
+// 0x3e4ffffd74191a12
+// cos:
+// 0x3e4ffffd74191a12
+static const DL
+coefficient_pi_4_1[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
 	{
 		{
@@ -479,7 +1549,7 @@ int gen(struct constraint input_parameter) {
 	b = input_parameter.end;
 	precision = input_parameter.precision;
 	bit = input_parameter.bit;
-	bit = 7;
+	//bit = 7;
 	bitnum = 1 << bit;
 	bitnum_1 = bitnum - 1;
 	fnum = input_parameter.fnum;
@@ -571,15 +1641,15 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "interpolate[2][BITNUM] = {\n");
 		fprintf(func, "\t{\n");
 		for (i = 0; i < bitnum - 1; i++) {
-			fprintf(func, "\t\t%.17e,\n", interpolate[0][i]);
+			fprintf(func, "\t\t%.17e,\n", interpolate[0][i * (1 << (7 - bit))]);
 		}
-		fprintf(func, "\t\t%.17e\n", interpolate[0][i]);
+		fprintf(func, "\t\t%.17e\n", interpolate[0][i * (1 << (7 - bit))]);
 		fprintf(func, "\t},\n");
 		fprintf(func, "\t{\n");
 		for (i = 0; i < bitnum - 1; i++) {
-			fprintf(func, "\t\t%.17e,\n", interpolate[1][i]);
+			fprintf(func, "\t\t%.17e,\n", interpolate[1][i * (1 << (7 - bit))]);
 		}
-		fprintf(func, "\t\t%.17e\n", interpolate[1][i]);
+		fprintf(func, "\t\t%.17e\n", interpolate[1][i * (1 << (7 - bit))]);
 		fprintf(func, "\t}\n");
 		fprintf(func, "};\n");
 

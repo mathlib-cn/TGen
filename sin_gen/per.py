@@ -15,20 +15,24 @@ min_max_times_indexes = []
 min_sum_indexes = []
 sum_sort = []
 
-bit_range = 3
+bit_range = 7
 fnum_range = 3
 degree_range = 7
 start = input("please input the start of interval: ")
 end = input("please input the end of interval: ")
 precision = input("please input the precision of computing: ")
 
-for bit in range(1, bit_range + 1):
+for bit in range(0, bit_range + 1):
 	for fnum in range(1, fnum_range + 1):
 		for degree in range(0, degree_range):
 			print("bit = " + str(bit) + " fnum = " + str(fnum) + " degree = " + str(degree))
 			sin_gen_run = main + ' ' + start + ' ' + end + ' ' + precision + ' ' + str(bit) + ' ' + str(fnum) + ' ' + str(degree)
 			subprocess.getstatusoutput(sin_gen_run)
-			hjw = input("enter any jian if continue")
+			#hjw = input("enter any jian if continue")
+			newfilename = "sin_gen_" + str(bit) + "_" + str(fnum) + "_" + str(degree) + ".c"
+			shellscript = "cp sin_gen.c " + newfilename
+			subprocess.getstatusoutput(shellscript)
+			performance_test = "gcc main_test_sin_gen.c " + newfilename + " binary.c computeULP.c -lm -lgmp -lmpfr -o main_test_sin_gen.out"
 			subprocess.getstatusoutput(performance_test)
 			rc, out = subprocess.getstatusoutput(performance_run)
 			#rc, out = subprocess.getstatusoutput("./testpy.out" + ' ' + str(bit) + ' ' + str(fnum) + ' ' + str(degree))
