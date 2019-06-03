@@ -20,53 +20,22 @@ struct constraint {
 // sin & cos
 // coefficient[0] is for sin; coefficient[1] is for cos;
 // pi/4/128
-// 7 coefficients
-// sin:
-// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
-// cos:
-// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
-// 6 coefficients
-// sin:
-// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
-// cos:
-// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
-// 5 coefficients
-// sin:
-// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
-// cos:
-// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
-// 4 coefficients
-// sin:
-// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
-// cos:
-// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
-// 3 coefficients
-// sin:
-// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
-// cos:
-// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
-// 2 coefficients
-// sin:
-// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
-// cos:
-// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
-// 1 coefficient
-// sin:
-// 0x3e4ffffd74191a12
-// cos:
-// 0x3e4ffffd74191a12
 static const DL
 coefficient[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
+	// 0x3e4ffffd74191a12
+	// 0x3fefffec42bb182f
 	{
 		{
 			{.l = 0x3e4ffffd74191a12}
 		},
 		{
-			{.l = 0x3e4ffffd74191a12}
+			{.l = 0x3fefffec42bb182f}
 		}
 	},
 	// 2 coefficients
+	// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
+	// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
 	{
 		{
 			{.l = 0x3d2a51aaa4577386},
@@ -78,6 +47,8 @@ coefficient[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 3 coefficients
+	// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
+	// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
 	{
 		{
 			{.l = 0xbd0a6081327b77eb},
@@ -91,6 +62,8 @@ coefficient[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 4 coefficients
+	// // 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
+	// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
 	{
 		{
 			{.l = 0xbbca7d59979393ef},
@@ -106,6 +79,8 @@ coefficient[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 5 coefficients
+	// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
+	// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
 	{
 		{
 			{.l = 0x3b9a24fd6f71e4f0},
@@ -123,6 +98,8 @@ coefficient[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 6 coefficients
+	// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
+	// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
 	{
 		{
 			{.l = 0xb984d64a29b505c5},
@@ -143,6 +120,8 @@ coefficient[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 7 coefficients
+	// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
+	// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
 	{
 		{
 			{.l = 0x39558228bf002ff9},
@@ -161,52 +140,15 @@ coefficient[COEFFICIENTS][2][COEFFICIENTS] = {
 			{.l = 0x3fa555555555c054},
 			{.l = 0xbdcd70054d47aeb5},
 			{.l = 0xbf56c165ff0982a8}
-
 		}
 	}
 };
 
-// sin & cos
-// coefficient[0] is for sin; coefficient[1] is for cos;
-// pi/4/64
-// 7 coefficients
-// sin:
-// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
-// cos:
-// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
-// 6 coefficients
-// sin:
-// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
-// cos:
-// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
-// 5 coefficients
-// sin:
-// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
-// cos:
-// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
-// 4 coefficients
-// sin:
-// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
-// cos:
-// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
-// 3 coefficients
-// sin:
-// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
-// cos:
-// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
-// 2 coefficients
-// sin:
-// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
-// cos:
-// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
-// 1 coefficient
-// sin:
-// 0x3e4ffffd74191a12
-// cos:
-// 0x3e4ffffd74191a12
 static const DL
 coefficient_pi_4_64[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
+	// 0x3e4ffffeba0aedef
+	// 0x3fefffb10a8af759
 	{
 		{
 			{.l = 0x3e4ffffeba0aedef}
@@ -216,6 +158,8 @@ coefficient_pi_4_64[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 2 coefficients
+	// 0x3d4a51b016418ff7 + x * 0x3fefffe5ad663073
+	// 0x3ff00009dea4cf1d + x * 0xbf7921f72953d200
 	{
 		{
 			{.l = 0x3d4a51b016418ff7},
@@ -227,6 +171,8 @@ coefficient_pi_4_64[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 3 coefficients
+	// 0xbd2a5c2194f2e9a0 + x * (0x3ff000034e258aca + x * 0xbf60c4a5e2afe6cb)
+	// 0x3ff0000000041f0d + x * (0xbe7366517d2c1105 + x * 0xbfdfffd05239dd23)
 	{
 		{
 			{.l = 0xbd2a5c2194f2e9a0},
@@ -240,6 +186,8 @@ coefficient_pi_4_64[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 4 coefficients
+	// 0xbc0a74cb6bfe2a66 + x * (0x3ff000000000d48c + x * (0xbe4f18dbb1db2dca + x * 0xbfc555423f5fca0f))
+	// 0x3feffffffffefc3c + x * (0x3e54abc68b0b1952 + x * (0xbfe00010730708f5 + x * 0x3f50c14e50ee4777))
 	{
 		{
 			{.l = 0xbc0a74cb6bfe2a66},
@@ -255,6 +203,8 @@ coefficient_pi_4_64[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 5 coefficients
+	// 0x3bda18d9de49ab89 + x * (0x3fefffffffffcb7b + x * (0x3e3094ecf9a8384e + x * (0xbfc5556281d0b611 + x * 0x3f2ad18e4f0827b1)))
+	// 0x3ff0000000000000 + x * (0x3d35436df932e463 + x * (0xbfe0000000077d5a + x * (0x3e49235b48445bed + x * 0x3fa555391fd536fd)))
 	{
 		{
 			{.l = 0x3bda18d9de49ab89},
@@ -272,6 +222,8 @@ coefficient_pi_4_64[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 6 coefficients
+	// 0xb9d4fc64a5efeb6a + x * (0x3ff0000000000000 + x * (0x3d0847eb23176753 + x * (0xbfc5555555599c6c + x * (0x3e1cb882e949c36c + x * 0x3f811100f32d3a83))))
+	// 0x3ff0000000000000 + x * (0xbd0619f83dcccbf2 + x * (0xbfdffffffffcec12 + x * (0xbe31ea26f2eb19dd + x * (0x3fa5556c2498abda + x * 0xbf0a66e583c1d006))))
 	{
 		{
 			{.l = 0xb9d4fc64a5efeb6a},
@@ -288,10 +240,11 @@ coefficient_pi_4_64[COEFFICIENTS][2][COEFFICIENTS] = {
 			{.l = 0xbe31ea26f2eb19dd},
 			{.l = 0x3fa5556c2498abda},
 			{.l = 0xbf0a66e583c1d006}
-
 		}
 	},
 	// 7 coefficients
+	// 0x39a5b32c373a103b + x * (0x3ff0000000000000 + x * (0xbcd93d23df47f8f2 + x * (0xbfc5555555547450 + x * (0xbe0477ee9a14db48 + x * (0x3f81111e194f108f + x * 0xbede2bfcaa5c4d71)))))
+	// 0x3ff0000000000000 + x * (0xbbe6aedc6ad30a82 + x * (0xbfdfffffffffffff + x * (0xbd1e56ec42a5c878 + x * (0x3fa5555555626754 + x * (0xbe05c0b21cd411e2 + x * 0xbf56c14de38f7e23)))))
 	{
 		{
 			{.l = 0x39a5b32c373a103b},
@@ -317,41 +270,6 @@ coefficient_pi_4_64[COEFFICIENTS][2][COEFFICIENTS] = {
 // sin & cos
 // coefficient[0] is for sin; coefficient[1] is for cos;
 // pi/4/32
-// 7 coefficients
-// sin:
-// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
-// cos:
-// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
-// 6 coefficients
-// sin:
-// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
-// cos:
-// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
-// 5 coefficients
-// sin:
-// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
-// cos:
-// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
-// 4 coefficients
-// sin:
-// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
-// cos:
-// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
-// 3 coefficients
-// sin:
-// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
-// cos:
-// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
-// 2 coefficients
-// sin:
-// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
-// cos:
-// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
-// 1 coefficient
-// sin:
-// 0x3e4ffffd74191a12
-// cos:
-// 0x3e4ffffd74191a12
 static const DL
 coefficient_pi_4_32[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
@@ -448,7 +366,6 @@ coefficient_pi_4_32[COEFFICIENTS][2][COEFFICIENTS] = {
 			{.l = 0xbe63fa7ba182ef14},
 			{.l = 0x3fa555b5d381c878},
 			{.l = 0xbf1b02895e60699f}
-
 		}
 	},
 	// 7 coefficients
@@ -479,41 +396,6 @@ coefficient_pi_4_32[COEFFICIENTS][2][COEFFICIENTS] = {
 // sin & cos
 // coefficient[0] is for sin; coefficient[1] is for cos;
 // pi/4/16
-// 7 coefficients
-// sin:
-// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
-// cos:
-// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
-// 6 coefficients
-// sin:
-// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
-// cos:
-// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
-// 5 coefficients
-// sin:
-// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
-// cos:
-// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
-// 4 coefficients
-// sin:
-// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
-// cos:
-// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
-// 3 coefficients
-// sin:
-// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
-// cos:
-// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
-// 2 coefficients
-// sin:
-// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
-// cos:
-// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
-// 1 coefficient
-// sin:
-// 0x3e4ffffd74191a12
-// cos:
-// 0x3e4ffffd74191a12
 static const DL
 coefficient_pi_4_16[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
@@ -610,7 +492,6 @@ coefficient_pi_4_16[COEFFICIENTS][2][COEFFICIENTS] = {
 			{.l = 0xbe934cd8de340b65},
 			{.l = 0x3fa556d0616203b7},
 			{.l = 0xbf2acf051176b508}
-
 		}
 	},
 	// 7 coefficients
@@ -641,41 +522,6 @@ coefficient_pi_4_16[COEFFICIENTS][2][COEFFICIENTS] = {
 // sin & cos
 // coefficient[0] is for sin; coefficient[1] is for cos;
 // pi/4/8
-// 7 coefficients
-// sin:
-// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
-// cos:
-// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
-// 6 coefficients
-// sin:
-// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
-// cos:
-// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
-// 5 coefficients
-// sin:
-// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
-// cos:
-// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
-// 4 coefficients
-// sin:
-// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
-// cos:
-// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
-// 3 coefficients
-// sin:
-// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
-// cos:
-// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
-// 2 coefficients
-// sin:
-// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
-// cos:
-// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
-// 1 coefficient
-// sin:
-// 0x3e4ffffd74191a12
-// cos:
-// 0x3e4ffffd74191a12
 static const DL
 coefficient_pi_4_8[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
@@ -777,7 +623,6 @@ coefficient_pi_4_8[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 7 coefficients
 	// 0xbb987b482165ea8b + x * (0x3ff0000000000189 + x * (0xbdd182868496b421 + x * (0xbfc555554517bf44 + x * (0xbe960c3af2ce7fcc + x * (0x3f811473233f751e + x * 0xbf0ea176be4a8715)))))
 	// 0x3ff0000000000000 + x * (0xbd33f80196911c8b + x * (0xbfdffffffffc5589 + x * (0xbe0c8dfc128e7167 + x * (0x3fa555561debb5a2 + x * (0xbe9529e1d03eeda3 + x * 0xbf56b9fea6cc4993)))))
-
 	{
 		{
 			{.l = 0xbb987b482165ea8b},
@@ -803,41 +648,6 @@ coefficient_pi_4_8[COEFFICIENTS][2][COEFFICIENTS] = {
 // sin & cos
 // coefficient[0] is for sin; coefficient[1] is for cos;
 // pi/4/4
-// 7 coefficients
-// sin:
-// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
-// cos:
-// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
-// 6 coefficients
-// sin:
-// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
-// cos:
-// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
-// 5 coefficients
-// sin:
-// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
-// cos:
-// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
-// 4 coefficients
-// sin:
-// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
-// cos:
-// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
-// 3 coefficients
-// sin:
-// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
-// cos:
-// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
-// 2 coefficients
-// sin:
-// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
-// cos:
-// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
-// 1 coefficient
-// sin:
-// 0x3e4ffffd74191a12
-// cos:
-// 0x3e4ffffd74191a12
 static const DL
 coefficient_pi_4_4[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
@@ -934,7 +744,6 @@ coefficient_pi_4_4[COEFFICIENTS][2][COEFFICIENTS] = {
 			{.l = 0xbef3461cf4c2b0bc},
 			{.l = 0x3fa56cfcc2c9ce15},
 			{.l = 0xbf4ac643a9e29636}
-
 		}
 	},
 	// 7 coefficients
@@ -965,41 +774,6 @@ coefficient_pi_4_4[COEFFICIENTS][2][COEFFICIENTS] = {
 // sin & cos
 // coefficient[0] is for sin; coefficient[1] is for cos;
 // pi/4/2
-// 7 coefficients
-// sin:
-// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
-// cos:
-// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
-// 6 coefficients
-// sin:
-// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
-// cos:
-// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
-// 5 coefficients
-// sin:
-// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
-// cos:
-// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
-// 4 coefficients
-// sin:
-// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
-// cos:
-// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
-// 3 coefficients
-// sin:
-// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
-// cos:
-// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
-// 2 coefficients
-// sin:
-// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
-// cos:
-// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
-// 1 coefficient
-// sin:
-// 0x3e4ffffd74191a12
-// cos:
-// 0x3e4ffffd74191a12
 static const DL
 coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
@@ -1007,10 +781,10 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 0x3feebbdfcfc213ab
 	{
 		{
-			{.l = 0x3e4ffffd74191a12}
+			{.l = 0x3e4ffffff58c28bb}
 		},
 		{
-			{.l = 0x3e4ffffd74191a12}
+			{.l = 0x3feebbdfcfc213ab}
 		}
 	},
 	// 2 coefficients
@@ -1018,12 +792,12 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 0x3ff027bd8a3d0e3a + x * 0xbfc90d5928ccd076
 	{
 		{
-			{.l = 0x3d2a51aaa4577386},
-			{.l = 0x3feffff96b389608}
+			{.l = 0x3dea743fe875fb49},
+			{.l = 0x3fef962ea3b318ec}
 		},
 		{
-			{.l = 0x3ff0000277a907c0},
-			{.l = 0xbf6921fc09879ff4}
+			{.l = 0x3ff027bd8a3d0e3a},
+			{.l = 0xbfc90d5928ccd076}
 		}
 	},
 	// 3 coefficients
@@ -1031,14 +805,14 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 0x3ff000439afdf9d9 + x * (0xbf63a7970b742dbe + x * 0xbfdf405786c5868c)
 	{
 		{
-			{.l = 0xbd0a6081327b77eb},
-			{.l = 0x3ff00000d3f2460f},
-			{.l = 0xbf50c60cab8e9315}
+			{.l = 0xbdca394c1d5f8234},
+			{.l = 0x3ff00d1e7f809cc5},
+			{.l = 0xbfb0ae9349031150}
 		},
 		{
-			{.l = 0x3ff00000000041f1},
-			{.l = 0xbe43664f6b411c35},
-			{.l = 0xbfdffff4148eb6b7}
+			{.l = 0x3ff000439afdf9d9},
+			{.l = 0xbf63a7970b742dbe},
+			{.l = 0xbfdf405786c5868c}
 		}
 	},
 	// 4 coefficients
@@ -1046,16 +820,16 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 0x3fefffefa27a2e33 + x * (0x3f44b373eeb1e289 + x * (0xbfe04195c92f17a7 + x * 0x3fa0ae2ec495b438))
 	{
 		{
-			{.l = 0xbbca7d59979393ef},
-			{.l = 0x3ff0000000000d53},
-			{.l = 0xbe1f1f04f59599b9},
-			{.l = 0xbfc555508f75ffbc}
+			{.l = 0xbd4a832c19cd646e},
+			{.l = 0x3ff0000d441fc46b},
+			{.l = 0xbf3f16d5b8d6e1d4},
+			{.l = 0xbfc50918ee2f3c82}
 		},
 		{
-			{.l = 0x3fefffffffffefc4},
-			{.l = 0x3e24abb2cf0603fd},
-			{.l = 0xbfe000041cc0f168},
-			{.l = 0x3f40c14fcbc76a91}
+			{.l = 0x3fefffefa27a2e33},
+			{.l = 0x3f44b373eeb1e289},
+			{.l = 0xbfe04195c92f17a7},
+			{.l = 0x3fa0ae2ec495b438}
 		}
 	},
 	// 5 coefficients
@@ -1063,18 +837,18 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 0x3fefffffef77855a + x * (0x3ece56ff49fc2761 + x * (0xbfe0008cf7cc930e + x * (0x3f3b60ece9cd2dba + x * 0x3fa4df878bfc1945)))
 	{
 		{
-			{.l = 0x3b9a24fd6f71e4f0},
-			{.l = 0x3feffffffffffcb4},
-			{.l = 0x3e00999ee5af3132},
-			{.l = 0xbfc55558a0d459da},
-			{.l = 0x3f1ad2a9831248b0}
+			{.l = 0x3d19da61dd452824},
+			{.l = 0x3feffffcc3ca7e11},
+			{.l = 0x3f20701f3db64d97},
+			{.l = 0xbfc589a259abffb4},
+			{.l = 0x3f7aacbc5517e71b}
 		},
 		{
-			{.l = 0x3ff0000000000000},
-			{.l = 0x3ce5434093bdf722},
-			{.l = 0xbfe00000000077d5},
-			{.l = 0x3e1923479c224098},
-			{.l = 0x3fa5554e47f80e37}
+			{.l = 0x3fefffffef77855a},
+			{.l = 0x3ece56ff49fc2761},
+			{.l = 0xbfe0008cf7cc930e},
+			{.l = 0x3f3b60ece9cd2dba},
+			{.l = 0x3fa4df878bfc1945}
 		}
 	},
 	// 6 coefficients
@@ -1082,21 +856,20 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 0x3ff0000000ac638c + x * (0xbe9eb707034512f1 + x * (0xbfdfffc737272085 + x * (0xbf2337f78bb10cc7 + x * (0x3fa5b38ead1cedff + x * 0xbf5aac78a45a7bc9))))
 	{
 		{
-			{.l = 0xb984d64a29b505c5},
-			{.l = 0x3ff0000000000000},
-			{.l = 0x3cb845aef92c1d42},
-			{.l = 0xbfc55555555599c3},
-			{.l = 0x3decb7924858362b},
-			{.l = 0x3f81110d09aab89d}
+			{.l = 0x3c9289f7d2ddbf19},
+			{.l = 0x3feffffffdadf797},
+			{.l = 0x3ea117480ed2a7f8},
+			{.l = 0xbfc555a5147fbd70},
+			{.l = 0x3f0f1660b971a53c},
+			{.l = 0x3f80cdfe6e071c96}
 		},
 		{
-			{.l = 0x3ff0000000000000},
-			{.l = 0xbcb61a0a5c31efb7},
-			{.l = 0xbfdfffffffffcec1},
-			{.l = 0xbe01ea30fe505df3},
-			{.l = 0x3fa5555b0928dfe9},
-			{.l = 0xbefa66ee34c3b903}
-
+			{.l = 0x3ff0000000ac638c},
+			{.l = 0xbe9eb707034512f1},
+			{.l = 0xbfdfffc737272085},
+			{.l = 0xbf2337f78bb10cc7},
+			{.l = 0x3fa5b38ead1cedff},
+			{.l = 0xbf5aac78a45a7bc9}
 		}
 	},
 	// 7 coefficients
@@ -1104,23 +877,22 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 0x3ff0000000007bea + x * (0xbe1ce9715c3ca2c2 + x * (0xbfdfffffb9b0e743 + x * (0xbeafc573352bb253 + x * (0x3fa5562b8fe02d84 + x * (0xbef604a5002299de + x * 0xbf5648025a6e4c90)))))
 	{
 		{
-			{.l = 0x39558228bf002ff9},
-			{.l = 0x3ff0000000000000},
-			{.l = 0xbc893a0de469b1fb},
-			{.l = 0xbfc5555555554746},
-			{.l = 0xbdd47714d2fce3ba},
-			{.l = 0x3f811114530de4ce},
-			{.l = 0xbece2bb5fc6e149b}
+			{.l = 0xbc584ab2be4711b9},
+			{.l = 0x3ff00000001854f9},
+			{.l = 0xbe715f7bcfd221a6},
+			{.l = 0xbfc5554538c9c83a},
+			{.l = 0xbef5dfde116fecf7},
+			{.l = 0x3f8146cfbb62fc73},
+			{.l = 0xbf2e79b667c060e9}
 		},
 		{
-			{.l = 0x3ff0000000000000},
-			{.l = 0x3b63918d3d8b63e0},
-			{.l = 0xbfe0000000000000},
-			{.l = 0xbcb1f0881cdb7fed},
-			{.l = 0x3fa555555555c054},
-			{.l = 0xbdcd70054d47aeb5},
-			{.l = 0xbf56c165ff0982a8}
-
+			{.l = 0x3ff0000000007bea},
+			{.l = 0xbe1ce9715c3ca2c2},
+			{.l = 0xbfdfffffb9b0e743},
+			{.l = 0xbeafc573352bb253},
+			{.l = 0x3fa5562b8fe02d84},
+			{.l = 0xbef604a5002299de},
+			{.l = 0xbf5648025a6e4c90}
 		}
 	}
 };
@@ -1166,110 +938,123 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 static const DL
 coefficient_pi_4_1[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
+	// 0x3e4ffffffa57d867
+	// 0x3fea827999fcef32
 	{
 		{
-			{.l = 0x3e4ffffd74191a12}
+			{.l = 0x3e4ffffffa57d867}
 		},
 		{
-			{.l = 0x3e4ffffd74191a12}
+			{.l = 0x3fea827999fcef32}
 		}
 	},
 	// 2 coefficients
+	// 0x3e0adb8ebe66d8ae + x * 0x3fee52462b6a17cd
+	// 0x3ff0a298a934a038 + x * 0xbfd8d0849caea8a9
 	{
 		{
-			{.l = 0x3d2a51aaa4577386},
-			{.l = 0x3feffff96b389608}
+			{.l = 0x3e0adb8ebe66d8ae},
+			{.l = 0x3fee52462b6a17cd}
 		},
 		{
-			{.l = 0x3ff0000277a907c0},
-			{.l = 0xbf6921fc09879ff4}
+			{.l = 0x3ff0a298a934a038},
+			{.l = 0xbfd8d0849caea8a9}
 		}
 	},
 	// 3 coefficients
+	// 0xbde9e78e6b11bc83 + x * (0x3ff033d44688d4de + x * 0xbfc073f325fce6d6)
+	// 0x3ff0049774d691fa + x * (0xbf948a72dac87113 + x * 0xbfdcf3d5d05424df)
 	{
 		{
-			{.l = 0xbd0a6081327b77eb},
-			{.l = 0x3ff00000d3f2460f},
-			{.l = 0xbf50c60cab8e9315}
+			{.l = 0xbde9e78e6b11bc83},
+			{.l = 0x3ff033d44688d4de},
+			{.l = 0xbfc073f325fce6d6}
 		},
 		{
-			{.l = 0x3ff00000000041f1},
-			{.l = 0xbe43664f6b411c35},
-			{.l = 0xbfdffff4148eb6b7}
+			{.l = 0x3ff0049774d691fa},
+			{.l = 0xbf948a72dac87113},
+			{.l = 0xbfdcf3d5d05424df}
 		}
 	},
 	// 4 coefficients
+	// 0xbd8ae35e18682dad + x * (0x3ff000d737e982b5 + x * (0xbf6f35e927f7e33e + x * 0xbfc4251983c88fbc))
+	// 0x3feffef2a624cb12 + x * (0x3f74d826afd60504 + x * (0xbfe1041e784aef3c + x * 0x3fb07704f670adf6))
 	{
 		{
-			{.l = 0xbbca7d59979393ef},
-			{.l = 0x3ff0000000000d53},
-			{.l = 0xbe1f1f04f59599b9},
-			{.l = 0xbfc555508f75ffbc}
+			{.l = 0xbd8ae35e18682dad},
+			{.l = 0x3ff000d737e982b5},
+			{.l = 0xbf6f35e927f7e33e},
+			{.l = 0xbfc4251983c88fbc}
 		},
 		{
-			{.l = 0x3fefffffffffefc4},
-			{.l = 0x3e24abb2cf0603fd},
-			{.l = 0xbfe000041cc0f168},
-			{.l = 0x3f40c14fcbc76a91}
+			{.l = 0x3feffef2a624cb12},
+			{.l = 0x3f74d826afd60504},
+			{.l = 0xbfe1041e784aef3c},
+			{.l = 0x3fb07704f670adf6}
 		}
 	},
 	// 5 coefficients
+	// 0x3d59672253924af3 + x * (0x3fefffcd279d7cc4 + x * (0x3f501c861b6c4271 + x * (0xbfc62256e03e2e4d + x * 0x3f8a44afa65d3254)))
+	// 0x3feffffb840b67b0 + x * (0x3f2012e0e506fede + x * (0xbfe009248deedc11 + x * (0x3f6bf2a315dc5af4 + x * 0x3fa37a25a71af850)))
 	{
 		{
-			{.l = 0x3b9a24fd6f71e4f0},
-			{.l = 0x3feffffffffffcb4},
-			{.l = 0x3e00999ee5af3132},
-			{.l = 0xbfc55558a0d459da},
-			{.l = 0x3f1ad2a9831248b0}
+			{.l = 0x3d59672253924af3},
+			{.l = 0x3fefffcd279d7cc4},
+			{.l = 0x3f501c861b6c4271},
+			{.l = 0xbfc62256e03e2e4d},
+			{.l = 0x3f8a44afa65d3254}
 		},
 		{
-			{.l = 0x3ff0000000000000},
-			{.l = 0x3ce5434093bdf722},
-			{.l = 0xbfe00000000077d5},
-			{.l = 0x3e1923479c224098},
-			{.l = 0x3fa5554e47f80e37}
+			{.l = 0x3feffffb840b67b0},
+			{.l = 0x3f2012e0e506fede},
+			{.l = 0xbfe009248deedc11},
+			{.l = 0x3f6bf2a315dc5af4},
+			{.l = 0x3fa37a25a71af850}
 		}
 	},
 	// 6 coefficients
+	// 0x3cf2c81e1df2a50d + x * (0x3fefffff699b194e + x * (0x3ef134feabceba82 + x * (0xbfc55a5318de6f54 + x * (0x3f3f031bafd36271 + x * 0x3f8005ff40e73192))))
+	// 0x3ff000002c6f6faa + x * (0xbeef2aa87cf0ded6 + x * (0xbfdffc73127aa3ba + x * (0xbf53066d8cc094a5 + x * (0x3fa6c846ef68d357 + x * 0xbf6a4815af673afc))))
 	{
 		{
-			{.l = 0xb984d64a29b505c5},
-			{.l = 0x3ff0000000000000},
-			{.l = 0x3cb845aef92c1d42},
-			{.l = 0xbfc55555555599c3},
-			{.l = 0x3decb7924858362b},
-			{.l = 0x3f81110d09aab89d}
+			{.l = 0x3cf2c81e1df2a50d},
+			{.l = 0x3fefffff699b194e},
+			{.l = 0x3ef134feabceba82},
+			{.l = 0xbfc55a5318de6f54},
+			{.l = 0x3f3f031bafd36271},
+			{.l = 0x3f8005ff40e73192}
 		},
 		{
-			{.l = 0x3ff0000000000000},
-			{.l = 0xbcb61a0a5c31efb7},
-			{.l = 0xbfdfffffffffcec1},
-			{.l = 0xbe01ea30fe505df3},
-			{.l = 0x3fa5555b0928dfe9},
-			{.l = 0xbefa66ee34c3b903}
+			{.l = 0x3ff000002c6f6faa},
+			{.l = 0xbeef2aa87cf0ded6},
+			{.l = 0xbfdffc73127aa3ba},
+			{.l = 0xbf53066d8cc094a5},
+			{.l = 0x3fa6c846ef68d357},
+			{.l = 0xbf6a4815af673afc}
 
 		}
 	},
 	// 7 coefficients
+	// 0xbcb7cbd21946ff99 + x * (0x3ff0000005f4bb6a + x * (0xbec0fa22e820a1ea + x * (0xbfc55459ddfff2d4 + x * (0xbf25556ba593269a + x * (0x3f81e333a4b9e05d + x * 0xbf3dfbf9b4139d97)))))
+	// 0x3ff0000000864d2e + x * (0xbe8ece0fd28a9d8d + x * (0xbfdfffed91f6c602 + x * (0xbf006c4655abc12f + x * (0x3fa56302ae7e8e59 + x * (0xbf26454679f224d0 + x * 0xbf54d9e98b9890b7)))))
 	{
 		{
-			{.l = 0x39558228bf002ff9},
-			{.l = 0x3ff0000000000000},
-			{.l = 0xbc893a0de469b1fb},
-			{.l = 0xbfc5555555554746},
-			{.l = 0xbdd47714d2fce3ba},
-			{.l = 0x3f811114530de4ce},
-			{.l = 0xbece2bb5fc6e149b}
+			{.l = 0xbcb7cbd21946ff99},
+			{.l = 0x3ff0000005f4bb6a},
+			{.l = 0xbec0fa22e820a1ea},
+			{.l = 0xbfc55459ddfff2d4},
+			{.l = 0xbf25556ba593269a},
+			{.l = 0x3f81e333a4b9e05d},
+			{.l = 0xbf3dfbf9b4139d97}
 		},
 		{
-			{.l = 0x3ff0000000000000},
-			{.l = 0x3b63918d3d8b63e0},
-			{.l = 0xbfe0000000000000},
-			{.l = 0xbcb1f0881cdb7fed},
-			{.l = 0x3fa555555555c054},
-			{.l = 0xbdcd70054d47aeb5},
-			{.l = 0xbf56c165ff0982a8}
-
+			{.l = 0x3ff0000000864d2e},
+			{.l = 0xbe8ece0fd28a9d8d},
+			{.l = 0xbfdfffed91f6c602},
+			{.l = 0xbf006c4655abc12f},
+			{.l = 0x3fa56302ae7e8e59},
+			{.l = 0xbf26454679f224d0},
+			{.l = 0xbf54d9e98b9890b7}
 		}
 	}
 };
