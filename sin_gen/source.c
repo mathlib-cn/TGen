@@ -679,110 +679,123 @@ coefficient_pi_4_16[COEFFICIENTS][2][COEFFICIENTS] = {
 static const DL
 coefficient_pi_4_8[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
+	// 0x3e4fffffd730d932
+	// 0x3fefec3aa24f71e9
 	{
 		{
-			{.l = 0x3e4ffffd74191a12}
+			{.l = 0x3e4fffffd730d932}
 		},
 		{
-			{.l = 0x3e4ffffd74191a12}
+			{.l = 0x3fefec3aa24f71e9}
 		}
 	},
 	// 2 coefficients
+	// 0x3daa53d095f5494d + x * 0x3feff96afd3f2101
+	// 0x3ff00277e8bd04cf + x * 0xbfa920b0bf612cc7
 	{
 		{
-			{.l = 0x3d2a51aaa4577386},
-			{.l = 0x3feffff96b389608}
+			{.l = 0x3daa53d095f5494d},
+			{.l = 0x3feff96afd3f2101}
 		},
 		{
-			{.l = 0x3ff0000277a907c0},
-			{.l = 0xbf6921fc09879ff4}
+			{.l = 0x3ff00277e8bd04cf},
+			{.l = 0xbfa920b0bf612cc7}
 		}
 	},
 	// 3 coefficients
+	// 0xbd8a53bc9d5394bc + x * (0x3ff000d2d953d6cf + x * 0xbf90c14bf6605d55)
+	// 0x3ff00000420a0b7f + x * (0xbf036a342ed271a6 + x * 0xbfdff413aa5d7bb1)
 	{
 		{
-			{.l = 0xbd0a6081327b77eb},
-			{.l = 0x3ff00000d3f2460f},
-			{.l = 0xbf50c60cab8e9315}
+			{.l = 0xbd8a53bc9d5394bc},
+			{.l = 0x3ff000d2d953d6cf},
+			{.l = 0xbf90c14bf6605d55}
 		},
 		{
-			{.l = 0x3ff00000000041f1},
-			{.l = 0xbe43664f6b411c35},
-			{.l = 0xbfdffff4148eb6b7}
+			{.l = 0x3ff00000420a0b7f},
+			{.l = 0xbf036a342ed271a6},
+			{.l = 0xbfdff413aa5d7bb1}
 		}
 	},
 	// 4 coefficients
+	// 0xbcca695a192d6976 + x * (0x3ff000000d39bd9f + x * (0xbedf0fdf4e6ee2fb + x * 0xbfc550907f7ab04b))
+	// 0x3fefffffefc1dcac + x * (0x3ee4ac2b4c41e45d + x * (0xbfe0041c8a66061d + x * 0x3f80c01dc40aec6a))
 	{
 		{
-			{.l = 0xbbca7d59979393ef},
-			{.l = 0x3ff0000000000d53},
-			{.l = 0xbe1f1f04f59599b9},
-			{.l = 0xbfc555508f75ffbc}
+			{.l = 0xbcca695a192d6976},
+			{.l = 0x3ff000000d39bd9f},
+			{.l = 0xbedf0fdf4e6ee2fb},
+			{.l = 0xbfc550907f7ab04b}
 		},
 		{
-			{.l = 0x3fefffffffffefc4},
-			{.l = 0x3e24abb2cf0603fd},
-			{.l = 0xbfe000041cc0f168},
-			{.l = 0x3f40c14fcbc76a91}
+			{.l = 0x3fefffffefc1dcac},
+			{.l = 0x3ee4ac2b4c41e45d},
+			{.l = 0xbfe0041c8a66061d},
+			{.l = 0x3f80c01dc40aec6a}
 		}
 	},
 	// 5 coefficients
+	// 0x3c9a027f22c2d623 + x * (0x3feffffffcbdda86 + x * (0x3ec08bc5c5c12fa7 + x * (0xbfc5589f84861c34 + x * 0x3f5acdb187526a7f)))
+	// 0x3feffffffffefd79 + x * (0x3e2dda6ebe52df83 + x * (0xbfe000008b8a1b9e + x * (0x3edb3a861aa1b427 + x * 0x3fa54dfc5aa396df)))
 	{
 		{
-			{.l = 0x3b9a24fd6f71e4f0},
-			{.l = 0x3feffffffffffcb4},
-			{.l = 0x3e00999ee5af3132},
-			{.l = 0xbfc55558a0d459da},
-			{.l = 0x3f1ad2a9831248b0}
+			{.l = 0x3c9a027f22c2d623},
+			{.l = 0x3feffffffcbdda86},
+			{.l = 0x3ec08bc5c5c12fa7},
+			{.l = 0xbfc5589f84861c34},
+			{.l = 0x3f5acdb187526a7f}
 		},
 		{
-			{.l = 0x3ff0000000000000},
-			{.l = 0x3ce5434093bdf722},
-			{.l = 0xbfe00000000077d5},
-			{.l = 0x3e1923479c224098},
-			{.l = 0x3fa5554e47f80e37}
+			{.l = 0x3feffffffffefd79},
+			{.l = 0x3e2dda6ebe52df83},
+			{.l = 0xbfe000008b8a1b9e},
+			{.l = 0x3edb3a861aa1b427},
+			{.l = 0x3fa54dfc5aa396df}
 		}
 	},
 	// 6 coefficients
+	// 0x3bd27bef69d3c65f + x * (0x3fefffffffffdaef + x * (0x3e011107ace24f82 + x * (0xbfc55555a5125ae3 + x * (0x3eaf1ddeb9818ebe + x * 0x3f810cde44c6b1b7))))
+	// 0x3ff0000000000ab0 + x * (0xbdfe9bc50a5f055c + x * (0xbfdfffffc72e560e + x * (0xbec349bc15b20cd2 + x * (0x3fa55b40c6341343 + x * 0xbf3accbf7275d995))))
 	{
 		{
-			{.l = 0xb984d64a29b505c5},
-			{.l = 0x3ff0000000000000},
-			{.l = 0x3cb845aef92c1d42},
-			{.l = 0xbfc55555555599c3},
-			{.l = 0x3decb7924858362b},
-			{.l = 0x3f81110d09aab89d}
+			{.l = 0x3bd27bef69d3c65f},
+			{.l = 0x3fefffffffffdaef},
+			{.l = 0x3e011107ace24f82},
+			{.l = 0xbfc55555a5125ae3},
+			{.l = 0x3eaf1ddeb9818ebe},
+			{.l = 0x3f810cde44c6b1b7}
 		},
 		{
-			{.l = 0x3ff0000000000000},
-			{.l = 0xbcb61a0a5c31efb7},
-			{.l = 0xbfdfffffffffcec1},
-			{.l = 0xbe01ea30fe505df3},
-			{.l = 0x3fa5555b0928dfe9},
-			{.l = 0xbefa66ee34c3b903}
-
+			{.l = 0x3ff0000000000ab0},
+			{.l = 0xbdfe9bc50a5f055c},
+			{.l = 0xbfdfffffc72e560e},
+			{.l = 0xbec349bc15b20cd2},
+			{.l = 0x3fa55b40c6341343},
+			{.l = 0xbf3accbf7275d995}
 		}
 	},
 	// 7 coefficients
+	// 0xbb987b482165ea8b + x * (0x3ff0000000000189 + x * (0xbdd182868496b421 + x * (0xbfc555554517bf44 + x * (0xbe960c3af2ce7fcc + x * (0x3f811473233f751e + x * 0xbf0ea176be4a8715)))))
+	// 0x3ff0000000000000 + x * (0xbd33f80196911c8b + x * (0xbfdffffffffc5589 + x * (0xbe0c8dfc128e7167 + x * (0x3fa555561debb5a2 + x * (0xbe9529e1d03eeda3 + x * 0xbf56b9fea6cc4993)))))
+
 	{
 		{
-			{.l = 0x39558228bf002ff9},
-			{.l = 0x3ff0000000000000},
-			{.l = 0xbc893a0de469b1fb},
-			{.l = 0xbfc5555555554746},
-			{.l = 0xbdd47714d2fce3ba},
-			{.l = 0x3f811114530de4ce},
-			{.l = 0xbece2bb5fc6e149b}
+			{.l = 0xbb987b482165ea8b},
+			{.l = 0x3ff0000000000189},
+			{.l = 0xbdd182868496b421},
+			{.l = 0xbfc555554517bf44},
+			{.l = 0xbe960c3af2ce7fcc},
+			{.l = 0x3f811473233f751e},
+			{.l = 0xbf0ea176be4a8715}
 		},
 		{
 			{.l = 0x3ff0000000000000},
-			{.l = 0x3b63918d3d8b63e0},
-			{.l = 0xbfe0000000000000},
-			{.l = 0xbcb1f0881cdb7fed},
-			{.l = 0x3fa555555555c054},
-			{.l = 0xbdcd70054d47aeb5},
-			{.l = 0xbf56c165ff0982a8}
-
+			{.l = 0xbd33f80196911c8b},
+			{.l = 0xbfdffffffffc5589},
+			{.l = 0xbe0c8dfc128e7167},
+			{.l = 0x3fa555561debb5a2},
+			{.l = 0xbe9529e1d03eeda3},
+			{.l = 0xbf56b9fea6cc4993}
 		}
 	}
 };
@@ -828,110 +841,123 @@ coefficient_pi_4_8[COEFFICIENTS][2][COEFFICIENTS] = {
 static const DL
 coefficient_pi_4_4[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
+	// 0x3e4fffffeb7f263d
+	// 0x3fefb088755db288
 	{
 		{
-			{.l = 0x3e4ffffd74191a12}
+			{.l = 0x3e4fffffeb7f263d}
 		},
 		{
-			{.l = 0x3e4ffffd74191a12}
+			{.l = 0x3fefb088755db288}
 		}
 	},
 	// 2 coefficients
+	// 0x3dca5a4e69de3c2f + x * 0x3fefe5a58cc90760
+	// 0x3ff009e2b5c37a68 + x * 0xbfb91cd0ec57c6fe
 	{
 		{
-			{.l = 0x3d2a51aaa4577386},
-			{.l = 0x3feffff96b389608}
+			{.l = 0x3dca5a4e69de3c2f},
+			{.l = 0x3fefe5a58cc90760}
 		},
 		{
-			{.l = 0x3ff0000277a907c0},
-			{.l = 0xbf6921fc09879ff4}
+			{.l = 0x3ff009e2b5c37a68},
+			{.l = 0xbfb91cd0ec57c6fe}
 		}
 	},
 	// 3 coefficients
+	// 0xbdaa4dc2e2f728ce + x * (0x3ff0034a604d10bd + x * 0xbfa0bd544e804e07)
+	// 0x3ff0000425810070 + x * (0xbf33762ce6dc17bb + x * 0xbfdfd043a7ef0fc1)
 	{
 		{
-			{.l = 0xbd0a6081327b77eb},
-			{.l = 0x3ff00000d3f2460f},
-			{.l = 0xbf50c60cab8e9315}
+			{.l = 0xbdaa4dc2e2f728ce},
+			{.l = 0x3ff0034a604d10bd},
+			{.l = 0xbfa0bd544e804e07}
 		},
 		{
-			{.l = 0x3ff00000000041f1},
-			{.l = 0xbe43664f6b411c35},
-			{.l = 0xbfdffff4148eb6b7}
+			{.l = 0x3ff0000425810070},
+			{.l = 0xbf33762ce6dc17bb},
+			{.l = 0xbfdfd043a7ef0fc1}
 		}
 	},
 	// 4 coefficients
+	// 0xbd0a6d12cd6a4f6e + x * (0x3ff00000d3a1e6a4 + x * (0xbf0f103d1400ed4c + x * 0xbfc54243183bbbf1))
+	// 0x3feffffefbbc7f9f + x * (0x3f14ad7e9388218b + x * (0xbfe0106f91a92d5b + x * 0x3f90bc81e83dda86))
 	{
 		{
-			{.l = 0xbbca7d59979393ef},
-			{.l = 0x3ff0000000000d53},
-			{.l = 0xbe1f1f04f59599b9},
-			{.l = 0xbfc555508f75ffbc}
+			{.l = 0xbd0a6d12cd6a4f6e},
+			{.l = 0x3ff00000d3a1e6a4},
+			{.l = 0xbf0f103d1400ed4c},
+			{.l = 0xbfc54243183bbbf1}
 		},
 		{
-			{.l = 0x3fefffffffffefc4},
-			{.l = 0x3e24abb2cf0603fd},
-			{.l = 0xbfe000041cc0f168},
-			{.l = 0x3f40c14fcbc76a91}
+			{.l = 0x3feffffefbbc7f9f},
+			{.l = 0x3f14ad7e9388218b},
+			{.l = 0xbfe0106f91a92d5b},
+			{.l = 0x3f90bc81e83dda86}
 		}
 	},
 	// 5 coefficients
+	// 0x3cd9f861ed669817 + x * (0x3fefffffcbfa83fb + x * (0x3ef085772a93af38 + x * (0xbfc5627986bf9c6b + x * 0x3f6ac6eb28e67b4e)))
+	// 0x3fefffffffbf1399 + x * (0x3e7df2b0677cc0c2 + x * (0xbfe00008bd14c7a8 + x * (0x3f0b41f8a98b058e + x * 0x3fa537ee739e6cb8)))
 	{
 		{
-			{.l = 0x3b9a24fd6f71e4f0},
-			{.l = 0x3feffffffffffcb4},
-			{.l = 0x3e00999ee5af3132},
-			{.l = 0xbfc55558a0d459da},
-			{.l = 0x3f1ad2a9831248b0}
+			{.l = 0x3cd9f861ed669817},
+			{.l = 0x3fefffffcbfa83fb},
+			{.l = 0x3ef085772a93af38},
+			{.l = 0xbfc5627986bf9c6b},
+			{.l = 0x3f6ac6eb28e67b4e}
 		},
 		{
-			{.l = 0x3ff0000000000000},
-			{.l = 0x3ce5434093bdf722},
-			{.l = 0xbfe00000000077d5},
-			{.l = 0x3e1923479c224098},
-			{.l = 0x3fa5554e47f80e37}
+			{.l = 0x3fefffffffbf1399},
+			{.l = 0x3e7df2b0677cc0c2},
+			{.l = 0xbfe00008bd14c7a8},
+			{.l = 0x3f0b41f8a98b058e},
+			{.l = 0x3fa537ee739e6cb8}
 		}
 	},
 	// 6 coefficients
+	// 0x3c327cafa27860fe + x * (0x3feffffffff6bd37 + x * (0x3e51111eba33a411 + x * (0xbfc5555a5102bb09 + x * (0x3edf1bd2dcdde00c + x * 0x3f81004755cee660))))
+	// 0x3ff000000002ad15 + x * (0xbe4ea0f6e1fcc808 + x * (0xbfdffffc7306a0f0 + x * (0xbef3461cf4c2b0bc + x * (0x3fa56cfcc2c9ce15 + x * 0xbf4ac643a9e29636))))
 	{
 		{
-			{.l = 0xb984d64a29b505c5},
-			{.l = 0x3ff0000000000000},
-			{.l = 0x3cb845aef92c1d42},
-			{.l = 0xbfc55555555599c3},
-			{.l = 0x3decb7924858362b},
-			{.l = 0x3f81110d09aab89d}
+			{.l = 0x3c327cafa27860fe},
+			{.l = 0x3feffffffff6bd37},
+			{.l = 0x3e51111eba33a411},
+			{.l = 0xbfc5555a5102bb09},
+			{.l = 0x3edf1bd2dcdde00c},
+			{.l = 0x3f81004755cee660}
 		},
 		{
-			{.l = 0x3ff0000000000000},
-			{.l = 0xbcb61a0a5c31efb7},
-			{.l = 0xbfdfffffffffcec1},
-			{.l = 0xbe01ea30fe505df3},
-			{.l = 0x3fa5555b0928dfe9},
-			{.l = 0xbefa66ee34c3b903}
+			{.l = 0x3ff000000002ad15},
+			{.l = 0xbe4ea0f6e1fcc808},
+			{.l = 0xbfdffffc7306a0f0},
+			{.l = 0xbef3461cf4c2b0bc},
+			{.l = 0x3fa56cfcc2c9ce15},
+			{.l = 0xbf4ac643a9e29636}
 
 		}
 	},
 	// 7 coefficients
+	// 0xbbf86ca2b1e587ef + x * (0x3ff00000000061ed + x * (0xbe2179bfee9687b0 + x * (0xbfc5555451f24138 + x * (0xbec602c8d8b0a55f + x * (0x3f811e943e3100b8 + x * 0xbf1e9956e922c465)))))
+	// 0x3ff000000000007a + x * (0xbdac865673189f40 + x * (0xbfdffffffee99a86 + x * (0xbe5f8c3060609178 + x * (0x3fa55562a9e7d329 + x * (0xbec5f8177ad15767 + x * 0xbf56a316222252f5)))))
 	{
 		{
-			{.l = 0x39558228bf002ff9},
-			{.l = 0x3ff0000000000000},
-			{.l = 0xbc893a0de469b1fb},
-			{.l = 0xbfc5555555554746},
-			{.l = 0xbdd47714d2fce3ba},
-			{.l = 0x3f811114530de4ce},
-			{.l = 0xbece2bb5fc6e149b}
+			{.l = 0xbbf86ca2b1e587ef},
+			{.l = 0x3ff00000000061ed},
+			{.l = 0xbe2179bfee9687b0},
+			{.l = 0xbfc5555451f24138},
+			{.l = 0xbec602c8d8b0a55f},
+			{.l = 0x3f811e943e3100b8},
+			{.l = 0xbf1e9956e922c465}
 		},
 		{
-			{.l = 0x3ff0000000000000},
-			{.l = 0x3b63918d3d8b63e0},
-			{.l = 0xbfe0000000000000},
-			{.l = 0xbcb1f0881cdb7fed},
-			{.l = 0x3fa555555555c054},
-			{.l = 0xbdcd70054d47aeb5},
-			{.l = 0xbf56c165ff0982a8}
-
+			{.l = 0x3ff000000000007a},
+			{.l = 0xbdac865673189f40},
+			{.l = 0xbfdffffffee99a86},
+			{.l = 0xbe5f8c3060609178},
+			{.l = 0x3fa55562a9e7d329},
+			{.l = 0xbec5f8177ad15767},
+			{.l = 0xbf56a316222252f5}
 		}
 	}
 };
@@ -977,6 +1003,8 @@ coefficient_pi_4_4[COEFFICIENTS][2][COEFFICIENTS] = {
 static const DL
 coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
+	// 0x3e4ffffff58c28bb
+	// 0x3feebbdfcfc213ab
 	{
 		{
 			{.l = 0x3e4ffffd74191a12}
@@ -986,6 +1014,8 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 2 coefficients
+	// 0x3dea743fe875fb49 + x * 0x3fef962ea3b318ec
+	// 0x3ff027bd8a3d0e3a + x * 0xbfc90d5928ccd076
 	{
 		{
 			{.l = 0x3d2a51aaa4577386},
@@ -997,6 +1027,8 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 3 coefficients
+	// 0xbdca394c1d5f8234 + x * (0x3ff00d1e7f809cc5 + x * 0xbfb0ae9349031150)
+	// 0x3ff000439afdf9d9 + x * (0xbf63a7970b742dbe + x * 0xbfdf405786c5868c)
 	{
 		{
 			{.l = 0xbd0a6081327b77eb},
@@ -1010,6 +1042,8 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 4 coefficients
+	// 0xbd4a832c19cd646e + x * (0x3ff0000d441fc46b + x * (0xbf3f16d5b8d6e1d4 + x * 0xbfc50918ee2f3c82))
+	// 0x3fefffefa27a2e33 + x * (0x3f44b373eeb1e289 + x * (0xbfe04195c92f17a7 + x * 0x3fa0ae2ec495b438))
 	{
 		{
 			{.l = 0xbbca7d59979393ef},
@@ -1025,6 +1059,8 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 5 coefficients
+	// 0x3d19da61dd452824 + x * (0x3feffffcc3ca7e11 + x * (0x3f20701f3db64d97 + x * (0xbfc589a259abffb4 + x * 0x3f7aacbc5517e71b)))
+	// 0x3fefffffef77855a + x * (0x3ece56ff49fc2761 + x * (0xbfe0008cf7cc930e + x * (0x3f3b60ece9cd2dba + x * 0x3fa4df878bfc1945)))
 	{
 		{
 			{.l = 0x3b9a24fd6f71e4f0},
@@ -1042,6 +1078,8 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 6 coefficients
+	// 0x3c9289f7d2ddbf19 + x * (0x3feffffffdadf797 + x * (0x3ea117480ed2a7f8 + x * (0xbfc555a5147fbd70 + x * (0x3f0f1660b971a53c + x * 0x3f80cdfe6e071c96))))
+	// 0x3ff0000000ac638c + x * (0xbe9eb707034512f1 + x * (0xbfdfffc737272085 + x * (0xbf2337f78bb10cc7 + x * (0x3fa5b38ead1cedff + x * 0xbf5aac78a45a7bc9))))
 	{
 		{
 			{.l = 0xb984d64a29b505c5},
@@ -1062,6 +1100,8 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 		}
 	},
 	// 7 coefficients
+	// 0xbc584ab2be4711b9 + x * (0x3ff00000001854f9 + x * (0xbe715f7bcfd221a6 + x * (0xbfc5554538c9c83a + x * (0xbef5dfde116fecf7 + x * (0x3f8146cfbb62fc73 + x * 0xbf2e79b667c060e9)))))
+	// 0x3ff0000000007bea + x * (0xbe1ce9715c3ca2c2 + x * (0xbfdfffffb9b0e743 + x * (0xbeafc573352bb253 + x * (0x3fa5562b8fe02d84 + x * (0xbef604a5002299de + x * 0xbf5648025a6e4c90)))))
 	{
 		{
 			{.l = 0x39558228bf002ff9},
