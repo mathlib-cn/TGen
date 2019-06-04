@@ -124,7 +124,7 @@
     <ClCompile Include="gccPerformanceTest.c" />
     <ClCompile Include="k_cos.c" />
     <ClCompile Include="k_sin.c" />
-    <ClCompile Include="main_test_sin_gen.c" />
+    <ClCompile Include="gccCorrectnessTest.c" />
     <ClCompile Include="model.c" />
     <ClCompile Include="model_128.c" />
     <ClCompile Include="model_256.c" />

@@ -42,7 +42,7 @@
     <ClCompile Include="data_gen.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main_test_sin_gen.c">
+    <ClCompile Include="gccCorrectnessTest.c">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="model_32.c">

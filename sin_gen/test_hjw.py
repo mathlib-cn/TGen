@@ -3,8 +3,8 @@ import os
 
 sin_gen = "gcc source.c -o source.out"
 rc, out = subprocess.getstatusoutput(sin_gen)
-performance_test = "gcc main_test_sin_gen.c sin_gen.c binary.c computeULP.c -lm -lgmp -lmpfr -o main_test_sin_gen.out"
-performance_run = "./main_test_sin_gen.out"
+performance_test = "gcc gccCorrectnessTest.c sin_gen.c binary.c computeULP.c -lm -lgmp -lmpfr -o gccCorrectnessTest.out"
+performance_run = "./gccCorrectnessTest.out"
 main = "./source.out "
 
 start = -3

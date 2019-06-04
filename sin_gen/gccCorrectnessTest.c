@@ -23,7 +23,7 @@ double computeULP(double);
 
 struct test_data test(void)
 {
-	struct test_data performance_result;
+	struct test_data correctness_result;
 	//double a, b, x;
 	double y1, y2;
 	int i, j, bit_num;
@@ -36,9 +36,9 @@ struct test_data test(void)
 	char temp_c;
 	mpfr_t mpfr_temp, mpfr_result;
 
-	performance_result.sum = 0;
-	performance_result.max = 0;
-	performance_result.max_times = 0;
+	correctness_result.sum = 0;
+	correctness_result.max = 0;
+	correctness_result.max_times = 0;
 	ulpdiff_sum = 0;
 	ulpdiff_max = 0;
 	max_times = 0;
@@ -100,20 +100,20 @@ struct test_data test(void)
 	//printf("ulpdiff_max = %ld\n", ulpdiff_max);
 	//printf("%ld\n", ulpdiff_max);
 	//printf("max_times = %d\n", max_times);
-	performance_result.sum = ulpdiff_sum;
-	performance_result.max = ulpdiff_max;
-	performance_result.max_times = max_times;
+	correctness_result.sum = ulpdiff_sum;
+	correctness_result.max = ulpdiff_max;
+	correctness_result.max_times = max_times;
 	fclose(inputData);
 
-	return performance_result;
+	return correctness_result;
 }
 
 int main(int argc, char *argv[]) {
-	struct test_data performance_result;
-	performance_result = test();
+	struct test_data correctness_result;
+	correctness_result = test();
 	//printf("%d %d %d\n", p->max, p->max_times, p->sum);
-	printf("%lu\n", performance_result.max);
-	printf("%lu\n", performance_result.max_times);
-	printf("%lu\n", performance_result.sum);
+	printf("%lu\n", correctness_result.max);
+	printf("%lu\n", correctness_result.max_times);
+	printf("%lu\n", correctness_result.sum);
 	return 0;
 }

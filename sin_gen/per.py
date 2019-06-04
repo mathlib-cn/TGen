@@ -3,8 +3,9 @@ import os
 
 sin_gen = "gcc source.c -o source.out"
 rc, out = subprocess.getstatusoutput(sin_gen)
-performance_test = "gcc main_test_sin_gen.c sin_gen.c binary.c computeULP.c -lm -lgmp -lmpfr -o main_test_sin_gen.out"
-performance_run = "./main_test_sin_gen.out"
+correctness_test = "gcc gccCorrectnessTest.c sin_gen.c binary.c computeULP.c -lm -lgmp -lmpfr -o gccCorrectnessTest.out"
+correctness_run = "./gccCorrectnessTest.out"
+performance_test = "gcc gccPerformanceTest.c -lm -o gccPerformanceTest.out"
 main = "./source.out "
 arr = []
 max_arr = []
@@ -28,13 +29,12 @@ for bit in range(0, bit_range + 1):
 			print("bit = " + str(bit) + " fnum = " + str(fnum) + " degree = " + str(degree))
 			sin_gen_run = main + ' ' + start + ' ' + end + ' ' + precision + ' ' + str(bit) + ' ' + str(fnum) + ' ' + str(degree)
 			subprocess.getstatusoutput(sin_gen_run)
-			#hjw = input("enter any jian if continue")
 			newfilename = "sin_gen_" + str(bit) + "_" + str(fnum) + "_" + str(degree) + ".c"
 			shellscript = "cp sin_gen.c " + newfilename
 			subprocess.getstatusoutput(shellscript)
-			performance_test = "gcc main_test_sin_gen.c " + newfilename + " binary.c computeULP.c -lm -lgmp -lmpfr -o main_test_sin_gen.out"
-			subprocess.getstatusoutput(performance_test)
-			rc, out = subprocess.getstatusoutput(performance_run)
+			correctness_test = "gcc gccCorrectnessTest.c " + newfilename + " binary.c computeULP.c -lm -lgmp -lmpfr -o gccCorrectnessTest.out"
+			subprocess.getstatusoutput(correctness_test)
+			rc, out = subprocess.getstatusoutput(correctness_run)
 			#rc, out = subprocess.getstatusoutput("./testpy.out" + ' ' + str(bit) + ' ' + str(fnum) + ' ' + str(degree))
 			#print(out)
 			temp = [eval(i) for i in out.split()]
@@ -71,8 +71,8 @@ for i in min_sum_indexes:
 sin_gen_run = main + ' ' + start + ' ' + end + ' ' + precision + ' ' +str(bit_index) + ' ' + str(fnum_index) + ' ' + str(degree_index)
 print(sin_gen_run)
 subprocess.getstatusoutput(sin_gen_run)
-subprocess.getstatusoutput(performance_test)
-rc, out = subprocess.getstatusoutput(performance_run)
+subprocess.getstatusoutput(correctness_test)
+rc, out = subprocess.getstatusoutput(correctness_run)
 temp = [eval(i) for i in out.split()]
 print(temp)
 #print("max of arr is " + str(max(arr)) + ", and the place is %d" %(max_index))
