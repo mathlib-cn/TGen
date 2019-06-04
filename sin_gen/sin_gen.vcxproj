@@ -121,6 +121,7 @@
     <ClCompile Include="computeErrors.c" />
     <ClCompile Include="computeULP.c" />
     <ClCompile Include="data_gen.c" />
+    <ClCompile Include="gccPerformanceTest.c" />
     <ClCompile Include="k_cos.c" />
     <ClCompile Include="k_sin.c" />
     <ClCompile Include="main_test_sin_gen.c" />
