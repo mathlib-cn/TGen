@@ -10,4 +10,8 @@ union dl
 	unsigned long int l;
 };
 typedef union dl DL;
+
+#define RUNTIME 1000
+#define PERCENT 0.1
+
 #endif
