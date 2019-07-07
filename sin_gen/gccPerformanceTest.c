@@ -3,8 +3,12 @@
 #include <stdlib.h>
 //#include <mathimf.h>
 #include <stdint.h>
-#include "myhead.h"
+//#include "myhead.h"
 #include <math.h>
+
+double sin_gen(double);
+/* copy: copy 'from' into 'to'; assume to is big enough */
+void copy(char to[], char from[]);
 
 #define barrier() __asm__ __volatile__("mfence":::"memory")
 
@@ -15,8 +19,8 @@ unsigned long a, d, c;
   c = a | (d << 32);
 return c;
 }
-
-int main(){
+#define RUNTIME 1000
+int main(int argc, char *argv[]){
 	int i, j;
 	unsigned long times[RUNTIME];
 	unsigned long sum;
@@ -24,24 +28,38 @@ int main(){
 	unsigned  cycles_low, cycles_high, cycles_low1, cycles_high1;
 	double inputdata[RUNTIME];
 	double result[RUNTIME], test = 1;
+	double data_start = 0, data_end  = 1;
 	FILE *stream_time;
+	char outputFile[64] = "gcc_sin_time.txt";
 
-	stream_time = fopen("gcc_sin_time.txt", "w");
+	if (argc == 2) {
+		copy(outputFile, argv[1]);
+		printf("outputFile is %s.\ntest from %f, end at %f\n", outputFile, data_start, data_end);
+	}
+	if (argc == 4) {
+		copy(outputFile, argv[1]);
+		data_start = atof(argv[2]);
+		data_end = atof(argv[3]);
+		printf("outputFile is %s.\ntest from %f, end at %f\n", outputFile, data_start, data_end);
+	}	
+	stream_time = fopen(outputFile, "w");
 	if(stream_time == (FILE *)0) {
                  printf("open file error!\n");
                  exit(1);
 	}
 
 	for(i = 0; i < RUNTIME; i++) {
-        	inputdata[i] = (double)rand() / ((double)RAND_MAX + 1)  * ((1) - (0)) + (0);
+        	inputdata[i] = (double)rand() / ((double)RAND_MAX + 1)  * ((data_end) - (data_start)) + (data_start);
 	}
 	for (i = 0; i < 100; i++) {
+//		sin_gen(inputdata[i]);
 		sin(inputdata[i]);
 	}
 	for(i = 0; i < RUNTIME; i++) {
 		barrier();
 		__asm__ __volatile__(
         		"RDTSC": "=a" (cycles_low), "=d" (cycles_high));
+//		result[i] = sin_gen(inputdata[i]);
 		result[i] = sin(inputdata[i]);
 		__asm__ __volatile__(
         		"RDTSC": "=a" (cycles_low1), "=d" (cycles_high1));
