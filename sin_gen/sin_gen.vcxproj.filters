@@ -108,6 +108,12 @@
     <ClCompile Include="gccPerformanceTest.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="exp_gen.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="source_exp.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">

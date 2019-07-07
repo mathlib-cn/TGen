@@ -121,6 +121,7 @@
     <ClCompile Include="computeErrors.c" />
     <ClCompile Include="computeULP.c" />
     <ClCompile Include="data_gen.c" />
+    <ClCompile Include="exp_gen.c" />
     <ClCompile Include="gccPerformanceTest.c" />
     <ClCompile Include="k_cos.c" />
     <ClCompile Include="k_sin.c" />
@@ -146,6 +147,7 @@
     <ClCompile Include="performance_test.c" />
     <ClCompile Include="sin_gen.c" />
     <ClCompile Include="source.c" />
+    <ClCompile Include="source_exp.c" />
     <ClCompile Include="testpy.c" />
   </ItemGroup>
   <ItemGroup>

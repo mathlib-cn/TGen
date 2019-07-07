@@ -900,41 +900,6 @@ coefficient_pi_4_2[COEFFICIENTS][2][COEFFICIENTS] = {
 // sin & cos
 // coefficient[0] is for sin; coefficient[1] is for cos;
 // pi/4/1
-// 7 coefficients
-// sin:
-// 0x39558228bf002ff9 + x * (0x3ff0000000000000 + x * (0xbc893a0de469b1fb + x * (0xbfc5555555554746 + x * (0xbdd47714d2fce3ba + x * (0x3f811114530de4ce + x * 0xbece2bb5fc6e149b)))))
-// cos:
-// 0x3ff0000000000000 + x * (0x3b63918d3d8b63e0 + x * (0xbfe0000000000000 + x * (0xbcb1f0881cdb7fed + x * (0x3fa555555555c054 + x * (0xbdcd70054d47aeb5 + x * 0xbf56c165ff0982a8)))))
-// 6 coefficients
-// sin:
-// 0xb984d64a29b505c5 + x * (0x3ff0000000000000 + x * (0x3cb845aef92c1d42 + x * (0xbfc55555555599c3 + x * (0x3decb7924858362b + x * 0x3f81110d09aab89d))))
-// cos:
-// 0x3ff0000000000000 + x * (0xbcb61a0a5c31efb7 + x * (0xbfdfffffffffcec1 + x * (0xbe01ea30fe505df3 + x * (0x3fa5555b0928dfe9 + x * 0xbefa66ee34c3b903))))
-// 5 coefficients
-// sin:
-// 0x3b9a24fd6f71e4f0 + x * (0x3feffffffffffcb4 + x * (0x3e00999ee5af3132 + x * (0xbfc55558a0d459da + x * 0x3f1ad2a9831248b0)))
-// cos:
-// 0x3ff0000000000000 + x * (0x3ce5434093bdf722 + x * (0xbfe00000000077d5 + x * (0x3e1923479c224098 + x * 0x3fa5554e47f80e37)))
-// 4 coefficients
-// sin:
-// 0xbbca7d59979393ef + x * (0x3ff0000000000d53 + x * (0xbe1f1f04f59599b9 + x * 0xbfc555508f75ffbc))
-// cos:
-// 0x3fefffffffffefc4 + x * (0x3e24abb2cf0603fd + x * (0xbfe000041cc0f168 + x * 0x3f40c14fcbc76a91))
-// 3 coefficients
-// sin:
-// 0xbd0a6081327b77eb + x * (0x3ff00000d3f2460f + x * 0xbf50c60cab8e9315)
-// cos:
-// 0x3ff00000000041f1 + x * (0xbe43664f6b411c35 + x * 0xbfdffff4148eb6b7)
-// 2 coefficients
-// sin:
-// 0x3d2a51aaa4577386 + x * 0x3feffff96b389608
-// cos:
-// 0x3ff0000277a907c0 + x * 0xbf6921fc09879ff4
-// 1 coefficient
-// sin:
-// 0x3e4ffffd74191a12
-// cos:
-// 0x3e4ffffd74191a12
 static const DL
 coefficient_pi_4_1[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
