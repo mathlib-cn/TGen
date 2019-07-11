@@ -35,12 +35,12 @@ int gen(struct constraint input_parameter) {
 	b = input_parameter.end;
 	precision = input_parameter.precision;
 	bit = input_parameter.bit;
-	//bit = 7;
+	bit = 6;
 	bitnum = 1 << bit;
 	bitnum_1 = bitnum - 1;
 	fnum = input_parameter.fnum;
 	degree = input_parameter.degree;
-	//degree = 6;
+	degree = 6;
 	format = 64;
 	/*printf("please input [a, b]: ");
 	scanf("%lf %lf", &a, &b);
@@ -50,24 +50,23 @@ int gen(struct constraint input_parameter) {
 
 	// generate code for exp_gen
 	{
-		// comments
-		fprintf(func, "/** target func:\texp\n");
-		fprintf(func, "*** target domain:\t[%lf, %lf]\n", a, b);
-		fprintf(func, "*** target precision:\t%d\n", precision);
-		fprintf(func, "**/\n");
-
-		fprintf(func, "/** target func:	exp\n");
-		fprintf(func, "*** target domain:	[-3.000000, 3.000000]\n");
-		fprintf(func, "*** target precision:	90\n");
-		fprintf(func, "**/\n");
 		fprintf(func, "#include <stdio.h>\n");
 		fprintf(func, "#include <math.h>\n");
 		fprintf(func, "#include %cmyhead.h%c\n", '"', '"');
 		fprintf(func, "\n");
-		fprintf(func, "#define BIT 6\n");
-		fprintf(func, "#define BITNUM 64\n");
-		fprintf(func, "#define DEGREE 6\n");
+		fprintf(func, "#define BIT %d\n", bit);
+		fprintf(func, "#define BITNUM %d\n", bitnum);
+		fprintf(func, "#define DEGREE %d\n", degree);
 		fprintf(func, "\n");
+		fprintf(func, "static const double\n");
+		fprintf(func, "ln2HI = 6.93147180369123816490e-01,  /* 0x3fe62e42, 0xfee00000 */\n");
+		fprintf(func, "ln2LO = 1.90821492927058770002e-10, /* 0x3dea39ef, 0x35793c76 */\n");
+		fprintf(func, "invln2 = 1.44269504088896338700e+00; /* 0x3ff71547, 0x652b82fe */\n");
+		fprintf(func, "\n");
+		fprintf(func, "static const double\n");
+		fprintf(func, "interpolate[BITNUM] = {\n");
+		fprintf(func, "	0\n");
+		fprintf(func, "};\n");
 		fprintf(func, "static const DL\n");
 		fprintf(func, "coefficient[DEGREE] = {\n");
 		fprintf(func, "	{.d = 1},\n");
@@ -75,9 +74,11 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "	{.d = 0.5},\n");
 		fprintf(func, "	{.d = 1.0 / 6.0},\n");
 		fprintf(func, "	{.d = 1.0 / 24.0},\n");
-		fprintf(func, "	{.d = 1.0 / 120.0},\n");
+		fprintf(func, "	{.d = 1.0 / 120.0}\n");
 		fprintf(func, "};\n");
 		fprintf(func, "\n");
+	}
+	{
 		fprintf(func, "double exp_gen(double x) {\n");
 		fprintf(func, "	double temp;\n");
 		fprintf(func, "	int k;\n");
@@ -86,34 +87,37 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "	long int T_int;\n");
 		fprintf(func, "	double r;\n");
 		fprintf(func, "	double r_poly;\n");
-		fprintf(func, "	int hi, lo;\n");
+		fprintf(func, "	unsigned long int hi, lo;\n");
 		fprintf(func, "	double r_coefficient;\n");
 		fprintf(func, "	double result;\n");
+		fprintf(func, "	double r_hi, r_lo;\n");
 		fprintf(func, "\n");
 		fprintf(func, "	k = BITNUM;\n");
-		fprintf(func, "	k1 = k / log(2);\n");
+		fprintf(func, "	k1 = k * invln2;\n");
 		fprintf(func, "	T = x * k1;\n");
 		fprintf(func, "	T_int = T;\n");
 		fprintf(func, "	// 0 <= r <= 1/k1\n");
-		fprintf(func, "	r = x - ((double)T_int)/k1;\n");
-		fprintf(func, "\tappro_s = coefficient[0][0].d");
+		fprintf(func, "	r = x - T_int * ln2HI;\n");
+		fprintf(func, "	r = r - T_int * ln2LO;\n");
+		fprintf(func, "\tr_poly = coefficient[0].d");
 		for (i = 1; i <= degree; i++) {
-			fprintf(func, " + iiix * (coefficient[%d].d", i);
+			fprintf(func, " + r * (coefficient[%d].d", i);
 		}
 		for (i = 1; i <= degree; i++) {
 			fprintf(func, ")");
 		}
 		fprintf(func, ";\n");
-		
 		fprintf(func, "	lo = T_int % k;\n");
 		fprintf(func, "	hi = T_int / k;\n");
-		fprintf(func, "	r_coefficient = pow(2, (double)hi) * pow(2, ((double)lo / k));\n");
+		fprintf(func, "	hi = hi << 52;\n");
+		fprintf(func, "	r_hi = *((double *)&hi);\n");
+		fprintf(func, "	r_lo = pow(2, (lo / k));\n");
+		fprintf(func, "	r_coefficient = r_hi * r_lo;\n");
 		fprintf(func, "	result = r_coefficient * r_poly;\n");
 		fprintf(func, "\n");
 		fprintf(func, "	return result;\n");
 		fprintf(func, "}\n");
 		fprintf(func, "\n");
-
 	}
 	fclose(func);
 
