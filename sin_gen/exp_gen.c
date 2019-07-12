@@ -45,7 +45,7 @@ double exp_gen(double x) {
 	// 0 <= r <= 1/k1
 	r = x - T_int * ln2HI;
 	r = r - T_int * ln2LO;
-	r_poly = coefficient[0].d + r * (coefficient[1].d + r * (coefficient[2].d + r * (coefficient[3].d + r * (coefficient[4].d + r * (coefficient[5].d + r * (coefficient[6].d))))));
+	r_poly = coefficient[0].d + r * (coefficient[1].d + r * (coefficient[2].d + r * (coefficient[3].d + r * (coefficient[4].d + r * (coefficient[5].d)))));
 	lo = T_int % k;
 	hi = T_int / k;
 	hi = hi << 52;

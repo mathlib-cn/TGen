@@ -61,7 +61,7 @@ struct test_data test(void)
 		temp_ul = getUL(result);
 		input = itofd(temp_ul);
 
-		y1 = exp(input);
+		y1 = exp_gen(input);
 
 		mpfr_set_d(mpfr_temp, input, MPFR_RNDN);
 		mpfr_exp(mpfr_result, mpfr_temp, MPFR_RNDN);

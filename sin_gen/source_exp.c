@@ -100,10 +100,10 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "	r = x - T_int * ln2HI;\n");
 		fprintf(func, "	r = r - T_int * ln2LO;\n");
 		fprintf(func, "\tr_poly = coefficient[0].d");
-		for (i = 1; i <= degree; i++) {
+		for (i = 1; i < degree; i++) {
 			fprintf(func, " + r * (coefficient[%d].d", i);
 		}
-		for (i = 1; i <= degree; i++) {
+		for (i = 1; i < degree; i++) {
 			fprintf(func, ")");
 		}
 		fprintf(func, ";\n");
