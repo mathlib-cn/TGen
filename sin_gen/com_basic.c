@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #define MAX_LEN 255
 #define RUN_COUNT 1000
-#define PERCENT 0.1
+#define PERCENT 0.05
 int main(int argc,char *argv[])
 {
 	int flag=0,count=0,row=0,base=0,i=0;

@@ -4,7 +4,9 @@
 #paste $1.name $1.time
 #rm -rf $1.name $1.time $1 $1.sort
 
-sort -n ${1}.txt >${1}.sort
+gcc com_basic.c -o com_basic.out
+sort -n ${1} > ${1}.sort
 ./com_basic.out ${1}.sort
 rm -rf ${1}.sort
+rm com_basic.out
 
