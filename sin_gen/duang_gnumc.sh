@@ -1,3 +1,7 @@
+###
+### compute the jiepai of the function ${1}
+###
+
 #echo "$1" >$1.name
 #sort -n ../output/gnumc_$1_time.txt >$1.sort
 #./com $1.sort $1.sort $1 >$1.time

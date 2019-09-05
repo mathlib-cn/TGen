@@ -144,6 +144,9 @@ coefficient[COEFFICIENTS][2][COEFFICIENTS] = {
 	}
 };
 
+// sin & cos
+// coefficient[0] is for sin; coefficient[1] is for cos;
+// pi/4/64
 static const DL
 coefficient_pi_4_64[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
@@ -1345,17 +1348,15 @@ int gen(struct constraint input_parameter) {
 	fnum = input_parameter.fnum;
 	degree = input_parameter.degree;
 	//degree = 6;
+	// format --> float number format: double is 64, float is 32
 	format = 64;
-	/*printf("please input [a, b]: ");
-	scanf("%lf %lf", &a, &b);
-	printf("please input target precision: ");
-	scanf("%d", &precision);
-	printf("[a,b] = [%lf, %lf]\nprecision = %d\n", a, b, precision);*/
 
 	midpoint = (a + b) / 2;
+	// the half of the domain [a, b]
 	length = (b - a) / 2;
  	Xtemp = (long int)(midpoint / two_pi);
 	// 日后需要优化，尽可能地精确
+	// it is useless now
 	X = ((double)(Xtemp)) * two_pi;
 	a1 = (0 - length) + X - midpoint;
 	b1 = (0 + length) + X - midpoint;

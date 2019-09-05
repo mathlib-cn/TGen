@@ -28,7 +28,9 @@ start = input("please input the start of interval: ")
 end = input("please input the end of interval: ")
 precision = input("please input the precision of computing: ")
 
-# generate all possible code in the parameters space
+# generate all possible implementations within the parameters space
+# and run the correctness test
+# TODO: performance test
 for bit in range(0, bit_range + 1):
 	for fnum in range(1, fnum_range + 1):
 		for degree in range(0, degree_range):
@@ -69,7 +71,7 @@ for i in min_max_times_indexes:
 	j = j + 1
 print(min_sum_indexes)
 
-# compute index
+# compute the index of the best parameter vector
 for i in min_sum_indexes:
 	max_index = i
 	bit_index = max_index // (fnum_range * degree_range)

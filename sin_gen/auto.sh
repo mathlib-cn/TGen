@@ -1,3 +1,7 @@
+###
+### data generate and sort, then run 2 useless correctness test
+###
+
 set -x
 ./data_yitiaolong.sh
 #./test.sh > log_2^-27_pi_${1}_1000000.txt
