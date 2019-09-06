@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "myhead.h"
 
 #define NUM 100
@@ -1371,7 +1372,7 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "/** target func:\tsin\n");
 		fprintf(func, "*** target domain:\t[%lf, %lf]\n", a, b);
 		fprintf(func, "*** target precision:\t%d\n", precision);
-		fprintf(func, "**/\n");
+		fprintf(func, "**/\n\n");
 
 		fprintf(func, "#include <stdio.h>\n");
 		fprintf(func, "#include %cmyhead.h%c\n", '"', '"');
@@ -1442,7 +1443,7 @@ int gen(struct constraint input_parameter) {
 		}
 		fprintf(func, "\t\t%.17e\n", interpolate[1][i * (1 << (7 - bit))]);
 		fprintf(func, "\t}\n");
-		fprintf(func, "};\n");
+		fprintf(func, "};\n\n");
 
 		// func
 		fprintf(func, "double sin_gen(double x) {\n");
@@ -1537,6 +1538,9 @@ int main(int argc, char *argv[]) {
 		printf("please input target precision: ");
 		scanf("%d", &precision);
 		printf("[a,b] = [%lf, %lf]\nprecision = %d\n", a, b, precision);
+		bit = 6;
+		fnum = 1;
+		degree = 6;
 	}
 	else if (argc == 7) {
 		a = atof(argv[1]);
