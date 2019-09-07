@@ -5,6 +5,7 @@
 #define NUM 100
 #define DEGREE 7
 #define COEFFICIENTS 7
+#define COEFFICIENTS_VERSION 8
 #define BIT 7
 #define BITNUM 128
 #define	FORMAT 64
@@ -18,11 +19,12 @@ struct constraint {
 	int degree;
 };
 
+
 // sin & cos
 // coefficient[0] is for sin; coefficient[1] is for cos;
 // pi/4/128
 static const DL
-coefficient[COEFFICIENTS][2][COEFFICIENTS] = {
+coefficient_pi_4_128[COEFFICIENTS][2][COEFFICIENTS] = {
 	// 1 coefficients
 	// 0x3e4ffffd74191a12
 	// 0x3fefffec42bb182f
@@ -1028,6 +1030,9 @@ coefficient_pi_4_1[COEFFICIENTS][2][COEFFICIENTS] = {
 	}
 };
 
+// link for all coefficients array
+static const DL *link[COEFFICIENTS_VERSION];
+
 static const double
 interpolate[2][BITNUM] = {
 	{
@@ -1348,9 +1353,15 @@ int gen(struct constraint input_parameter) {
 	bitnum_1 = bitnum - 1;
 	fnum = input_parameter.fnum;
 	degree = input_parameter.degree;
-	//degree = 6;
 	// format --> float number format: double is 64, float is 32
 	format = 64;
+
+	// test
+	printf("After initial:\n");
+	printf("[a,b] = [%lf, %lf]\nprecision = %d\n", a, b, precision);
+	printf("bit = %d\n", bit);
+	printf("degree = %d\n", degree);
+	printf("fnum = %d\n", fnum);
 
 	midpoint = (a + b) / 2;
 	// the half of the domain [a, b]
@@ -1416,15 +1427,19 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "coefficient[2][DEGREE] = {\n");
 		fprintf(func, "\t{\n");
 		for (i = 0; i < degree; i++) {
-			fprintf(func, "\t\t{.l = 0x%lx},\n", coefficient[degree][0][i].l);
+			fprintf(func, "\t\t{.l = 0x%lx},\n", link[bit][degree * 2 * COEFFICIENTS + 0 * COEFFICIENTS + i].l);
+			//fprintf(func, "\t\t{.l = 0x%lx},\n", coefficient[degree][0][i].l);
 		}
-		fprintf(func, "\t\t{.l = 0x%lx}\n", coefficient[degree][0][i].l);
+		fprintf(func, "\t\t{.l = 0x%lx}\n", link[bit][degree * 2 * COEFFICIENTS + 0 * COEFFICIENTS + i].l);
+		//fprintf(func, "\t\t{.l = 0x%lx}\n", coefficient[degree][0][i].l);
 		fprintf(func, "\t},\n");
 		fprintf(func, "\t{\n");
 		for (i = 0; i < degree; i++) {
-			fprintf(func, "\t\t{.l = 0x%lx},\n", coefficient[degree][1][i].l);
+			fprintf(func, "\t\t{.l = 0x%lx},\n", link[bit][degree * 2 * COEFFICIENTS + 1 * COEFFICIENTS + i].l);
+			//fprintf(func, "\t\t{.l = 0x%lx},\n", coefficient[degree][1][i].l);
 		}
-		fprintf(func, "\t\t{.l = 0x%lx}\n", coefficient[degree][1][i].l);
+		fprintf(func, "\t\t{.l = 0x%lx}\n", link[bit][degree * 2 * COEFFICIENTS + 1 * COEFFICIENTS + i].l);
+		//fprintf(func, "\t\t{.l = 0x%lx}\n", coefficient[degree][1][i].l);
 		fprintf(func, "\t}\n");
 		fprintf(func, "};\n");
 
@@ -1538,9 +1553,17 @@ int main(int argc, char *argv[]) {
 		printf("please input target precision: ");
 		scanf("%d", &precision);
 		printf("[a,b] = [%lf, %lf]\nprecision = %d\n", a, b, precision);
-		bit = 6;
+		printf("please input interval paramenter -- bit: ");
+		scanf("%d", &bit);
+		printf("please input degree: ");
+		scanf("%d", &degree);
 		fnum = 1;
-		degree = 6;
+		
+		// test
+		// printf("[a,b] = [%lf, %lf]\nprecision = %d\n", a, b, precision);
+		// printf("bit = %d\n", bit);
+		// printf("degree = %d\n", degree);
+		// printf("fnum = %d\n", fnum);
 	}
 	else if (argc == 7) {
 		a = atof(argv[1]);
@@ -1554,6 +1577,16 @@ int main(int argc, char *argv[]) {
 		printf("please input 6 parameters!!\n");
 		return 1;
 	}
+
+	link[7] = &(coefficient_pi_4_128[0][0][0]);
+	link[6] = &(coefficient_pi_4_64[0][0][0]);
+	link[5] = &(coefficient_pi_4_32[0][0][0]);
+	link[4] = &(coefficient_pi_4_16[0][0][0]);
+	link[3] = &(coefficient_pi_4_8[0][0][0]);
+	link[2] = &(coefficient_pi_4_4[0][0][0]);
+	link[1] = &(coefficient_pi_4_2[0][0][0]);
+	link[0] = &(coefficient_pi_4_1[0][0][0]);
+
 	input_parameter.start = a;
 	input_parameter.end = b;
 	input_parameter.precision = precision;
