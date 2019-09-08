@@ -1,6 +1,6 @@
 /** target func:	sin
 *** target domain:	[-1.000000, 1.000000]
-*** target precision:	2
+*** target precision:	23
 **/
 
 #include <stdio.h>
@@ -10,7 +10,7 @@
 #define BIT 5
 #define BITNUM 32
 #define BITNUM_1 31
-#define DEGREE 5
+#define DEGREE 7
 static const double
 invpio4 = 1.2732395447351626861510701069801,
 invpio512 = 162.97466172610082382733697369345,
@@ -29,18 +29,22 @@ pi_4_1t = { .l = 0x3DC0B4611A626331 };
 static const DL
 coefficient[2][DEGREE] = {
 	{
-		{.l = 0x3c1a0fa756bd3f67},
-		{.l = 0x3feffffffffcba5e},
-		{.l = 0x3e60917579930fe4},
-		{.l = 0xbfc5558a02b11613},
-		{.l = 0x3f3ad0abbc522eb7}
+		{.l = 0x39f5d597b0149658},
+		{.l = 0x3ff0000000000000},
+		{.l = 0xbd293e830c12c95d},
+		{.l = 0xbfc555555547449a},
+		{.l = 0xbe347837ff39b44f},
+		{.l = 0x3f81114532518e39},
+		{.l = 0xbeee2c01eb2f7feb}
 	},
 	{
-		{.l = 0x3feffffffffffff0},
-		{.l = 0x3d8dc087f14a5031},
-		{.l = 0xbfe00000008b49eb},
-		{.l = 0x3e7b33bfc68376b4},
-		{.l = 0x3fa554dfd36ee1b1}
+		{.l = 0x3ff0000000000000},
+		{.l = 0xbc54257f5753f4a9},
+		{.l = 0xbfdfffffffffffc5},
+		{.l = 0xbd6cab8626df20da},
+		{.l = 0x3fa55555561e7a88},
+		{.l = 0xbe3533fe6b89710e},
+		{.l = 0xbf56c0f51c7eacc2}
 	}
 };
 static const double
@@ -162,8 +166,8 @@ double sin_gen(double x) {
 
 	// new, sin(x+x') = sin(x)cos(x') + sin(x')cos(x), x' = iiix
 	// OR, cos(x+x') = cos(x)cos(x') - sin(x)sin(x'), x' = iiix
-	appro_s = coefficient[0][0].d + iiix * (coefficient[0][1].d + iiix * (coefficient[0][2].d + iiix * (coefficient[0][3].d + iiix * (coefficient[0][4].d))));
-	appro_c = coefficient[1][0].d + iiix * (coefficient[1][1].d + iiix * (coefficient[1][2].d + iiix * (coefficient[1][3].d + iiix * (coefficient[1][4].d))));
+	appro_s = coefficient[0][0].d + iiix * (coefficient[0][1].d + iiix * (coefficient[0][2].d + iiix * (coefficient[0][3].d + iiix * (coefficient[0][4].d + iiix * (coefficient[0][5].d + iiix * (coefficient[0][6].d))))));
+	appro_c = coefficient[1][0].d + iiix * (coefficient[1][1].d + iiix * (coefficient[1][2].d + iiix * (coefficient[1][3].d + iiix * (coefficient[1][4].d + iiix * (coefficient[1][5].d + iiix * (coefficient[1][6].d))))));
 
 	y = interpolate[sin_or_cos][table_order] * appro_c + (1 - sin_or_cos * 2) * interpolate[1 - sin_or_cos][table_order] * appro_s;
 	y = (1 - sign * 2) * y;

@@ -97,8 +97,8 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "	T = x * k1;\n");
 		fprintf(func, "	T_int = T;\n");
 		fprintf(func, "	// 0 <= r <= 1/k1\n");
-		fprintf(func, "	r = x - T_int * ln2HI;\n");
-		fprintf(func, "	r = r - T_int * ln2LO;\n");
+		fprintf(func, "	r = x - T_int * ln2HI / k;\n");
+		fprintf(func, "	r = r - T_int * ln2LO / k;\n\n");
 		fprintf(func, "\tr_poly = coefficient[0].d");
 		for (i = 1; i < degree; i++) {
 			fprintf(func, " + r * (coefficient[%d].d", i);
@@ -106,12 +106,12 @@ int gen(struct constraint input_parameter) {
 		for (i = 1; i < degree; i++) {
 			fprintf(func, ")");
 		}
-		fprintf(func, ";\n");
+		fprintf(func, ";\n\n");
 		fprintf(func, "	lo = T_int % k;\n");
 		fprintf(func, "	hi = T_int / k;\n");
-		fprintf(func, "	hi = hi << 52;\n");
+		fprintf(func, "	hi = (hi + 0x3ff) << 52;\n");
 		fprintf(func, "	r_hi = *((double *)&hi);\n");
-		fprintf(func, "	r_lo = pow(2, (lo / k));\n");
+		fprintf(func, "	r_lo = pow(2, (((double)lo) / ((double)k)));\n");
 		fprintf(func, "	r_coefficient = r_hi * r_lo;\n");
 		fprintf(func, "	result = r_coefficient * r_poly;\n");
 		fprintf(func, "\n");
@@ -136,6 +136,17 @@ int main(int argc, char *argv[]) {
 		printf("please input target precision: ");
 		scanf("%d", &precision);
 		printf("[a,b] = [%lf, %lf]\nprecision = %d\n", a, b, precision);
+		printf("please input interval paramenter -- bit: ");
+		scanf("%d", &bit);
+		printf("please input degree: ");
+		scanf("%d", &degree);
+		fnum = 1;
+
+		// test
+		// printf("[a,b] = [%lf, %lf]\nprecision = %d\n", a, b, precision);
+		// printf("bit = %d\n", bit);
+		// printf("degree = %d\n", degree);
+		// printf("fnum = %d\n", fnum);
 	}
 	else if (argc == 7) {
 		a = atof(argv[1]);

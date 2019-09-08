@@ -67,16 +67,16 @@ struct test_data test(void)
 		mpfr_exp(mpfr_result, mpfr_temp, MPFR_RNDN);
 		y2 = mpfr_get_d(mpfr_result, MPFR_RNDN);
 
-		printf("for x = %.17e:\n", input);
-		printf("\texp_gen = %.17e\n\texp     = %.17e\n", y1, y2);
-		printf("binary of exp_gen is ");
-		binaryshow(y1);
-		printf("binary of exp     is ");
-		binaryshow(y2);
+		//printf("for x = %.17e:\n", input);
+		//printf("\texp_gen = %.17e\n\texp     = %.17e\n", y1, y2);
+		//printf("binary of exp_gen is ");
+		//binaryshow(y1);
+		//printf("binary of exp     is ");
+		//binaryshow(y2);
 		//bit_num = computeAccurateBit(y1, y2);
 		//printf("the accurate binary bit is %d\n", bit_num);
 		ulpdiff = computeULPDiff(y1, y2);
-		printf("%d\n", ulpdiff);
+		//printf("%d\n", ulpdiff);
 		if (ulpdiff < 0)
 		{
 			//printf("shit!!!\n");
