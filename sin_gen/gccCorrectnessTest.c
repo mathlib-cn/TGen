@@ -112,8 +112,11 @@ int main(int argc, char *argv[]) {
 	struct test_data correctness_result;
 	correctness_result = test();
 	//printf("%d %d %d\n", p->max, p->max_times, p->sum);
-	printf("max ulp       = %lu\n", correctness_result.max);
-	printf("max ulp times = %lu\n", correctness_result.max_times);
-	printf("the ulp sum   = %lu\n", correctness_result.sum);
+	printf("%lu\n", correctness_result.max);
+	printf("%lu\n", correctness_result.max_times);
+	printf("%lu\n", correctness_result.sum);
+	//printf("max ulp       = %lu\n", correctness_result.max);
+	//printf("max ulp times = %lu\n", correctness_result.max_times);
+	//printf("the ulp sum   = %lu\n", correctness_result.sum);
 	return 0;
 }
