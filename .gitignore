@@ -265,3 +265,7 @@ __pycache__/
 *.out
 /sin_gen/temp
 *.o
+
+sin_gen.c
+exp_gen.c
+temp_exp.c
