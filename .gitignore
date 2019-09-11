@@ -266,3 +266,5 @@ __pycache__/
 /sin_gen/temp
 *.o
 /sin_gen/exp_gen.c
+/sin_gen/sin_gen.c
+/sin_gen/1
