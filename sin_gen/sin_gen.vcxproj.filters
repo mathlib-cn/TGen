@@ -117,12 +117,21 @@
     <ClCompile Include="gccCorrectnessTest_exp.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="log_gen.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="log_sw.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="myhead.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="math_private.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -127,6 +127,8 @@
     <ClCompile Include="k_cos.c" />
     <ClCompile Include="k_sin.c" />
     <ClCompile Include="gccCorrectnessTest.c" />
+    <ClCompile Include="log_gen.c" />
+    <ClCompile Include="log_sw.c" />
     <ClCompile Include="model.c" />
     <ClCompile Include="model_128.c" />
     <ClCompile Include="model_256.c" />
@@ -152,6 +154,7 @@
     <ClCompile Include="testpy.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="math_private.h" />
     <ClInclude Include="myhead.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
