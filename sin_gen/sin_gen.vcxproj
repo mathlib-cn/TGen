@@ -116,11 +116,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="asin_model.c" />
     <ClCompile Include="binary.c" />
     <ClCompile Include="binaryshow.c" />
     <ClCompile Include="computeErrors.c" />
     <ClCompile Include="computeULP.c" />
     <ClCompile Include="data_gen.c" />
+    <ClCompile Include="exp_model.c" />
     <ClCompile Include="gccCorrectnessTest_exp.c" />
     <ClCompile Include="gccCorrectnessTest_log.c" />
     <ClCompile Include="gccPerformanceTest.c" />

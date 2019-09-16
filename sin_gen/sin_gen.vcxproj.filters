@@ -123,6 +123,12 @@
     <ClCompile Include="gccCorrectnessTest_log.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="exp_model.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="asin_model.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
