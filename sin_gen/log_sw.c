@@ -114,7 +114,7 @@ double log_gen(double x) {
 	w = *(double *)(&ix);
 
 	//k = ROUND(w);
-	k = w;
+	k = w + 0.5; // !!! +0.5 !!!
 
 	u = k;
 
@@ -136,9 +136,12 @@ double log_gen(double x) {
 	//q = ((((P[5].d*t + P[4].d)*t + P[3].d)*t + P[2].d)*t + P[1].d)*(t*t) + t;
 
 	//q = ((((P1[5].d*t + P1[4].d)*t + P1[3].d)*t + P1[2].d)*t + P1[1].d)*(t*t);
+	//q = ((((P1[5].d*t + P1[4].d)*t + P1[3].d)*t + P1[2].d)*t + P1[1].d)*(t*t) + t;
 	//q = (((((P2[6].d*t + P2[5].d)*t + P2[4].d)*t + P2[3].d)*t + P2[2].d)*t + P2[1].d)*(t*t);
+	//q = (((((P2[6].d*t + P2[5].d)*t + P2[4].d)*t + P2[3].d)*t + P2[2].d)*t + P2[1].d)*(t*t) + t;
 
-	q = (((P3[4].d*t + P3[3].d)*t + P3[2].d)*t + P3[1].d)*t + P3[0].d*t;
+	q = (((P3[4].d*t + P3[3].d)*t + P3[2].d)*t + P3[1].d)*t + P3[0].d;
+	//q = (((P3[4].d*t + P3[3].d)*t + P3[2].d)*t + P3[1].d)*t;
 	
 	l_lead = _logtabhi[k].d;
 	l_trail = _logtablo[k].d;
@@ -148,7 +151,8 @@ double log_gen(double x) {
 
 	//result = l_lead + (t + (q + l_trail));
 	result = l_lead + (q + l_trail);
-
+	//result = l_lead + (P3[0].d + (q + l_trail));
+	
 	/* take care of negative args, NaNs, and Infinities     */
 
 	if (j >= (MAXEXP - MINEXP))

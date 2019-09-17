@@ -129,6 +129,12 @@
     <ClCompile Include="asin_model.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="exp_sw.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="exptab.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">

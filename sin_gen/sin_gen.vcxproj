@@ -122,7 +122,9 @@
     <ClCompile Include="computeErrors.c" />
     <ClCompile Include="computeULP.c" />
     <ClCompile Include="data_gen.c" />
+    <ClCompile Include="exptab.c" />
     <ClCompile Include="exp_model.c" />
+    <ClCompile Include="exp_sw.c" />
     <ClCompile Include="gccCorrectnessTest_exp.c" />
     <ClCompile Include="gccCorrectnessTest_log.c" />
     <ClCompile Include="gccPerformanceTest.c" />
