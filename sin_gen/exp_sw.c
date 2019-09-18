@@ -36,8 +36,7 @@ static const du	P[] =
 {D(0x3f56c172, 0x8d739765)},
 };
 
-double exp_gen(double x)
-{
+double exp_gen(double x) {
 	long long l;
 	int	m, m1, m2;
 	int	j, n;
@@ -113,4 +112,3 @@ double exp_gen(double x)
 
 	return result;
 }
-

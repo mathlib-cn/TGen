@@ -5,21 +5,49 @@
 #define BIT 6
 #define BITNUM 64
 #define DEGREE 6
-#define SUBTRACTOR 0x0060000000000000
-
-static const double
-ln2HI = 6.93147180369123816490e-01,  /* 0x3fe62e42, 0xfee00000 */
-ln2LO = 1.90821492927058770002e-10, /* 0x3dea39ef, 0x35793c76 */
-invln2 = 1.44269504088896338700e+00; /* 0x3ff71547, 0x652b82fe */
+// #define SUBTRACTOR 0x0060000000000000
 
 static const DL
-coefficient[DEGREE] = {
-	{.l = 0x3ff0000000000000}, // 1
-	{.l = 0x3ff0000000000000}, // 1
-	{.l = 0x3fe0000000000000}, // 1/2
-	{.l = 0x3fc5555555555555}, // 1/6
-	{.l = 0x3fa5555555555555}, // 1/24
-	{.l = 0x3f81111111111111}  // 1/120
+ln2HI = { .l = 0x3fe62e42fee00000 }, // 6.93147180369123816490e-01
+ln2LO = { .l = 0x3dea39ef35793c76 }, // 1.90821492927058770002e-10
+invln2 = { .l = 0x3ff71547652b82fe }; // 1.44269504088896338700e+00
+
+// fpminmax: [-1/64*ln2, 1/64*ln2]
+// 0x3ff0000000000000 + x * (0x3feffffffffffffc + x * (0x3fdffffffffdb3b3 + x * (0x3fc55555555cfcec + x * (0x3fa5555cfc82edbb + x * 0x3f8111079c6ade53))))
+//static const DL
+//coefficient[DEGREE] = {
+//	{.l = 0x3ff0000000000000},
+//	{.l = 0x3feffffffffffffc},
+//	{.l = 0x3fdffffffffdb3b3},
+//	{.l = 0x3fc55555555cfcec},
+//	{.l = 0x3fa5555cfc82edbb},
+//	{.l = 0x3f8111079c6ade53}
+//	//{.l = 0x3f56c1728d739765},
+//};
+
+// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fdffffffffffffe + x * (0x3fc5555555548ba1 + x * (0x3fa55555555b9e25 + x * (0x3f811115c090cf10 + x * 0x3f56c15ce3289cc3)))))
+//static const DL
+//coefficient[7] = {
+//	{.l = 0x3ff0000000000000},
+//	{.l = 0x3ff0000000000000},
+//	{.l = 0x3fdffffffffffffe},
+//	{.l = 0x3fc5555555548ba1},
+//	{.l = 0x3fa55555555b9e25},
+//	{.l = 0x3f811115c090cf10},
+//	{.l = 0x3f56c15ce3289cc3},
+//};
+
+// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000000 + x * (0x3fc5555555555555 + x * (0x3fa555555554e422 + x * (0x3f81111111130215 + x * (0x3f56c170ff5e6b4b + x * 0x3f2a01980c56f623))))))
+static const DL
+coefficient[8] = {
+	{.l = 0x3ff0000000000000},
+	{.l = 0x3ff0000000000000},
+	{.l = 0x3fe0000000000000},
+	{.l = 0x3fc5555555555555},
+	{.l = 0x3fa555555554e422},
+	{.l = 0x3f81111111130215},
+	{.l = 0x3f56c170ff5e6b4b},
+	{.l = 0x3f2a01980c56f623},
 };
 static const DL
 interpolate[BITNUM] = {
@@ -90,26 +118,25 @@ interpolate[BITNUM] = {
 };
 
 double exp_gen(double x) {
+	double temp;
 	int k;
 	double k1;
 	double T;
 	long int T_int;
-	double r;
+	double r, rr;
 	double r_poly;
 	unsigned long int hi, lo;
 	double r_coefficient;
 	double result;
 	double r_hi, r_lo;
-	double temp, temp1;
-	unsigned long int temp_ui, temp_ui1;
 
 	k = BITNUM;
-	k1 = k * invln2;
+	k1 = k * invln2.d;
 	T = x * k1;
 	T_int = T;
 	// 0 <= r <= 1/k1
-	r = x - T_int * ln2HI / k;
-	r = r - T_int * ln2LO / k;
+	r = x - T_int * ln2HI.d / k;
+	r = r - T_int * ln2LO.d / k;
 	/*temp = (double)T_int * ln2HI;
 	temp_ui = (*((unsigned long int *)(&temp)));
 	temp_ui = temp_ui - SUBTRACTOR;
@@ -120,7 +147,7 @@ double exp_gen(double x) {
 	temp1 = *((double *)(&temp_ui1));
 	r = x - temp;
 	r = r - temp1;*/
-	r_poly = coefficient[0].d + r * (coefficient[1].d + r * (coefficient[2].d + r * (coefficient[3].d + r * (coefficient[4].d + r * (coefficient[5].d)))));
+	r_poly = coefficient[0].d + r * (coefficient[1].d + r * (coefficient[2].d + r * (coefficient[3].d + r * (coefficient[4].d + r * (coefficient[5].d + r * (coefficient[6].d + r * (coefficient[7].d)))))));
 
 	lo = T_int % k;
 	hi = T_int / k;
