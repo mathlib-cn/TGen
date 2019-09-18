@@ -34,6 +34,14 @@ static const du	P[] =
 {D(0x3fa55555, 0x55545d4e)},
 {D(0x3f811115, 0xb7aa905e)},
 {D(0x3f56c172, 0x8d739765)},
+// genetate by Sollya
+//{D(0x3ff00000, 0x00000000)},
+//{D(0x3ff00000, 0x00000000)},
+//{D(0x3fdfffff, 0xfffffffe)},
+//{D(0x3fc55555, 0x55548ba1)},
+//{D(0x3fa55555, 0x555b9e25)},
+//{D(0x3f811115, 0xc090cf10)},
+//{D(0x3f56c15c, 0xe3289cc3)},
 };
 
 double exp_gen(double x) {

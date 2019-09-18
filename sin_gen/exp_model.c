@@ -1,16 +1,17 @@
-#include <stdio.h>
-#include <math.h>
+//#include <stdio.h>
+//#include <math.h>
 #include "myhead.h"
 
 #define BIT 6
 #define BITNUM 64
+#define BITNUM_1 63
 #define DEGREE 6
 // #define SUBTRACTOR 0x0060000000000000
 
 static const DL
-ln2HI = { .l = 0x3fe62e42fee00000 }, // 6.93147180369123816490e-01
-ln2LO = { .l = 0x3dea39ef35793c76 }, // 1.90821492927058770002e-10
-invln2 = { .l = 0x3ff71547652b82fe }; // 1.44269504088896338700e+00
+ln2by64HI = { .l = 0x3f862e42fee00000 }, // 6.93147180369123816490e-01 / 64
+ln2by64LO = { .l = 0x3d8a39ef35793c76 }, // 1.90821492927058770002e-10 / 64
+invln2by64 = { .l = 0x40571547652b82fe }; // 1.44269504088896338700e+00 * 64
 
 // fpminmax: [-1/64*ln2, 1/64*ln2]
 // 0x3ff0000000000000 + x * (0x3feffffffffffffc + x * (0x3fdffffffffdb3b3 + x * (0x3fc55555555cfcec + x * (0x3fa5555cfc82edbb + x * 0x3f8111079c6ade53))))
@@ -28,13 +29,20 @@ invln2 = { .l = 0x3ff71547652b82fe }; // 1.44269504088896338700e+00
 // 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fdffffffffffffe + x * (0x3fc5555555548ba1 + x * (0x3fa55555555b9e25 + x * (0x3f811115c090cf10 + x * 0x3f56c15ce3289cc3)))))
 //static const DL
 //coefficient[7] = {
-//	{.l = 0x3ff0000000000000},
-//	{.l = 0x3ff0000000000000},
-//	{.l = 0x3fdffffffffffffe},
-//	{.l = 0x3fc5555555548ba1},
-//	{.l = 0x3fa55555555b9e25},
-//	{.l = 0x3f811115c090cf10},
-//	{.l = 0x3f56c15ce3289cc3},
+	//{.l = 0x3ff0000000000000},
+	//{.l = 0x3ff0000000000000},
+	//{.l = 0x3fdffffffffffffe},
+	//{.l = 0x3fc5555555548ba1},
+	//{.l = 0x3fa55555555b9e25},
+	//{.l = 0x3f811115c090cf10},
+	//{.l = 0x3f56c15ce3289cc3},
+	/*{.l = 0x3ff0000000000000},
+	{.l = 0x3ff0000000000000},
+	{.l = 0x3fe0000000000000},
+	{.l = 0x3fc5555555548f7c},
+	{.l = 0x3fa5555555545d4e},
+	{.l = 0x3f811115b7aa905e},
+	{.l = 0x3f56c1728d739765},*/
 //};
 
 // 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000000 + x * (0x3fc5555555555555 + x * (0x3fa555555554e422 + x * (0x3f81111111130215 + x * (0x3f56c170ff5e6b4b + x * 0x3f2a01980c56f623))))))
@@ -119,24 +127,21 @@ interpolate[BITNUM] = {
 
 double exp_gen(double x) {
 	double temp;
-	int k;
-	double k1;
 	double T;
 	long int T_int;
-	double r, rr;
+	double r, r1, r2, rr;
 	double r_poly;
 	unsigned long int hi, lo;
 	double r_coefficient;
 	double result;
 	double r_hi, r_lo;
 
-	k = BITNUM;
-	k1 = k * invln2.d;
-	T = x * k1;
+	T = x * invln2by64.d;
 	T_int = T;
 	// 0 <= r <= 1/k1
-	r = x - T_int * ln2HI.d / k;
-	r = r - T_int * ln2LO.d / k;
+	r1 = x - T_int * ln2by64HI.d;
+	r2 = T_int * ln2by64LO.d;
+	r = r1 - r2;
 	/*temp = (double)T_int * ln2HI;
 	temp_ui = (*((unsigned long int *)(&temp)));
 	temp_ui = temp_ui - SUBTRACTOR;
@@ -147,16 +152,19 @@ double exp_gen(double x) {
 	temp1 = *((double *)(&temp_ui1));
 	r = x - temp;
 	r = r - temp1;*/
-	r_poly = coefficient[0].d + r * (coefficient[1].d + r * (coefficient[2].d + r * (coefficient[3].d + r * (coefficient[4].d + r * (coefficient[5].d + r * (coefficient[6].d + r * (coefficient[7].d)))))));
-
-	lo = T_int % k;
-	hi = T_int / k;
+	r_poly = (r * r) * (coefficient[2].d + r * (coefficient[3].d + r * (coefficient[4].d + r * (coefficient[5].d + r * (coefficient[6].d + r * coefficient[7].d))))) - r2 + r1;
+	// r_poly = coefficient[0].d + r * (coefficient[1].d + r * (coefficient[2].d + r * (coefficient[3].d + r * (coefficient[4].d + r * (coefficient[5].d + r * (coefficient[6].d + r * (coefficient[7].d)))))));
+	// coefficient[0].d + r * (coefficient[1].d + 
+	//r_poly = (r_poly - r2) + r1;
+	lo = T_int & BITNUM_1;
+	hi = T_int >> BIT;
 	hi = (hi + 0x3ff) << 52;
 	r_hi = *((double *)&hi);
 	//r_lo = pow(2, (((double)lo) / ((double)k)));
 	r_lo = interpolate[lo].d;
-	r_coefficient = r_hi * r_lo;
-	result = r_coefficient * r_poly;
+	//r_coefficient = r_hi * r_lo;
+	//result = r_coefficient * r_poly;
+	result = r_hi * (r_lo + r_lo * r_poly);
 
 	return result;
 }
