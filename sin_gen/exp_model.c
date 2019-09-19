@@ -27,8 +27,8 @@ invln2by64 = { .l = 0x40571547652b82fe }; // 1.44269504088896338700e+00 * 64
 //};
 
 // 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fdffffffffffffe + x * (0x3fc5555555548ba1 + x * (0x3fa55555555b9e25 + x * (0x3f811115c090cf10 + x * 0x3f56c15ce3289cc3)))))
-//static const DL
-//coefficient[7] = {
+static const DL
+coefficient[7] = {
 	//{.l = 0x3ff0000000000000},
 	//{.l = 0x3ff0000000000000},
 	//{.l = 0x3fdffffffffffffe},
@@ -36,27 +36,27 @@ invln2by64 = { .l = 0x40571547652b82fe }; // 1.44269504088896338700e+00 * 64
 	//{.l = 0x3fa55555555b9e25},
 	//{.l = 0x3f811115c090cf10},
 	//{.l = 0x3f56c15ce3289cc3},
-	/*{.l = 0x3ff0000000000000},
+	{.l = 0x3ff0000000000000},
 	{.l = 0x3ff0000000000000},
 	{.l = 0x3fe0000000000000},
 	{.l = 0x3fc5555555548f7c},
 	{.l = 0x3fa5555555545d4e},
 	{.l = 0x3f811115b7aa905e},
-	{.l = 0x3f56c1728d739765},*/
-//};
+	{.l = 0x3f56c1728d739765},
+};
 
 // 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000000 + x * (0x3fc5555555555555 + x * (0x3fa555555554e422 + x * (0x3f81111111130215 + x * (0x3f56c170ff5e6b4b + x * 0x3f2a01980c56f623))))))
-static const DL
-coefficient[8] = {
-	{.l = 0x3ff0000000000000},
-	{.l = 0x3ff0000000000000},
-	{.l = 0x3fe0000000000000},
-	{.l = 0x3fc5555555555555},
-	{.l = 0x3fa555555554e422},
-	{.l = 0x3f81111111130215},
-	{.l = 0x3f56c170ff5e6b4b},
-	{.l = 0x3f2a01980c56f623},
-};
+//static const DL
+//coefficient[8] = {
+//	{.l = 0x3ff0000000000000},
+//	{.l = 0x3ff0000000000000},
+//	{.l = 0x3fe0000000000000},
+//	{.l = 0x3fc5555555555555},
+//	{.l = 0x3fa555555554e422},
+//	{.l = 0x3f81111111130215},
+//	{.l = 0x3f56c170ff5e6b4b},
+//	{.l = 0x3f2a01980c56f623},
+//};
 static const DL
 interpolate[BITNUM] = {
 	{.l = 0x3ff0000000000000},
@@ -132,7 +132,6 @@ double exp_gen(double x) {
 	double r, r1, r2, rr;
 	double r_poly;
 	unsigned long int hi, lo;
-	double r_coefficient;
 	double result;
 	double r_hi, r_lo;
 
@@ -152,18 +151,15 @@ double exp_gen(double x) {
 	temp1 = *((double *)(&temp_ui1));
 	r = x - temp;
 	r = r - temp1;*/
-	r_poly = (r * r) * (coefficient[2].d + r * (coefficient[3].d + r * (coefficient[4].d + r * (coefficient[5].d + r * (coefficient[6].d + r * coefficient[7].d))))) - r2 + r1;
+
+	r_poly = (r * r) * (coefficient[2].d + r * (coefficient[3].d + r * (coefficient[4].d + r * (coefficient[5].d + r * (coefficient[6].d))))) - r2 + r1;
 	// r_poly = coefficient[0].d + r * (coefficient[1].d + r * (coefficient[2].d + r * (coefficient[3].d + r * (coefficient[4].d + r * (coefficient[5].d + r * (coefficient[6].d + r * (coefficient[7].d)))))));
-	// coefficient[0].d + r * (coefficient[1].d + 
-	//r_poly = (r_poly - r2) + r1;
 	lo = T_int & BITNUM_1;
 	hi = T_int >> BIT;
 	hi = (hi + 0x3ff) << 52;
 	r_hi = *((double *)&hi);
 	//r_lo = pow(2, (((double)lo) / ((double)k)));
 	r_lo = interpolate[lo].d;
-	//r_coefficient = r_hi * r_lo;
-	//result = r_coefficient * r_poly;
 	result = r_hi * (r_lo + r_lo * r_poly);
 
 	return result;

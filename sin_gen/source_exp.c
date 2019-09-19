@@ -4,6 +4,8 @@
 
 #define BIT 6
 #define BITNUM 64
+#define BITNUM_1 63
+#define DEGREE 7
 
 struct constraint {
 	double start;
@@ -14,12 +16,10 @@ struct constraint {
 	int degree;
 };
 
-static double
-ln2HI[2] = {6.93147180369123816490e-01,  /* 0x3fe62e42, 0xfee00000 */
-			-6.93147180369123816490e-01, },/* 0xbfe62e42, 0xfee00000 */
-ln2LO[2] = {1.90821492927058770002e-10,  /* 0x3dea39ef, 0x35793c76 */
-			-1.90821492927058770002e-10, },/* 0xbdea39ef, 0x35793c76 */
-invln2 = 1.44269504088896338700e+00; /* 0x3ff71547, 0x652b82fe */
+static const DL
+ln2by64HI = { .l = 0x3f862e42fee00000 }, // 6.93147180369123816490e-01 / 64
+ln2by64LO = { .l = 0x3d8a39ef35793c76 }, // 1.90821492927058770002e-10 / 64
+invln2by64 = { .l = 0x40571547652b82fe }; // 1.44269504088896338700e+00 * 64
 
 static const DL
 interpolate[BITNUM] = {
@@ -111,7 +111,7 @@ int gen(struct constraint input_parameter) {
 	bitnum_1 = bitnum - 1;
 	fnum = input_parameter.fnum;
 	degree = input_parameter.degree;
-	degree = 6;
+	degree = 7;
 	format = 64;
 	/*printf("please input [a, b]: ");
 	scanf("%lf %lf", &a, &b);
@@ -121,30 +121,30 @@ int gen(struct constraint input_parameter) {
 
 	// generate code for exp_gen
 	{
-		fprintf(func, "#include <stdio.h>\n");
-		fprintf(func, "#include <math.h>\n");
 		fprintf(func, "#include %cmyhead.h%c\n", '"', '"');
 		fprintf(func, "\n");
 		fprintf(func, "#define BIT %d\n", bit);
 		fprintf(func, "#define BITNUM %d\n", bitnum);
+		fprintf(func, "#define BITNUM_1 %d\n", bitnum_1);
 		fprintf(func, "#define DEGREE %d\n", degree);
 		fprintf(func, "\n");
-		fprintf(func, "static const double\n");
-		fprintf(func, "ln2HI = 6.93147180369123816490e-01,  /* 0x3fe62e42, 0xfee00000 */\n");
-		fprintf(func, "ln2LO = 1.90821492927058770002e-10, /* 0x3dea39ef, 0x35793c76 */\n");
-		fprintf(func, "invln2 = 1.44269504088896338700e+00; /* 0x3ff71547, 0x652b82fe */\n");
+		fprintf(func, "static const DL\n");
+		fprintf(func, "ln2by64HI = { .l = 0x3f862e42fee00000 }, // 6.93147180369123816490e-01 / 64\n");
+		fprintf(func, "ln2by64LO = { .l = 0x3d8a39ef35793c76 }, // 1.90821492927058770002e-10 / 64\n");
+		fprintf(func, "invln2by64 = { .l = 0x40571547652b82fe }; // 1.44269504088896338700e+00 * 64\n");
 		fprintf(func, "\n");
-
+		fprintf(func, "// fpminmax: [-1/64*ln2, 1/64*ln2]\n");
 		fprintf(func, "static const DL\n");
 		fprintf(func, "coefficient[DEGREE] = {\n");
-		fprintf(func, "	{.l = 0x3ff0000000000000}, // 1\n");
-		fprintf(func, "	{.l = 0x3ff0000000000000}, // 1\n");
-		fprintf(func, "	{.l = 0x3fe0000000000000}, // 1/2\n");
-		fprintf(func, "	{.l = 0x3fc5555555555555}, // 1/6\n");
-		fprintf(func, "	{.l = 0x3fa5555555555555}, // 1/24\n");
-		fprintf(func, "	{.l = 0x3f81111111111111}  // 1/120\n");
-		fprintf(func, "};\n");
-
+		fprintf(func, "	{.l = 0x3ff0000000000000},\n");
+		fprintf(func, "	{.l = 0x3ff0000000000000},\n");
+		fprintf(func, "	{.l = 0x3fe0000000000000},\n");
+		fprintf(func, "	{.l = 0x3fc5555555548f7c},\n");
+		fprintf(func, "	{.l = 0x3fa5555555545d4e},\n");
+		fprintf(func, "	{.l = 0x3f811115b7aa905e},\n");
+		fprintf(func, "	{.l = 0x3f56c1728d739765},\n");
+		fprintf(func, "};\n\n");
+		
 		// interpolate
 		fprintf(func, "static const DL\n");
 		fprintf(func, "interpolate[BITNUM] = {\n");
@@ -157,40 +157,38 @@ int gen(struct constraint input_parameter) {
 	{
 		fprintf(func, "double exp_gen(double x) {\n");
 		fprintf(func, "	double temp;\n");
-		fprintf(func, "	int k;\n");
-		fprintf(func, "	double k1;\n");
 		fprintf(func, "	double T;\n");
 		fprintf(func, "	long int T_int;\n");
-		fprintf(func, "	double r;\n");
+		fprintf(func, "	double r, r1, r2, rr;\n");
 		fprintf(func, "	double r_poly;\n");
 		fprintf(func, "	unsigned long int hi, lo;\n");
-		fprintf(func, "	double r_coefficient;\n");
 		fprintf(func, "	double result;\n");
 		fprintf(func, "	double r_hi, r_lo;\n");
 		fprintf(func, "\n");
-		fprintf(func, "	k = BITNUM;\n");
-		fprintf(func, "	k1 = k * invln2;\n");
-		fprintf(func, "	T = x * k1;\n");
+		fprintf(func, "	T = x * invln2by64.d;\n");
 		fprintf(func, "	T_int = T;\n");
 		fprintf(func, "	// 0 <= r <= 1/k1\n");
-		fprintf(func, "	r = x - T_int * ln2HI / k;\n");
-		fprintf(func, "	r = r - T_int * ln2LO / k;\n\n");
-		fprintf(func, "\tr_poly = coefficient[0].d");
-		for (i = 1; i < degree; i++) {
+		fprintf(func, "	r1 = x - T_int * ln2by64HI.d;\n");
+		fprintf(func, "	r2 = T_int * ln2by64LO.d;\n");
+		fprintf(func, "	r = r1 - r2;\n");
+		fprintf(func, "\n");
+		
+		fprintf(func, "\tr_poly = (r * r) * (coefficient[2].d");
+		for (i = 3; i < degree; i++) {
 			fprintf(func, " + r * (coefficient[%d].d", i);
 		}
-		for (i = 1; i < degree; i++) {
+		for (i = 2; i < degree; i++) {
 			fprintf(func, ")");
 		}
-		fprintf(func, ";\n\n");
-		fprintf(func, "	lo = T_int % k;\n");
-		fprintf(func, "	hi = T_int / k;\n");
+		fprintf(func, " - r2 + r1;\n\n");
+
+		fprintf(func, "	lo = T_int & BITNUM_1;\n");
+		fprintf(func, "	hi = T_int >> BIT;\n");
 		fprintf(func, "	hi = (hi + 0x3ff) << 52;\n");
 		fprintf(func, "	r_hi = *((double *)&hi);\n");
 		fprintf(func, "	//r_lo = pow(2, (((double)lo) / ((double)k)));\n");
 		fprintf(func, "	r_lo = interpolate[lo].d;\n");
-		fprintf(func, "	r_coefficient = r_hi * r_lo;\n");
-		fprintf(func, "	result = r_coefficient * r_poly;\n");
+		fprintf(func, "	result = r_hi * (r_lo + r_lo * r_poly);\n");
 		fprintf(func, "\n");
 		fprintf(func, "	return result;\n");
 		fprintf(func, "}\n");
