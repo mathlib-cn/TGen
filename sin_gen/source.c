@@ -1509,7 +1509,8 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "\t// new, sin(x+x') = sin(x)cos(x') + sin(x')cos(x), x' = iiix\n");
 		fprintf(func, "\t// OR, cos(x+x') = cos(x)cos(x') - sin(x)sin(x'), x' = iiix\n");
 
-		fprintf(func, "\tappro_s = coefficient[0][0].d");
+		//fprintf(func, "\tappro_s = coefficient[0][0].d");
+		fprintf(func, "\tappro_s = 0.0");
 		for (i = 1; i <= degree; i++) {
 			fprintf(func, " + iiix * (coefficient[0][%ld].d", i);
 		}
@@ -1517,7 +1518,8 @@ int gen(struct constraint input_parameter) {
 			fprintf(func, ")");
 		}
 		fprintf(func, ";\n");
-		fprintf(func, "\tappro_c = coefficient[1][0].d");
+		//fprintf(func, "\tappro_c = coefficient[1][0].d");
+		fprintf(func, "\tappro_c = 0.0");
 		for (i = 1; i <= degree; i++) {
 			fprintf(func, " + iiix * (coefficient[1][%ld].d", i);
 		}
@@ -1530,6 +1532,7 @@ int gen(struct constraint input_parameter) {
 		//fprintf(func, "\tappro_c = coefficient[1][0].d + iiix * (coefficient[1][1].d + iiix * (coefficient[1][2].d + iiix * (coefficient[1][3].d + iiix * (coefficient[1][4].d + iiix * coefficient[1][5].d))));\n");
 		fprintf(func, "\n");
 		fprintf(func, "\ty = interpolate[sin_or_cos][table_order] * appro_c + (1 - sin_or_cos * 2) * interpolate[1 - sin_or_cos][table_order] * appro_s;\n");
+		fprintf(func, "\ty += (1 - sin_or_cos * 2) * interpolate[1 - sin_or_cos][table_order] * coefficient[0][0].d + interpolate[sin_or_cos][table_order] * coefficient[1][0].d;\n");
 		fprintf(func, "\ty = (1 - sign * 2) * y;\n");
 		fprintf(func, "\n");
 		fprintf(func, "\treturn y;\n");

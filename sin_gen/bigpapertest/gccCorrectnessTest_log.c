@@ -11,7 +11,7 @@ struct test_data {
 	unsigned long max_times;
 };
 
-double sin_gen(double);
+double log_gen(double);
 void getbinary(_UL, int *);
 _UL getUL(int *);
 void printbinary(int *);
@@ -19,7 +19,7 @@ int computeAccurateBit(double, double);
 _UL computeULPDiff(double, double);
 void binaryshow(double);
 double itofd(_UL);
-//double computeULP(double);
+double computeULP(double);
 
 struct test_data test(void)
 {
@@ -61,26 +61,26 @@ struct test_data test(void)
 		temp_ul = getUL(result);
 		input = itofd(temp_ul);
 
-		y1 = sin_gen(input);
-		//y1 = sin(input);
+		y1 = log_gen(input);
 
 		mpfr_set_d(mpfr_temp, input, MPFR_RNDN);
-		mpfr_sin(mpfr_result, mpfr_temp, MPFR_RNDN);
+		mpfr_log(mpfr_result, mpfr_temp, MPFR_RNDN);
 		y2 = mpfr_get_d(mpfr_result, MPFR_RNDN);
 
 		//printf("for x = %.17e:\n", input);
-		//printf("\tsin_gen = %.17e\n\tsin     = %.17e\n", y1, y2);
-		//printf("binary of sin_gen is ");
+		//printf("\tlog_gen = %.17e\n\tlog     = %.17e\n", y1, y2);
+		//printf("binary of log_gen is ");
 		//binaryshow(y1);
-		//printf("binary of sin     is ");
+		//printf("binary of log     is ");
 		//binaryshow(y2);
-		//bit_num = computeAccurateBit(y1, y2);
+		bit_num = computeAccurateBit(y1, y2);
 		//printf("the accurate binary bit is %d\n", bit_num);
 		ulpdiff = computeULPDiff(y1, y2);
-		//printf("%d\n", ulpdiff);
+		//printf("The ULP is %lu\n", ulpdiff);
 		if (ulpdiff < 0)
 		{
-			//printf("shit!!!\n");
+			printf("for x = %.17e:\n", input);
+			printf("shit!!!\n");
 		}
 		if (ulpdiff_max < ulpdiff) {
 			ulpdiff_max = ulpdiff;
@@ -93,7 +93,7 @@ struct test_data test(void)
 		//printf("The ULPDiff is %ld\n", ulpdiff);
 		//printf("The ULPDiff is 0x%lx\n\n", ulpdiff);
 		//ulp = computeULP(y2);
-		//ulpd = (y1 - y2) / ulp;
+		ulpd = (y1 - y2) / ulp;
 		//printf("The ULPD is %f\n\n", ulpd);
 	}
 	//printf("sum = %ld\n", ulpdiff_sum);
@@ -116,8 +116,5 @@ int main(int argc, char *argv[]) {
 	printf("%lu\n", correctness_result.max);
 	printf("%lu\n", correctness_result.max_times);
 	printf("%lu\n", correctness_result.sum);
-	//printf("max ulp       = %lu\n", correctness_result.max);
-	//printf("max ulp times = %lu\n", correctness_result.max_times);
-	//printf("the ulp sum   = %lu\n", correctness_result.sum);
 	return 0;
 }

@@ -9,6 +9,7 @@ struct test_data {
 	unsigned long sum;
 	unsigned long max;
 	unsigned long max_times;
+	double average;
 };
 
 double sin_gen(double);
@@ -104,6 +105,7 @@ struct test_data test(void)
 	correctness_result.sum = ulpdiff_sum;
 	correctness_result.max = ulpdiff_max;
 	correctness_result.max_times = max_times;
+	correctness_result.average = (double)ulpdiff_sum / RUN_COUNT;
 	fclose(inputData);
 
 	return correctness_result;
@@ -116,6 +118,7 @@ int main(int argc, char *argv[]) {
 	printf("%lu\n", correctness_result.max);
 	printf("%lu\n", correctness_result.max_times);
 	printf("%lu\n", correctness_result.sum);
+	printf("%lf\n", correctness_result.average);
 	//printf("max ulp       = %lu\n", correctness_result.max);
 	//printf("max ulp times = %lu\n", correctness_result.max_times);
 	//printf("the ulp sum   = %lu\n", correctness_result.sum);

@@ -135,6 +135,15 @@
     <ClCompile Include="exptab.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="source_log.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="log_model.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="log_glibc.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">

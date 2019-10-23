@@ -1,5 +1,5 @@
 #include "libm.h"
-
+#include <math.h>
 /* coefficients for polynomial approximation of asin on +/- sqrt(1 - (63/64)**2) */
 
 static const du	P[] =
@@ -241,11 +241,11 @@ static const	du	Qnan =
 { D(QNANHI, QNANLO) };
 
 
-double asin(double x)
+double asin_gen(double x)
 {
 	int	j;
 	double	y, z;
-	double	z, w;
+	double	w;
 	double	zsq, poly;
 	double	result;
 
@@ -257,7 +257,7 @@ double asin(double x)
 	if (x != x)
 		y = 0.0;
 
-	j = ROUND(32.0*y);
+	j = 0.5 + 32.0*y;
 	j += 32;
 	z = fabs(y);
 

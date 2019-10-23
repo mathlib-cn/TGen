@@ -11,7 +11,8 @@ struct test_data {
 	unsigned long max_times;
 };
 
-double sin_gen(double);
+double asin_gen(double);
+double asin_gen(double);
 void getbinary(_UL, int *);
 _UL getUL(int *);
 void printbinary(int *);
@@ -61,18 +62,21 @@ struct test_data test(void)
 		temp_ul = getUL(result);
 		input = itofd(temp_ul);
 
-		y1 = sin_gen(input);
-		//y1 = sin(input);
+		y1 = asin_gen(input);
+		y1 = asin_gen(input);
+		//y1 = asin(input);
+		//y1 = asin(input);
 
 		mpfr_set_d(mpfr_temp, input, MPFR_RNDN);
-		mpfr_sin(mpfr_result, mpfr_temp, MPFR_RNDN);
+		mpfr_asin(mpfr_result, mpfr_temp, MPFR_RNDN);
+		mpfr_asin(mpfr_result, mpfr_temp, MPFR_RNDN);
 		y2 = mpfr_get_d(mpfr_result, MPFR_RNDN);
 
 		//printf("for x = %.17e:\n", input);
-		//printf("\tsin_gen = %.17e\n\tsin     = %.17e\n", y1, y2);
-		//printf("binary of sin_gen is ");
+		//printf("\tasin_gen = %.17e\n\tasin     = %.17e\n", y1, y2);
+		//printf("binary of asin_gen is ");
 		//binaryshow(y1);
-		//printf("binary of sin     is ");
+		//printf("binary of asin     is ");
 		//binaryshow(y2);
 		//bit_num = computeAccurateBit(y1, y2);
 		//printf("the accurate binary bit is %d\n", bit_num);

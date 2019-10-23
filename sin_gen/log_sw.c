@@ -136,10 +136,10 @@ double log_gen(double x) {
 
 	//q = ((((P1[5].d*t + P1[4].d)*t + P1[3].d)*t + P1[2].d)*t + P1[1].d)*(t*t);
 	//q = ((((P1[5].d*t + P1[4].d)*t + P1[3].d)*t + P1[2].d)*t + P1[1].d)*(t*t) + t;
-	//q = (((((P2[6].d*t + P2[5].d)*t + P2[4].d)*t + P2[3].d)*t + P2[2].d)*t + P2[1].d)*(t*t);
+	q = (((((P2[6].d*t + P2[5].d)*t + P2[4].d)*t + P2[3].d)*t + P2[2].d)*t + P2[1].d)*(t*t);
 	//q = (((((P2[6].d*t + P2[5].d)*t + P2[4].d)*t + P2[3].d)*t + P2[2].d)*t + P2[1].d)*(t*t) + t;
 
-	q = (((P3[4].d*t + P3[3].d)*t + P3[2].d)*t + P3[1].d)*t + P3[0].d;
+	//q = (((P3[4].d*t + P3[3].d)*t + P3[2].d)*t + P3[1].d)*t + P3[0].d;
 	//q = (((P3[4].d*t + P3[3].d)*t + P3[2].d)*t + P3[1].d)*t;
 	
 	l_lead = _logtabhi[k].d;
@@ -148,8 +148,8 @@ double log_gen(double x) {
 	l_lead += m * log2_lead.d;
 	l_trail += m * log2_trail.d;
 
-	//result = l_lead + (t + (q + l_trail));
-	result = l_lead + (q + l_trail);
+	result = l_lead + (t + (q + l_trail));
+	//result = l_lead + (q + l_trail);
 	//result = l_lead + (P3[0].d + (q + l_trail));
 	
 	/* take care of negative args, NaNs, and Infinities     */

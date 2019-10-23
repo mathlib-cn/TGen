@@ -133,6 +133,8 @@
     <ClCompile Include="gccCorrectnessTest.c" />
     <ClCompile Include="logtab.c" />
     <ClCompile Include="log_gen.c" />
+    <ClCompile Include="log_glibc.c" />
+    <ClCompile Include="log_model.c" />
     <ClCompile Include="log_sw.c" />
     <ClCompile Include="model.c" />
     <ClCompile Include="model_128.c" />
@@ -155,6 +157,7 @@
     <ClCompile Include="performance_test.c" />
     <ClCompile Include="source.c" />
     <ClCompile Include="source_exp.c" />
+    <ClCompile Include="source_log.c" />
     <ClCompile Include="testpy.c" />
   </ItemGroup>
   <ItemGroup>
