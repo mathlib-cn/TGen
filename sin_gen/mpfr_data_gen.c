@@ -24,7 +24,7 @@ int main() {
 	mpfr_init2(mpfr_bitnum, PRECISION);
 	
 	mpfr_set_d(mpfr_bitnum, (double)BITNUM, MPFR_RNDN);
-	
+	/*
 	for (i = 0; i < BITNUM; i++) {
 		mpfr_init2(mpfr_result[i], PRECISION);
 		//temp_d = (double)i / (double)BITNUM;
@@ -53,8 +53,8 @@ int main() {
 		//mpfr_printf("mpfr_result[%Pd] = %.17RNe\n", (mpfr_prec_t)i, mpfr_result[i]);
 		//mpfr_printf("%.17RNe,\n", mpfr_result[i]);
 	}
+	*/
 	
-	/*
 	for (i = 0; i < BITNUM; i++) {
 		mpfr_init2(mpfr_result[i], PRECISION);
 		temp_d = (double)i / (double)BITNUM;
@@ -62,11 +62,11 @@ int main() {
 		mpfr_ui_pow(mpfr_result[i], 2, mpfr_temp, MPFR_RNDN);
 		//mpfr_printf("%.17RNe,\n", mpfr_result[i]);
 		result[i] = mpfr_get_d(mpfr_result[i], MPFR_RNDN);
-		printf("i = %2d, %2d/%2d = 0x%lx\n", i, i, BITNUM, *((unsigned long int *)&(result[i])));
+		printf("i = %03d, pow(2, %03d/%03d) = 0x%16lx\n", i, i, BITNUM, *((unsigned long int *)&(result[i])));
 		//printf("%le\n", result[i]);
 	}
 	
-	
+	/*
 	mpfr_init2(mpfr_r1, PRECISION);
 	mpfr_init2(mpfr_r2, PRECISION);
 	mpfr_init2(mpfr_r3, PRECISION);
