@@ -74,13 +74,18 @@ void binaryshow(double x) {
 	for (i = 10; i >= 0; i--) {
 		e = (e << 1) + result[52 + i];
 	}
-	e = e - (1 << 10) + 1;
-
-	if (sign == 0) {
-		printf("+1.");
+	
+	if (e == 0) {
+		printf(" 0.");
 	}
 	else {
-		printf("-1.");
+		e = e - (1 << 10) + 1;
+		if (sign == 0) {
+			printf("+1.");
+		}
+		else {
+			printf("-1.");
+		}
 	}
 	for (i = 51; i >= 0; i--) {
 		printf("%d", result[i]);
@@ -128,3 +133,82 @@ int computeAccurateBit(double x1, double x2) {
 
 	return count;
 }
+
+int jiou(int x) {
+	
+	if(x % 2 == 0)
+		return 1;
+	else
+		return 0;
+}
+
+double  computeULP(double y) {
+	double x  =  0, res  =  0, powermin  =  0, powermax  =  0, powermiddle  =  0;
+	int expmin  =  0, expmax = 0, expmiddle = 0, jioupanduan = 0;
+	x =  fabs(y);
+
+//  printf("res=%.8f\n", pow(2, logb(x)+1-53));
+
+	if(x<pow(2, -1021))
+		res = pow(2, -1074);
+	else if(x>(1-pow(2, -53))*pow(2, 1024))
+		res = pow(2, 971);
+	else {
+		powermin = pow(2, -1021);
+		expmin=-1021;
+		powermax = pow(2, 1024);
+		expmax =  1024;
+	}
+  
+	while(expmax - expmin >1) {
+		
+		jioupanduan = jiou(expmin+expmax);
+		
+		if(jioupanduan ==1)
+			expmiddle=(expmax+expmin)/2;
+		else
+			expmiddle=(expmax+expmin+1)/2;
+		
+		powermiddle  =  pow(2, expmiddle);
+
+		if(x>=powermiddle) {
+			powermin  =  powermiddle;
+			expmin  =  expmiddle;
+		}
+		else {
+			powermax  =  powermiddle;
+			expmax = expmiddle;
+		}
+
+		if(x==powermin)  
+			res = pow(2, expmin-53);
+		else
+			res = pow(2, expmin-52);
+	}
+	return res;
+}
+// 没法使用，如果都转化成double类型，再对比差值，还有什么意义呢
+/*
+_UL computeULPDiff1(double mine,  double biaozhun) {
+	double reUlp,  ulpdiff;
+	mpfr_t mpfr_biaozhun,  mpfr_mine,  mpfr_ulpdiff,   mpfr_temp;
+	
+	mpfr_init2(mpfr_biaozhun,  128);
+	mpfr_init2(mpfr_mine,  128);
+	mpfr_init2(mpfr_ulpdiff,  128);
+	mpfr_init2(mpfr_temp,  128);
+	
+	mpfr_set_d(mpfr_mine,  mine,  MPFR_RNDN);
+	mpfr_set_d(mpfr_biaozhun,  biaozhun,  MPFR_RNDN);
+	mpfr_sub(mpfr_temp,  mpfr_biaozhun,  mpfr_mine,  MPFR_RNDN);
+
+	if(reUlp != 0) {
+		reUlp  =  computeULP(biaozhun);
+		mpfr_div_d(mpfr_ulpdiff,  mpfr_temp,  reUlp,  GMP_RNDN);
+		ulpdiff  =  mpfr_get_d(mpfr_ulpdiff,  GMP_RNDN);
+		ulpdiff  =  fabs(ulpdiff);
+	} else {
+		printf("reUlp = 0\n");
+	}
+}
+*/

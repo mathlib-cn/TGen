@@ -8,16 +8,17 @@ void getbinary(_UL , int *);
 void printbinary(int *);
 void fprintbinary(FILE *, int *);
 
-void data_gen(double start, double end) {
+void data_gen(double start, double end, int counts) {
 	FILE *data;
 	double inputData;
 	double temp;
 	_UL temp_ul;
 	int i, j, binary[64];
 
+	printf("%d numbers generated in [%e, %e]\n", counts, start, end);
 	data = fopen("data.txt", "w");
 	srand(time(NULL));
-	for (i = 0; i < RUN_COUNT; i++) {
+	for (i = 0; i < counts; i++) {
 		inputData=(double)rand() / ((double)RAND_MAX + 1) * (end - start) + (start);
 		temp_ul = ftoid(inputData);
 		getbinary(temp_ul, binary);
@@ -29,7 +30,7 @@ void data_gen(double start, double end) {
 }
 
 
-int main() {
+int main(int argc, char *argv[]) {
 	double start, end;
 	DL s, e;
 
@@ -65,7 +66,11 @@ int main() {
 	end = 2.4543692606170259675489401431871116282790385932618e-2; // pi/128
 	end = 3.1415926535897932384626433832795028841971693993751; // pi;
 	end = 0.69314718055994530941723212145818;
-	start = 0;
+	start = -100;
 	end = 100;
-	data_gen(start, end);
+	if(argc == 3) {
+		start = atof(argv[1]);
+		end = atof(argv[2]);
+	}
+	data_gen(start, end, DATA_COUNT);
 }
