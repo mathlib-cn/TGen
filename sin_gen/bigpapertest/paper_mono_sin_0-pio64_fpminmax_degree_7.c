@@ -3,7 +3,8 @@
 #define NUM 8
 #define TABLE_NUM 128
 #define M 5
-
+// P = fpminimax(sin(x), [|0,1,2,3,4,5,6,7|], [|D...|], [1b-27,pi/64]);
+/*
 static const DL
 C_sin[NUM] = {
 	{.l = 0x395eb70a896f74b1},
@@ -15,6 +16,23 @@ C_sin[NUM] = {
 	{.l = 0xbe32cea17361fe45},
 	{.l = 0xbf29fff99b08224d},
 };
+*/
+// P = fpminimax(sin(x), [|1,2,3,4,5,6,7|], [|D...|], [1b-53,pi/64]);
+// x * (0x3ff0000000000000 + x * (0xbc91b9a3145235f9 + x * (0xbfc5555555555214 + x * (0xbd895d1197cb494e + x * (0x3f81111116a2cae6 + x * (0xbe32ce992a291786 + x * 0xbf29fff99b8437a3))))))
+static const DL
+C_sin[NUM] = {
+	{.l = 0},
+	{.l = 0x3ff0000000000000},
+	{.l = 0xbc91b9a3145235f9},
+	{.l = 0xbfc5555555555214},
+	{.l = 0xbd895d1197cb494e},
+	{.l = 0x3f81111116a2cae6},
+	{.l = 0xbe32ce992a291786},
+	{.l = 0xbf29fff99b8437a3},
+};
+
+// P = fpminimax(cos(x), [|0,1,2,3,4,5,6,7|], [|D...|], [1b-27,pi/64]);
+/*
 static const DL
 C_cos[NUM] = {
 	{.l = 0x3ff0000000000000},
@@ -25,6 +43,20 @@ C_cos[NUM] = {
 	{.l = 0x3e50bbdd9389cb9c},
 	{.l = 0xbf56c30525463dd2},
 	{.l = 0x3ed441098cc1d5fe},
+};
+*/
+// P = fpminimax(cos(x), [|1,2,3,4,5,6,7|], [|D...|], [1b-53,pi/64],1)
+// 0x3ff0000000000000 + x * (0x3c8a5ec8253a95cf + x * (0xbfe00000000000d6 + x * (0x3d925cdb609337a7 + x * (0x3fa5555552583cfd + x * (0x3e50a6a98088c264 + x * (0xbf56c303f9b38ce0 + x * 0x3ed43a7ddfc865eb))))))
+static const DL
+C_cos[NUM] = {
+	{.l = 0x3ff0000000000000},
+	{.l = 0x3c8a5ec8253a95cf},
+	{.l = 0xbfe00000000000d6},
+	{.l = 0x3d925cdb609337a7},
+	{.l = 0x3fa5555552583cfd},
+	{.l = 0x3e50a6a98088c264},
+	{.l = 0xbf56c303f9b38ce0},
+	{.l = 0x3ed43a7ddfc865eb},
 };
 
 static const double

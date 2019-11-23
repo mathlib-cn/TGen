@@ -4,6 +4,8 @@
 #define TABLE_NUM 128
 #define M 4
 
+// P = fpminimax(sin(x), [|0,1,2,3,4,5,6,7|], [|D...|], [1b-27,pi/32]);
+/*
 static const DL
 C_sin[NUM] = {
 	{.l = 0x39ced21cb56b5920},
@@ -15,6 +17,22 @@ C_sin[NUM] = {
 	{.l = 0xbe62ce26bdedcb25},
 	{.l = 0xbf29fb064a9069ca},
 };
+*/
+// P = fpminimax(sin(x), [|1,2,3,4,5,6,7|], [|D...|], [1b-53,pi/32])
+// x * (0x3ff0000000000000 + x * (0xbd01bb76353e9d5d + x * (0xbfc55555555484f3 + x * (0xbdd95de756f484e4 + x * (0x3f8111116a2daae9 + x * (0xbe62ce83549b5d5e + x * 0xbf29fb06378a0a8e))))))
+static const DL
+C_sin[NUM] = {
+	{.l = 0},
+	{.l = 0x3ff0000000000000},
+	{.l = 0xbd01bb76353e9d5d},
+	{.l = 0xbfc55555555484f3},
+	{.l = 0xbdd95de756f484e4},
+	{.l = 0x3f8111116a2daae9},
+	{.l = 0xbe62ce83549b5d5e},
+	{.l = 0xbf29fb06378a0a8e},
+};
+// P = fpminimax(cos(x), [|0,1,2,3,4,5,6,7|], [|D...|], [1b-27,pi/32]);
+/*
 static const DL
 C_cos[NUM] = {
 	{.l = 0x3ff0000000000000},
@@ -25,6 +43,35 @@ C_cos[NUM] = {
 	{.l = 0x3e80ba3af19df1b0},
 	{.l = 0xbf56c7cfb7ad9989},
 	{.l = 0x3ee43f9dd6d2d2c2},
+};
+*/
+// P = fpminimax(cos(x), [|0,1,2,3,4,5,6,7|], [|D...|], [1b-53,pi/32]);
+// 0x3ff0000000000000 + x * (0x3cfb2d08d7ec899d + x * (0xbfe000000000367c + x * (0x3de293f4af0b2a41 + x * (0x3fa5555525281253 + x * (0x3e80ba3aef06f0ce + x * (0xbf56c7cfb7acecc6 + x * 0x3ee43f9dd5c3e443))))))
+/*
+static const DL
+C_cos[NUM] = {
+	{.l = 0x3ff0000000000000},
+	{.l = 0x3cfb2d08d7ec899d},
+	{.l = 0xbfe000000000367c},
+	{.l = 0x3de293f4af0b2a41},
+	{.l = 0x3fa5555525281253},
+	{.l = 0x3e80ba3aef06f0ce},
+	{.l = 0xbf56c7cfb7acecc6},
+	{.l = 0x3ee43f9dd5c3e443},
+};
+*/
+// P = fpminimax(cos(x), [|1,2,3,4,5,6,7|], [|D...|], [1b-53,pi/32],1);
+// 0x3ff0000000000000 + x * (0x3cfa4ce095f69a9d + x * (0xbfe0000000003567 + x * (0x3de25679be362ab1 + x * (0x3fa555552590bc34 + x * (0x3e80a31e6ffb4ed4 + x * (0xbf56c7ca9bedc685 + x * 0x3ee438775160b386))))))
+static const DL
+C_cos[NUM] = {
+	{.l = 0x3ff0000000000000},
+	{.l = 0x3cfa4ce095f69a9d},
+	{.l = 0xbfe0000000003567},
+	{.l = 0x3de25679be362ab1},
+	{.l = 0x3fa555552590bc34},
+	{.l = 0x3e80a31e6ffb4ed4},
+	{.l = 0xbf56c7ca9bedc685},
+	{.l = 0x3ee438775160b386},
 };
 
 static const double

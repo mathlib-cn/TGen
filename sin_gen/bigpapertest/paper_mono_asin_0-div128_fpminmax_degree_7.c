@@ -21,6 +21,7 @@ P[] =
 
 // P = fpminimax(asin(x), 7, [|D...|], [1b-53,1/128]); printexpansion(P);
 // 0x35cc77c32eae1aa9 + x * (0x3ff0000000000000 + x * (0xbc403ae51587b8f4 + x * (0x3fc55555555555eb + x * (0xbd8c9a43059767fa + x * (0x3fb3333338215db5 + x * (0xbe8a24c43b8193ec + x * 0x3fa6dd3ada2167d3))))))
+/*
 static const DL
 C[NUM] = {
 	{.l = 0x35cc77c32eae1aa9},
@@ -31,6 +32,20 @@ C[NUM] = {
 	{.l = 0x3fb3333338215db5},
 	{.l = 0xbe8a24c43b8193ec},
 	{.l = 0x3fa6dd3ada2167d3},
+};
+*/
+// P = fpminimax(asin(x), [|1,2,3,4,5,6,7|], [|D...|], [1b-53,1/128]);
+// x * (0x3ff0000000000000 + x * (0xbc403ae5159fa71b + x * (0x3fc55555555555eb + x * (0xbd8c9a430593c449 + x * (0x3fb3333338215db5 + x * (0xbe8a24c43b897ad7 + x * 0x3fa6dd3ada2168bd))))))
+static const DL
+C[NUM] = {
+	{.l = 0},
+	{.l = 0x3ff0000000000000},
+	{.l = 0xbc403ae5159fa71b},
+	{.l = 0x3fc55555555555eb},
+ 	{.l = 0xbd8c9a430593c449},
+	{.l = 0x3fb3333338215db5},
+	{.l = 0xbe8a24c43b897ad7},
+	{.l = 0x3fa6dd3ada2168bd},
 };
 
 static const DL
