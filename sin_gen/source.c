@@ -1506,6 +1506,7 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "\tsign = flag ^ status_pi_1; // ornot£¬0 is +, 1 is -\n");
 		fprintf(func, "\tsin_or_cos = status_pi_2 ^ status_pi_4; // ornot, 0 is sin, 1 is cos\n");
 		fprintf(func, "\n");
+		
 		fprintf(func, "\t// new, sin(x+x') = sin(x)cos(x') + sin(x')cos(x), x' = iiix\n");
 		fprintf(func, "\t// OR, cos(x+x') = cos(x)cos(x') - sin(x)sin(x'), x' = iiix\n");
 
