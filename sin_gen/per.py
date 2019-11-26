@@ -6,6 +6,7 @@ import sys
 sin_gen = "gcc source.c -o source.out"
 rc, out = subprocess.getstatusoutput(sin_gen)
 main = "./source.out"
+data_gen = "./data_gen.sh"
 correctness_test = "gcc gccCorrectnessTest.c sin_gen.c binary.c computeULP.c -lm -lgmp -lmpfr -o gccCorrectnessTest.out"
 correctness_run = "./gccCorrectnessTest.out"
 performance_outputFile = "gcc_sin_time.txt"
@@ -27,9 +28,14 @@ correctness_list = []
 bit_range = 7
 fnum_range = 1
 degree_range = 7
+
 start = input("please input the start of interval: ")
 end = input("please input the end of interval: ")
+N = str(1000000)
 precision = input("please input the precision of computing: ")
+data_gen = data_gen + ' ' + start + ' ' + end + ' ' + N
+print(data_gen)
+subprocess.call(data_gen, shell=True)
 
 # ulp_max_tolerate
 ulp_max_tolerate = 1 << (53 - int(precision))

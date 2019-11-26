@@ -1363,12 +1363,13 @@ int gen(struct constraint input_parameter) {
 	printf("degree = %d\n", degree);
 	printf("fnum = %d\n", fnum);
 
+	// 日后需要优化，尽可能地精确
+	// it is useless now
+	/*
 	midpoint = (a + b) / 2;
 	// the half of the domain [a, b]
 	length = (b - a) / 2;
  	Xtemp = (long int)(midpoint / two_pi);
-	// 日后需要优化，尽可能地精确
-	// it is useless now
 	X = ((double)(Xtemp)) * two_pi;
 	a1 = (0 - length) + X - midpoint;
 	b1 = (0 + length) + X - midpoint;
@@ -1376,7 +1377,7 @@ int gen(struct constraint input_parameter) {
 	btemp = (long int)(b1 / pi_2) + 1;
 	a2 = ((double)atemp) * pi_2;
 	b2 = ((double)btemp) * pi_2;
-
+	*/
 	// generate code for sin_gen
 	{
 		// comments
@@ -1399,9 +1400,9 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "invpio512 = 162.97466172610082382733697369345,\n");
 		fprintf(func, "pi_4 = 0.78539816339744830961566084581988,\n");
 		fprintf(func, "pi_2 = 1.5707963267948966192313216916398,\n");
-		fprintf(func, "pi_512 = 0.00613592315154256491887235035797,\n");
+		fprintf(func, "pi_512 = 0.00613592315154256491887235035797;\n");
 		//fprintf(func, "X = 0;\n");
-		fprintf(func, "X = %.17lf;\n", X);
+		//fprintf(func, "X = %.17lf;\n", X);
 		/*fprintf(func, "table[TableNum] = {\t// pi_2 * T, T = 0, 1, 2, ..., %d\n", btemp);
 		for (i = 0; i < btemp; i++)
 		{
@@ -1461,15 +1462,16 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "};\n\n");
 
 		// func
-		fprintf(func, "double sin_gen(double x) {\n");
-		fprintf(func, "\tdouble ix, iix, iiix, y, appro_s, appro_c;\n");
+		//fprintf(func, "double sin_gen(double x) {\n");
+		//fprintf(func, "\tdouble ix, iix, iiix, y, appro_s, appro_c;\n");
+		fprintf(func, "double sin_gen(double ix) {\n");
+		fprintf(func, "\tdouble iix, iiix, y, appro_s, appro_c;\n");
 		fprintf(func, "\tlong int temp, table_order, status_pi_4, status_pi_2, status_pi_1, flag, sign, sin_or_cos;\n");
 		fprintf(func, "\tint i;\n");
 		fprintf(func, "\n");
-		fprintf(func, "\tix = x - X;\n");
+		//fprintf(func, "\tix = x - X;\n");
 		fprintf(func, "\ttemp = *((long int *)(&ix));\n");
 		fprintf(func, "\tflag = temp >> %d; // - is 1, + is 0\n", format - 1);
-		fprintf(func, "\tflag = flag & 0x0000000000000001;\n");
 		fprintf(func, "\ttemp = temp & 0x7fffffffffffffff;\n");
 		fprintf(func, "\tix = *((double *)(&temp)); // at this time, ix is absolute value\n");
 		fprintf(func, "\t\n");

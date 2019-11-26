@@ -8,6 +8,7 @@ import numpy as np
 sin_gen = "gcc source.c -o source.out"
 rc, out = subprocess.getstatusoutput(sin_gen)
 main = "./source.out"
+data_gen = "./data_gen.sh"
 correctness_test = "gcc gccCorrectnessTest_sin.c sin_gen.c binary.c -lm -lgmp -lmpfr -o gccCorrectnessTest_sin.out"
 correctness_run = "./gccCorrectnessTest_sin.out"
 performance_outputFile = "gcc_sin_time.txt"
@@ -26,12 +27,16 @@ fnum_range = 1
 degree_range = 7
 
 # start, end, precision's values don't mind
-#start = input("please input the start of interval: ")
-#end = input("please input the end of interval: ")
+#start = str(0)
+#end = str(1)
 #precision = input("please input the precision of computing: ")
-start = str(0)
-end = str(1)
+start = input("please input the start of interval: ")
+end = input("please input the end of interval: ")
+N = str(1000000)
 precision = str(23)
+data_gen = data_gen + ' ' + start + ' ' + end + ' ' + N
+print(data_gen)
+subprocess.call(data_gen, shell=True)
 
 # generate all possible implementations within the parameters space
 # and run the correctness test
