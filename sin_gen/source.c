@@ -1378,6 +1378,7 @@ int gen(struct constraint input_parameter) {
 	a2 = ((double)atemp) * pi_2;
 	b2 = ((double)btemp) * pi_2;
 	*/
+
 	// generate code for sin_gen
 	{
 		// comments
