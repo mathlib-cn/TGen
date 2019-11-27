@@ -130,497 +130,512 @@ coefficient_ln2div_128[COEFFICIENTS][COEFFICIENTS] = {
 // fpminmax: [0, ln2/64]
 static const DL
 coefficient_ln2div_64[COEFFICIENTS][COEFFICIENTS] = {
+	// P = fpminimax(exp(x), 0, [|D...|], [1b-53,log(2)/64]); printexpansion(P);
+	// 0x3ff0162e34c980bb
 	{
-		{.l = 0x3ff0000000000000}
+		{.l = 0x3ff0162e34c980bb}
 	},
-	// P = fpminimax(exp(x),[| 1 | ],[| D... | ],[1b - 53,log(2) / 128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * 0x3ff00932cd89057f
+	// P = fpminimax(exp(x), 1, [|D...|], [1b-53,log(2)/64]); printexpansion(P);
+	// 0x3feffff0a022a478 + x * 0x3ff0163b166fb309
+	{
+		{.l = 0x3feffff0a022a478},
+		{.l = 0x3ff0163b166fb309}
+	},
+	// P = fpminimax(exp(x), 2, [|D...|], [1b-53,log(2)/64]); printexpansion(P);
+	// 0x3ff0000001c6b064 + x * (0x3fefffe8e3c16fd5 + x * 0x3fe0163bbb53255a)
+	{
+		{.l = 0x3ff0000001c6b064},
+		{.l = 0x3fefffe8e3c16fd5},
+		{.l = 0x3fe0163bbb53255a}
+	},
+	// P = fpminimax(exp(x), 3, [|D...|], [1b-53,log(2)/64]); printexpansion(P);
+	// 0x3fefffffffff626b + x * (0x3ff00000038f0a2d + x * (0x3fdfffe64f26a8c7 + x * 0x3fc572fad279172d))
+	{
+		{.l = 0x3fefffffffff626b},
+		{.l = 0x3ff00000038f0a2d},
+		{.l = 0x3fdfffe64f26a8c7},
+		{.l = 0x3fc572fad279172d}
+	},
+	// P = fpminimax(exp(x), 4, [|D...|], [1b-53,log(2)/64]); printexpansion(P);
+	// 0x3ff000000000000b + x * (0x3feffffffffe74ac + x * (0x3fe00000047483da + x * (0x3fc5554356945409 + x * 0x3fa572fc5cd74a87)))
+	{
+		{.l = 0x3ff000000000000b},
+		{.l = 0x3feffffffffe74ac},
+		{.l = 0x3fe00000047483da},
+		{.l = 0x3fc5554356945409},
+		{.l = 0x3fa572fc5cd74a87}
+	},
+	// P = fpminimax(exp(x), 5, [|D...|], [1b-53,log(2)/64]); printexpansion(P);
+	// 0x3ff0000000000000 + x * (0x3ff0000000000018 + x * (0x3fdffffffffe1d6f + x * (0x3fc555555b88b12d + x * (0x3fa555437944ad86 + x * 0x3f812872cdebb4c5))))
 	{
 		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff00932cd89057f}
+		{.l = 0x3ff0000000000018},
+		{.l = 0x3fdffffffffe1d6f},
+		{.l = 0x3fc555555b88b12d},
+		{.l = 0x3fa555437944ad86},
+		{.l = 0x3f812872cdebb4c5}
 	},
-	// P = fpminimax(exp(x), [|1,2|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3feffffb9477c883 + x * 0x3fe00a4e59041d9d)
-	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3feffffb9477c883},
-		{.l = 0x3fe00a4e59041d9d}
-	},
-	// P = fpminimax(exp(x), [|1,2,3|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000538109 + x * (0x3fdffffa494bd1eb + x * 0x3fc5638d68876c7f))
-	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000538109},
-		{.l = 0x3fdffffa494bd1eb},
-		{.l = 0x3fc5638d68876c7f}
-	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3fefffffffffedee + x * (0x3fe00000007d30f8 + x * (0x3fc555511976763b + x * 0x3fa563cf3c344455)))
-	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3fefffffffffedee},
-		{.l = 0x3fe00000007d30f8},
-		{.l = 0x3fc555511976763b},
-		{.l = 0x3fa563cf3c344455}
-	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000001 + x * (0x3fdfffffffffdc17 + x * (0x3fc555555631bb85 + x * (0x3fa5555099ee69d1 + x * 0x3f811d0bfc4aaa45))))
-	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000000001},
-		{.l = 0x3fdfffffffffdc17},
-		{.l = 0x3fc555555631bb85},
-		{.l = 0x3fa5555099ee69d1},
-		{.l = 0x3f811d0bfc4aaa45}
-	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000001 + x * (0x3fc5555555553ced + x * (0x3fa5555556351b25 + x * (0x3f81110d40415ef6 + x * 0x3f56d16f7657ba80)))))
+	// P = fpminimax(exp(x), 6, [|D...|], [1b-53,log(2)/64]); printexpansion(P);
+	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000012 + x * (0x3fc55555555452e6 + x * (0x3fa555555a9c7dfe + x * (0x3f81110437350ca8 + x * 0x3f56df023bc86d0c)))))
 	{
 		{.l = 0x3ff0000000000000 },
 		{.l = 0x3ff0000000000000 },
-		{.l = 0x3fe0000000000001 },
-		{.l = 0x3fc5555555553ced },
-		{.l = 0x3fa5555556351b25 },
-		{.l = 0x3f81110d40415ef6 },
-		{.l = 0x3f56d16f7657ba80 },
+		{.l = 0x3fe0000000000012 },
+		{.l = 0x3fc55555555452e6 },
+		{.l = 0x3fa555555a9c7dfe },
+		{.l = 0x3f81110437350ca8 },
+		{.l = 0x3f56df023bc86d0c },
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6,7|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000000 + x * (0x3fc5555555555556 + x * (0x3fa5555555554678 + x * (0x3f811111119057bf + x * (0x3f56c167f90022e5 + x * 0x3f2a12305f6902c9))))))
+	// P = fpminimax(exp(x), 7, [|D...|], [1b-53,log(2)/64]); printexpansion(P);
+	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000000 + x * (0x3fc5555555555565 + x * (0x3fa555555554975b + x * (0x3f81111114798f0e + x * (0x3f56c15d1d27863e + x * 0x3f2a2155f216d174))))))
 	{
 		{.l = 0x3ff0000000000000 },
 		{.l = 0x3ff0000000000000 },
 		{.l = 0x3fe0000000000000 },
 		{.l = 0x3fc5555555555565 },
-		{.l = 0x3fa5555555554678 },
-		{.l = 0x3f811111119057bf },
-		{.l = 0x3f56c167f90022e5 },
-		{.l = 0x3f2a12305f6902c9 },
+		{.l = 0x3fa555555554975b },
+		{.l = 0x3f81111114798f0e },
+		{.l = 0x3f56c15d1d27863e },
+		{.l = 0x3f2a2155f216d174 },
 	}
 };
 
 // fpminmax: [0, ln2/32]
 static const DL
 coefficient_ln2div_32[COEFFICIENTS][COEFFICIENTS] = {
+	// P = fpminmax(exp(x), 0, [|D...|], [1b-53,log(2)/32]); printexpansion(P);
+	// 0x3ff02c5c14532e9c
 	{
-		{.l = 0x3ff0000000000000}
+		{.l = 0x3ff02c5c14532e9c}
 	},
-	// P = fpminimax(exp(x),[| 1 | ],[| D... | ],[1b - 53,log(2) / 128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * 0x3ff00932cd89057f
+	// P = fpminimax(exp(x), 1, [|D...|], [1b-53,log(2)/32]); printexpansion(P);
+	// 0x3fefffc2809e44c3 + x * 0x3ff02c8fe1e8584c
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff00932cd89057f}
+		{.l = 0x3fefffc2809e44c3},
+		{.l = 0x3ff02c8fe1e8584c}
 	},
-	// P = fpminimax(exp(x), [|1,2|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3feffffb9477c883 + x * 0x3fe00a4e59041d9d)
+	// P = fpminimax(exp(x), 2, [|D...|], [1b-53,log(2)/32]); printexpansion(P);
+	// 0x3ff000000e357f4d + x * (0x3fefffa35d3b9258 + x * 0x3fe02c92791bccea)
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3feffffb9477c883},
-		{.l = 0x3fe00a4e59041d9d}
+		{.l = 0x3ff000000e357f4d},
+		{.l = 0x3fefffa35d3b9258},
+		{.l = 0x3fe02c92791bccea}
 	},
-	// P = fpminimax(exp(x), [|1,2,3|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000538109 + x * (0x3fdffffa494bd1eb + x * 0x3fc5638d68876c7f))
+	// P = fpminimax(exp(x), 3, [|D...|], [1b-53,log(2)/32]); printexpansion(P);
+	// 0x3feffffffff626ad + x * (0x3ff000001c85a218 + x * (0x3fdfff98f8298e5b + x * 0x3fc590c55eb4a9d3))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000538109},
-		{.l = 0x3fdffffa494bd1eb},
-		{.l = 0x3fc5638d68876c7f}
+		{.l = 0x3feffffffff626ad},
+		{.l = 0x3ff000001c85a218},
+		{.l = 0x3fdfff98f8298e5b},
+		{.l = 0x3fc590c55eb4a9d3}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3fefffffffffedee + x * (0x3fe00000007d30f8 + x * (0x3fc555511976763b + x * 0x3fa563cf3c344455)))
+	// P = fpminimax(exp(x), 4, [|D...|], [1b-53,log(2)/32]); printexpansion(P);
+	// 0x3ff000000000015e + x * (0x3fefffffffe74a5f + x * (0x3fe0000023b47d2f + x * (0x3fc5550d2c09b74b + x * 0x3fa590c73530f0fe)))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3fefffffffffedee},
-		{.l = 0x3fe00000007d30f8},
-		{.l = 0x3fc555511976763b},
-		{.l = 0x3fa563cf3c344455}
+		{.l = 0x3ff000000000015e},
+		{.l = 0x3fefffffffe74a5f},
+		{.l = 0x3fe0000023b47d2f},
+		{.l = 0x3fc5550d2c09b74b},
+		{.l = 0x3fa590c73530f0fe}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000001 + x * (0x3fdfffffffffdc17 + x * (0x3fc555555631bb85 + x * (0x3fa5555099ee69d1 + x * 0x3f811d0bfc4aaa45))))
+	// P = fpminimax(exp(x), 5, [|D...|], [1b-53,log(2)/32]); printexpansion(P);
+	// 0x3fefffffffffffff + x * (0x3ff00000000004c6 + x * (0x3fdfffffffdaad44 + x * (0x3fc555558ce76101 + x * (0x3fa555097d6d0f86 + x * 0x3f81410ba1e01a92))))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000000001},
-		{.l = 0x3fdfffffffffdc17},
-		{.l = 0x3fc555555631bb85},
-		{.l = 0x3fa5555099ee69d1},
-		{.l = 0x3f811d0bfc4aaa45}
+		{.l = 0x3fefffffffffffff},
+		{.l = 0x3ff00000000004c6},
+		{.l = 0x3fdfffffffdaad44},
+		{.l = 0x3fc555558ce76101},
+		{.l = 0x3fa555097d6d0f86},
+		{.l = 0x3f81410ba1e01a92}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000001 + x * (0x3fc5555555553ced + x * (0x3fa5555556351b25 + x * (0x3f81110d40415ef6 + x * 0x3f56d16f7657ba80)))))
+	// P = fpminimax(exp(x), 6, [|D...|], [1b-53,log(2)/32]); printexpansion(P);
+	// 0x3ff0000000000000 + x * (0x3feffffffffffffe + x * (0x3fe0000000000659 + x * (0x3fc5555555396115 + x * (0x3fa555558f0f844c + x * (0x3f8110d42461a6d8 + x * 0x3f57010ed2532e59)))))	
+	{
+		{.l = 0x3ff0000000000000 },
+		{.l = 0x3feffffffffffffe },
+		{.l = 0x3fe0000000000659 },
+		{.l = 0x3fc5555555396115 },
+		{.l = 0x3fa555558f0f844c },
+		{.l = 0x3f8110d42461a6d8 },
+		{.l = 0x3f57010ed2532e59 },
+	},
+	// P = fpminimax(exp(x), 7, [|D...|], [1b-53,log(2)/32]); printexpansion(P);
+	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fdfffffffffffff + x * (0x3fc5555555555a89 + x * (0x3fa5555555419729 + x * (0x3f81111135650b5d + x * (0x3f56c1262900e0f7 + x * 0x3f2a455dd754eece))))))
 	{
 		{.l = 0x3ff0000000000000 },
 		{.l = 0x3ff0000000000000 },
-		{.l = 0x3fe0000000000001 },
-		{.l = 0x3fc5555555553ced },
-		{.l = 0x3fa5555556351b25 },
-		{.l = 0x3f81110d40415ef6 },
-		{.l = 0x3f56d16f7657ba80 },
-	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6,7|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000000 + x * (0x3fc5555555555556 + x * (0x3fa5555555554678 + x * (0x3f811111119057bf + x * (0x3f56c167f90022e5 + x * 0x3f2a12305f6902c9))))))
-	{
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3fe0000000000000 },
-		{.l = 0x3fc5555555555565 },
-		{.l = 0x3fa5555555554678 },
-		{.l = 0x3f811111119057bf },
-		{.l = 0x3f56c167f90022e5 },
-		{.l = 0x3f2a12305f6902c9 },
+		{.l = 0x3fdfffffffffffff },
+		{.l = 0x3fc5555555555a89 },
+		{.l = 0x3fa5555555419729 },
+		{.l = 0x3f81111135650b5d },
+		{.l = 0x3f56c1262900e0f7 },
+		{.l = 0x3f2a455dd754eece },
 	}
 };
 
 // fpminmax: [0, ln2/16]
 static const DL
 coefficient_ln2div_16[COEFFICIENTS][COEFFICIENTS] = {
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/16]); printexpansion(P);i=i+1;
+	// 0x3ff058b57ec67ce8
 	{
-		{.l = 0x3ff0000000000000}
+		{.l = 0x3ff058b57ec67ce8}
 	},
-	// P = fpminimax(exp(x),[| 1 | ],[| D... | ],[1b - 53,log(2) / 128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * 0x3ff00932cd89057f
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/16]); printexpansion(P);i=i+1;
+	// 0x3fefff0a03b44b4e + x * 0x3ff05986ec6dc5ea
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff00932cd89057f}
+		{.l = 0x3fefff0a03b44b4e},
+		{.l = 0x3ff05986ec6dc5ea}
 	},
-	// P = fpminimax(exp(x), [|1,2|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3feffffb9477c883 + x * 0x3fe00a4e59041d9d)
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/16]); printexpansion(P);i=i+1;
+	// 0x3ff0000071ab7f85 + x * (0x3feffe8be6283015 + x * 0x3fe05991671450d0)
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3feffffb9477c883},
-		{.l = 0x3fe00a4e59041d9d}
+		{.l = 0x3ff0000071ab7f85},
+		{.l = 0x3feffe8be6283015},
+		{.l = 0x3fe05991671450d0}
 	},
-	// P = fpminimax(exp(x), [|1,2,3|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000538109 + x * (0x3fdffffa494bd1eb + x * 0x3fc5638d68876c7f))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/16]); printexpansion(P);i=i+1;
+	// 0x3fefffffff626b66 + x * (0x3ff00000e501ed1e + x * (0x3fdffe61bb8ed3b0 + x * 0x3fc5ccca3fd3a3b9))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000538109},
-		{.l = 0x3fdffffa494bd1eb},
-		{.l = 0x3fc5638d68876c7f}
+		{.l = 0x3fefffffff626b66},
+		{.l = 0x3ff00000e501ed1e},
+		{.l = 0x3fdffe61bb8ed3b0},
+		{.l = 0x3fc5ccca3fd3a3b9}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3fefffffffffedee + x * (0x3fe00000007d30f8 + x * (0x3fc555511976763b + x * 0x3fa563cf3c344455)))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/16]); printexpansion(P);i=i+1;
+	// 0x3ff0000000002bb1 + x * (0x3feffffffe738982 + x * (0x3fe000011f0340cf + x * (0x3fc5543311ab5298 + x * 0x3fa5cccfd8b7c53c)))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3fefffffffffedee},
-		{.l = 0x3fe00000007d30f8},
-		{.l = 0x3fc555511976763b},
-		{.l = 0x3fa563cf3c344455}
+		{.l = 0x3ff0000000002bb1},
+		{.l = 0x3feffffffe738982},
+		{.l = 0x3fe000011f0340cf},
+		{.l = 0x3fc5543311ab5298},
+		{.l = 0x3fa5cccfd8b7c53c}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000001 + x * (0x3fdfffffffffdc17 + x * (0x3fc555555631bb85 + x * (0x3fa5555099ee69d1 + x * 0x3f811d0bfc4aaa45))))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/16]); printexpansion(P);i=i+1;
+	// 0x3fefffffffffffd8 + x * (0x3ff0000000008376 + x * (0x3fdffffffdd412d3 + x * (0x3fc55557023e90ac + x * (0x3fa5542ab580ecf6 + x * 0x3f8170a5ec861e7b))))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000000001},
-		{.l = 0x3fdfffffffffdc17},
-		{.l = 0x3fc555555631bb85},
-		{.l = 0x3fa5555099ee69d1},
-		{.l = 0x3f811d0bfc4aaa45}
+		{.l = 0x3fefffffffffffd8},
+		{.l = 0x3ff0000000008376},
+		{.l = 0x3fdffffffdd412d3},
+		{.l = 0x3fc55557023e90ac},
+		{.l = 0x3fa5542ab580ecf6},
+		{.l = 0x3f8170a5ec861e7b}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000001 + x * (0x3fc5555555553ced + x * (0x3fa5555556351b25 + x * (0x3f81110d40415ef6 + x * 0x3f56d16f7657ba80)))))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/16]); printexpansion(P);i=i+1;
+	// 0x3ff0000000000000 + x * (0x3fefffffffffff9b + x * (0x3fe000000000afc5 + x * (0x3fc5555553bc6d73 + x * (0x3fa555570b2ecffe + x * (0x3f8110240cb95772 + x * 0x3f573f7397883f32)))))
+	{
+		{.l = 0x3ff0000000000000 },
+		{.l = 0x3fefffffffffff9b },
+		{.l = 0x3fe000000000afc5 },
+		{.l = 0x3fc5555553bc6d73 },
+		{.l = 0x3fa555570b2ecffe },
+		{.l = 0x3f8110240cb95772 },
+		{.l = 0x3f573f7397883f32 },
+	},
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/16]); printexpansion(P);i=i+1;
+	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fdfffffffffffb0 + x * (0x3fc555555556167c + x * (0x3fa5555553f804d1 + x * (0x3f81111247bd705f + x * (0x3f56c0489a6295dd + x * 0x3f2a8bea84866969))))))
 	{
 		{.l = 0x3ff0000000000000 },
 		{.l = 0x3ff0000000000000 },
-		{.l = 0x3fe0000000000001 },
-		{.l = 0x3fc5555555553ced },
-		{.l = 0x3fa5555556351b25 },
-		{.l = 0x3f81110d40415ef6 },
-		{.l = 0x3f56d16f7657ba80 },
-	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6,7|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000000 + x * (0x3fc5555555555556 + x * (0x3fa5555555554678 + x * (0x3f811111119057bf + x * (0x3f56c167f90022e5 + x * 0x3f2a12305f6902c9))))))
-	{
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3fe0000000000000 },
-		{.l = 0x3fc5555555555565 },
-		{.l = 0x3fa5555555554678 },
-		{.l = 0x3f811111119057bf },
-		{.l = 0x3f56c167f90022e5 },
-		{.l = 0x3f2a12305f6902c9 },
+		{.l = 0x3fdfffffffffffb0 },
+		{.l = 0x3fc555555556167c },
+		{.l = 0x3fa5555553f804d1 },
+		{.l = 0x3f81111247bd705f },
+		{.l = 0x3f56c0489a6295dd },
+		{.l = 0x3f2a8bea84866969 },
 	}
 };
 
 // fpminmax: [0, ln2/8]
 static const DL
 coefficient_ln2div_8[COEFFICIENTS][COEFFICIENTS] = {
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/8]); printexpansion(P);i=i+1;
+	// 0x3ff0b155b2640b16
 	{
-		{.l = 0x3ff0000000000000}
+		{.l = 0x3ff0b155b2640b16}
 	},
-	// P = fpminimax(exp(x),[| 1 | ],[| D... | ],[1b - 53,log(2) / 128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * 0x3ff00932cd89057f
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/8]); printexpansion(P);i=i+1;
+	// 0x3feffc2822873ad1 + x * 0x3ff0b4ad186dfd80
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff00932cd89057f}
+		{.l = 0x3feffc2822873ad1},
+		{.l = 0x3ff0b4ad186dfd80}
 	},
-	// P = fpminimax(exp(x), [|1,2|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3feffffb9477c883 + x * 0x3fe00a4e59041d9d)
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/8]); printexpansion(P);i=i+1;
+	// 0x3ff000038d4ca023 + x * (0x3feffa231b4ec420 + x * 0x3fe0b4d7fdb177c3)
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3feffffb9477c883},
-		{.l = 0x3fe00a4e59041d9d}
+		{.l = 0x3ff000038d4ca023},
+		{.l = 0x3feffa231b4ec420},
+		{.l = 0x3fe0b4d7fdb177c3}
 	},
-	// P = fpminimax(exp(x), [|1,2,3|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000538109 + x * (0x3fdffffa494bd1eb + x * 0x3fc5638d68876c7f))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/8]); printexpansion(P);i=i+1;
+	// 0x3feffffff626dabc + x * (0x3ff00007355f2420 + x * (0x3fdff975a9ab9c56 + x * 0x3fc6469791b2ab36))
+		{
+		{.l = 0x3feffffff626dabc},
+		{.l = 0x3ff00007355f2420},
+		{.l = 0x3fdff975a9ab9c56},
+		{.l = 0x3fc6469791b2ab36}
+	},
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/8]); printexpansion(P);i=i+1;
+	// 0x3ff0000000057609 + x * (0x3fefffffe71099c8 + x * (0x3fe000090ee71ccd + x * (0x3fc550bf0b88487e + x * 0x3fa646ae671bde9a)))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000538109},
-		{.l = 0x3fdffffa494bd1eb},
-		{.l = 0x3fc5638d68876c7f}
+		{.l = 0x3ff0000000057609},
+		{.l = 0x3fefffffe71099c8},
+		{.l = 0x3fe000090ee71ccd},
+		{.l = 0x3fc550bf0b88487e},
+		{.l = 0x3fa646ae671bde9a}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3fefffffffffedee + x * (0x3fe00000007d30f8 + x * (0x3fc555511976763b + x * 0x3fa563cf3c344455)))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/8]); printexpansion(P);i=i+1;
+	// 0x3feffffffffff5e8 + x * (0x3ff000000010911e + x * (0x3fdfffffdce42ea7 + x * (0x3fc55562e5e571d4 + x * (0x3fa5509c18862623 + x * 0x3f81d2322045c89c))))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3fefffffffffedee},
-		{.l = 0x3fe00000007d30f8},
-		{.l = 0x3fc555511976763b},
-		{.l = 0x3fa563cf3c344455}
+		{.l = 0x3feffffffffff5e8},
+		{.l = 0x3ff000000010911e},
+		{.l = 0x3fdfffffdce42ea7},
+		{.l = 0x3fc55562e5e571d4},
+		{.l = 0x3fa5509c18862623},
+		{.l = 0x3f81d2322045c89c}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000001 + x * (0x3fdfffffffffdc17 + x * (0x3fc555555631bb85 + x * (0x3fa5555099ee69d1 + x * 0x3f811d0bfc4aaa45))))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/8]); printexpansion(P);i=i+1;
+	// 0x3ff0000000000004 + x * (0x3fefffffffffdc50 + x * (0x3fe000000019ebf9 + x * (0x3fc555553927111b + x * (0x3fa55563e4911d21 + x * (0x3f810d36f9436e4e + x * 0x3f57c2faf6f30cda)))))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000000001},
-		{.l = 0x3fdfffffffffdc17},
-		{.l = 0x3fc555555631bb85},
-		{.l = 0x3fa5555099ee69d1},
-		{.l = 0x3f811d0bfc4aaa45}
+		{.l = 0x3ff0000000000004 },
+		{.l = 0x3fefffffffffdc50 },
+		{.l = 0x3fe000000019ebf9 },
+		{.l = 0x3fc555553927111b },
+		{.l = 0x3fa55563e4911d21 },
+		{.l = 0x3f810d36f9436e4e },
+		{.l = 0x3f57c2faf6f30cda },
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000001 + x * (0x3fc5555555553ced + x * (0x3fa5555556351b25 + x * (0x3f81110d40415ef6 + x * 0x3f56d16f7657ba80)))))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/8]); printexpansion(P);i=i+1;
+	// 0x3ff0000000000000 + x * (0x3ff000000000000b + x * (0x3fdfffffffffccec + x * (0x3fc55555557d5474 + x * (0x3fa5555537b1f6df + x * (0x3f81111cca819ad5 + x * (0x3f56bc5613d2d58b + x * 0x3f2b250e621abf42))))))
 	{
 		{.l = 0x3ff0000000000000 },
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3fe0000000000001 },
-		{.l = 0x3fc5555555553ced },
-		{.l = 0x3fa5555556351b25 },
-		{.l = 0x3f81110d40415ef6 },
-		{.l = 0x3f56d16f7657ba80 },
-	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6,7|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000000 + x * (0x3fc5555555555556 + x * (0x3fa5555555554678 + x * (0x3f811111119057bf + x * (0x3f56c167f90022e5 + x * 0x3f2a12305f6902c9))))))
-	{
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3fe0000000000000 },
-		{.l = 0x3fc5555555555565 },
-		{.l = 0x3fa5555555554678 },
-		{.l = 0x3f811111119057bf },
-		{.l = 0x3f56c167f90022e5 },
-		{.l = 0x3f2a12305f6902c9 },
+		{.l = 0x3ff000000000000b },
+		{.l = 0x3fdfffffffffccec },
+		{.l = 0x3fc55555557d5474 },
+		{.l = 0x3fa5555537b1f6df },
+		{.l = 0x3f81111cca819ad5 },
+		{.l = 0x3f56bc5613d2d58b },
+		{.l = 0x3f2b250e621abf42 },
 	}
 };
 
 // fpminmax: [0, ln2/4]
 static const DL
 coefficient_ln2div_4[COEFFICIENTS][COEFFICIENTS] = {
+	// P = fpminmax(exp(x), i, [|D...|], [1b-53,log(2)/4]); printexpansion(P);i=i+1;
+	// 0x3ff1620185e56214
 	{
-		{.l = 0x3ff0000000000000}
+		{.l = 0x3ff1620185e56214}
 	},
-	// P = fpminimax(exp(x),[| 1 | ],[| D... | ],[1b - 53,log(2) / 128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * 0x3ff00932cd89057f
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/4]); printexpansion(P);i=i+1;
+	// 0x3feff0a1c61fee42 + x * 0x3ff16feba2bf45a4
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff00932cd89057f}
+		{.l = 0x3feff0a1c61fee42},
+		{.l = 0x3ff16feba2bf45a4}
 	},
-	// P = fpminimax(exp(x), [|1,2|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3feffffb9477c883 + x * 0x3fe00a4e59041d9d)
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/4]); printexpansion(P);i=i+1;
+	// 0x3ff0001c686f1e7b + x * (0x3fefe82817b9ec9d + x * 0x3fe1709fd3e9d201)
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3feffffb9477c883},
-		{.l = 0x3fe00a4e59041d9d}
+		{.l = 0x3ff0001c686f1e7b},
+		{.l = 0x3fefe82817b9ec9d},
+		{.l = 0x3fe1709fd3e9d201}
 	},
-	// P = fpminimax(exp(x), [|1,2,3|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000538109 + x * (0x3fdffffa494bd1eb + x * 0x3fc5638d68876c7f))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/4]); printexpansion(P);i=i+1;
+	// 0x3fefffff6276c135 + x * (0x3ff0003a8025b98b + x * (0x3fdfe54ac47ad26b + x * 0x3fc7416421ca0778))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000538109},
-		{.l = 0x3fdffffa494bd1eb},
-		{.l = 0x3fc5638d68876c7f}
+		{.l = 0x3fefffff6276c135},
+		{.l = 0x3ff0003a8025b98b},
+		{.l = 0x3fdfe54ac47ad26b},
+		{.l = 0x3fc7416421ca0778}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3fefffffffffedee + x * (0x3fe00000007d30f8 + x * (0x3fc555511976763b + x * 0x3fa563cf3c344455)))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/4]); printexpansion(P);i=i+1;
+	// 0x3ff0000000aeb856 + x * (0x3feffffe6c0a4aab + x * (0x3fe00049e7dab9da + x * (0x3fc54290a5d78482 + x * 0x3fa741c37b948b28)))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3fefffffffffedee},
-		{.l = 0x3fe00000007d30f8},
-		{.l = 0x3fc555511976763b},
-		{.l = 0x3fa563cf3c344455}
+		{.l = 0x3ff0000000aeb856},
+		{.l = 0x3feffffe6c0a4aab},
+		{.l = 0x3fe00049e7dab9da},
+		{.l = 0x3fc54290a5d78482},
+		{.l = 0x3fa741c37b948b28}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000001 + x * (0x3fdfffffffffdc17 + x * (0x3fc555555631bb85 + x * (0x3fa5555099ee69d1 + x * 0x3f811d0bfc4aaa45))))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/4]); printexpansion(P);i=i+1;
+	// 0x3feffffffffd7a14 + x * (0x3ff000000217fb2d + x * (0x3fdffffdc3f0ecfd + x * (0x3fc555c4525631d8 + x * (0x3fa541fbc5ef509b + x * 0x3f829b394603f446))))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000000001},
-		{.l = 0x3fdfffffffffdc17},
-		{.l = 0x3fc555555631bb85},
-		{.l = 0x3fa5555099ee69d1},
-		{.l = 0x3f811d0bfc4aaa45}
+		{.l = 0x3feffffffffd7a14},
+		{.l = 0x3ff000000217fb2d},
+		{.l = 0x3fdffffdc3f0ecfd},
+		{.l = 0x3fc555c4525631d8},
+		{.l = 0x3fa541fbc5ef509b},
+		{.l = 0x3f829b394603f446}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000001 + x * (0x3fc5555555553ced + x * (0x3fa5555556351b25 + x * (0x3f81110d40415ef6 + x * 0x3f56d16f7657ba80)))))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/4]); printexpansion(P);i=i+1;
+	// 0x3ff0000000000200 + x * (0x3feffffffff6fd8d + x * (0x3fe00000034b82d1 + x * (0x3fc5555388a12f5e + x * (0x3fa555ccac73932d + x * (0x3f8101465aecd1a3 + x * 0x3f58cf2e727a6005)))))
 	{
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3fe0000000000001 },
-		{.l = 0x3fc5555555553ced },
-		{.l = 0x3fa5555556351b25 },
-		{.l = 0x3f81110d40415ef6 },
-		{.l = 0x3f56d16f7657ba80 },
+		{.l = 0x3ff0000000000200 },
+		{.l = 0x3feffffffff6fd8d },
+		{.l = 0x3fe00000034b82d1 },
+		{.l = 0x3fc5555388a12f5e },
+		{.l = 0x3fa555ccac73932d },
+		{.l = 0x3f8101465aecd1a3 },
+		{.l = 0x3f58cf2e727a6005 },
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6,7|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000000 + x * (0x3fc5555555555556 + x * (0x3fa5555555554678 + x * (0x3f811111119057bf + x * (0x3f56c167f90022e5 + x * 0x3f2a12305f6902c9))))))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/4]); printexpansion(P);i=i+1;
+	// 0x3feffffffffffffa + x * (0x3ff0000000000856 + x * (0x3fdffffffff02ffa + x * (0x3fc555555b10620c + x * (0x3fa555534b9630e2 + x * (0x3f8111759d2233e0 + x * (0x3f56ac08b231ac58 + x * 0x3f2c5b1bc70ff176))))))
 	{
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3fe0000000000000 },
-		{.l = 0x3fc5555555555565 },
-		{.l = 0x3fa5555555554678 },
-		{.l = 0x3f811111119057bf },
-		{.l = 0x3f56c167f90022e5 },
-		{.l = 0x3f2a12305f6902c9 },
+		{.l = 0x3feffffffffffffa },
+		{.l = 0x3ff0000000000856 },
+		{.l = 0x3fdffffffff02ffa },
+		{.l = 0x3fc555555b10620c },
+		{.l = 0x3fa555534b9630e2 },
+		{.l = 0x3f8111759d2233e0 },
+		{.l = 0x3f56ac08b231ac58 },
+		{.l = 0x3f2c5b1bc70ff176 },
 	}
 };
 
 // fpminmax: [0, ln2/2]
 static const DL
 coefficient_ln2div_2[COEFFICIENTS][COEFFICIENTS] = {
+	// P = fpminmax(exp(x), i, [|D...|], [1b-53,log(2)/2]); printexpansion(P);i=i+1;
+	// 0x3ff2bec333018867
 	{
-		{.l = 0x3ff0000000000000}
+		{.l = 0x3ff2bec333018867}
 	},
-	// P = fpminimax(exp(x),[| 1 | ],[| D... | ],[1b - 53,log(2) / 128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * 0x3ff00932cd89057f
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/2]); printexpansion(P);i=i+1;
+	// 0x3fefc29b010051c2 + x * 0x3ff2fab7f2ad6eeb
+
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff00932cd89057f}
+		{.l = 0x3fefc29b010051c2},
+		{.l = 0x3ff2fab7f2ad6eeb}
 	},
-	// P = fpminimax(exp(x), [|1,2|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3feffffb9477c883 + x * 0x3fe00a4e59041d9d)
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/2]); printexpansion(P);i=i+1;
+	// 0x3ff000e306506de4 + x * (0x3fef9d7799061f80 + x * 0x3fe2fddbb12352e3)
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3feffffb9477c883},
-		{.l = 0x3fe00a4e59041d9d}
+		{.l = 0x3ff000e306506de4},
+		{.l = 0x3fef9d7799061f80},
+		{.l = 0x3fe2fddbb12352e3}
 	},
-	// P = fpminimax(exp(x), [|1,2,3|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000538109 + x * (0x3fdffffa494bd1eb + x * 0x3fc5638d68876c7f))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/2]); printexpansion(P);i=i+1;
+	// 0x3feffff629b11fc1 + x * (0x3ff001e1576384f6 + x * (0x3fdf90b009c3fc5d + x * 0x3fc954e96fec627c))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000538109},
-		{.l = 0x3fdffffa494bd1eb},
-		{.l = 0x3fc5638d68876c7f}
+		{.l = 0x3feffff629b11fc1},
+		{.l = 0x3ff001e1576384f6},
+		{.l = 0x3fdf90b009c3fc5d},
+		{.l = 0x3fc954e96fec627c}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3fefffffffffedee + x * (0x3fe00000007d30f8 + x * (0x3fc555511976763b + x * 0x3fa563cf3c344455)))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/2]); printexpansion(P);i=i+1;
+	// 0x3ff0000015d2abe5 + x * (0x3fefffe6212787aa + x * (0x3fe00266c06c7cc4 + x * (0x3fc506cb0bab2ab6 + x * 0x3fa95688fa87c4c0)))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3fefffffffffedee},
-		{.l = 0x3fe00000007d30f8},
-		{.l = 0x3fc555511976763b},
-		{.l = 0x3fa563cf3c344455}
+		{.l = 0x3ff0000015d2abe5},
+		{.l = 0x3fefffe6212787aa},
+		{.l = 0x3fe00266c06c7cc4},
+		{.l = 0x3fc506cb0bab2ab6},
+		{.l = 0x3fa95688fa87c4c0}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000001 + x * (0x3fdfffffffffdc17 + x * (0x3fc555555631bb85 + x * (0x3fa5555099ee69d1 + x * 0x3f811d0bfc4aaa45))))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/2]); printexpansion(P);i=i+1;
+	// 0x3fefffffff5ea175 + x * (0x3ff000004472dc4a + x * (0x3fdfffdaef74e215 + x * (0x3fc558f5e5ad8ee7 + x * (0x3fa504293563ec3b + x * 0x3f844627e16e4a23))))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000000001},
-		{.l = 0x3fdfffffffffdc17},
-		{.l = 0x3fc555555631bb85},
-		{.l = 0x3fa5555099ee69d1},
-		{.l = 0x3f811d0bfc4aaa45}
+		{.l = 0x3fefffffff5ea175},
+		{.l = 0x3ff000004472dc4a},
+		{.l = 0x3fdfffdaef74e215},
+		{.l = 0x3fc558f5e5ad8ee7},
+		{.l = 0x3fa504293563ec3b},
+		{.l = 0x3f844627e16e4a23}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000001 + x * (0x3fc5555555553ced + x * (0x3fa5555556351b25 + x * (0x3f81110d40415ef6 + x * 0x3f56d16f7657ba80)))))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/2]); printexpansion(P);i=i+1;
+	// 0x3ff000000000ffb0 + x * (0x3feffffffdb462a6 + x * (0x3fe000006cfa2eda + x * (0x3fc555374888f46c + x * (0x3fa5593f61401642 + x * (0x3f80ceb6103be07e + x * 0x3f5b0922b1531ec0)))))
 	{
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3fe0000000000001 },
-		{.l = 0x3fc5555555553ced },
-		{.l = 0x3fa5555556351b25 },
-		{.l = 0x3f81110d40415ef6 },
-		{.l = 0x3f56d16f7657ba80 },
+		{.l = 0x3ff000000000ffb0 },
+		{.l = 0x3feffffffdb462a6 },
+		{.l = 0x3fe000006cfa2eda },
+		{.l = 0x3fc555374888f46c },
+		{.l = 0x3fa5593f61401642 },
+		{.l = 0x3f80ceb6103be07e },
+		{.l = 0x3f5b0922b1531ec0 },
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6,7|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000000 + x * (0x3fc5555555555556 + x * (0x3fa5555555554678 + x * (0x3f811111119057bf + x * (0x3f56c167f90022e5 + x * 0x3f2a12305f6902c9))))))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)/2]); printexpansion(P);i=i+1;
+	// 0x3feffffffffffa76 + x * (0x3ff00000000423e2 + x * (0x3fdffffffbf98430 + x * (0x3fc5555612d9bd6e + x * (0x3fa555334e960925 + x * (0x3f81145d0d37f475 + x * (0x3f5667966a599798 + x * 0x3f2ee6b1cfd8d0fd))))))
 	{
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3fe0000000000000 },
-		{.l = 0x3fc5555555555565 },
-		{.l = 0x3fa5555555554678 },
-		{.l = 0x3f811111119057bf },
-		{.l = 0x3f56c167f90022e5 },
-		{.l = 0x3f2a12305f6902c9 },
+		{.l = 0x3feffffffffffa76 },
+		{.l = 0x3ff00000000423e2 },
+		{.l = 0x3fdffffffbf98430 },
+		{.l = 0x3fc5555612d9bd6e },
+		{.l = 0x3fa555334e960925 },
+		{.l = 0x3f81145d0d37f475 },
+		{.l = 0x3f5667966a599798 },
+		{.l = 0x3f2ee6b1cfd8d0fd },
 	}
 };
 
 // fpminmax: [0, ln2/1]
 static const DL
 coefficient_ln2div_1[COEFFICIENTS][COEFFICIENTS] = {
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)]); printexpansion(P);i=i+1;
+	// 0x3ff5555555555556
 	{
-		{.l = 0x3ff0000000000000}
+		{.l = 0x3ff5555555555556}
 	},
-	// P = fpminimax(exp(x),[| 1 | ],[| D... | ],[1b - 53,log(2) / 128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * 0x3ff00932cd89057f
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)]); printexpansion(P);i=i+1;
+	// 0x3fef0bb4660a65a0 + x * 0x3ff6650e9bd9da77
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff00932cd89057f}
+		{.l = 0x3fef0bb4660a65a0},
+		{.l = 0x3ff6650e9bd9da77}
 	},
-	// P = fpminimax(exp(x), [|1,2|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3feffffb9477c883 + x * 0x3fe00a4e59041d9d)
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)]); printexpansion(P);i=i+1;
+	// 0x3ff007108b969adb + x * (0x3fee5c4ff49148ff + x * 0x3fe675460ce511a4)
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3feffffb9477c883},
-		{.l = 0x3fe00a4e59041d9d}
+		{.l = 0x3ff007108b969adb},
+		{.l = 0x3fee5c4ff49148ff},
+		{.l = 0x3fe675460ce511a4}
 	},
-	// P = fpminimax(exp(x), [|1,2,3|], [|D...|], [1b-53,log(2)/128],1); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000538109 + x * (0x3fdffffa494bd1eb + x * 0x3fc5638d68876c7f))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)]); printexpansion(P);i=i+1;
+	// 0x3fefff632c1cb846 + x * (0x3ff00fdfdbd11725 + x * (0x3fde1d265f206d05 + x * 0x3fcdfd3b669fce68))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000538109},
-		{.l = 0x3fdffffa494bd1eb},
-		{.l = 0x3fc5638d68876c7f}
+		{.l = 0x3fefff632c1cb846},
+		{.l = 0x3ff00fdfdbd11725},
+		{.l = 0x3fde1d265f206d05},
+		{.l = 0x3fcdfd3b669fce68}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3fefffffffffedee + x * (0x3fe00000007d30f8 + x * (0x3fc555511976763b + x * 0x3fa563cf3c344455)))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)]); printexpansion(P);i=i+1;
+	// 0x3ff00002b82713a0 + x * (0x3feffe4e4c936d40 + x * (0x3fe014bcdddc1e3e + x * (0x3fc3fdac7f267a70 + x * 0x3fae04ecd7565c41)))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3fefffffffffedee},
-		{.l = 0x3fe00000007d30f8},
-		{.l = 0x3fc555511976763b},
-		{.l = 0x3fa563cf3c344455}
+		{.l = 0x3ff00002b82713a0},
+		{.l = 0x3feffe4e4c936d40},
+		{.l = 0x3fe014bcdddc1e3e},
+		{.l = 0x3fc3fdac7f267a70},
+		{.l = 0x3fae04ecd7565c41}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000001 + x * (0x3fdfffffffffdc17 + x * (0x3fc555555631bb85 + x * (0x3fa5555099ee69d1 + x * 0x3f811d0bfc4aaa45))))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)]); printexpansion(P);i=i+1;
+	// 0x3fefffffd7c4cf55 + x * (0x3ff00008ea0bb50d + x * (0x3fdffd83adc2400b + x * (0x3fc57509839df7ec + x * (0x3fa3f04be6d4b744 + x * 0x3f880856eae91239))))
 	{
-		{.l = 0x3ff0000000000000},
-		{.l = 0x3ff0000000000001},
-		{.l = 0x3fdfffffffffdc17},
-		{.l = 0x3fc555555631bb85},
-		{.l = 0x3fa5555099ee69d1},
-		{.l = 0x3f811d0bfc4aaa45}
+		{.l = 0x3fefffffd7c4cf55},
+		{.l = 0x3ff00008ea0bb50d},
+		{.l = 0x3fdffd83adc2400b},
+		{.l = 0x3fc57509839df7ec},
+		{.l = 0x3fa3f04be6d4b744},
+		{.l = 0x3f880856eae91239}
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000001 + x * (0x3fc5555555553ced + x * (0x3fa5555556351b25 + x * (0x3f81110d40415ef6 + x * 0x3f56d16f7657ba80)))))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)]); printexpansion(P);i=i+1;
+	// 0x3ff00000007f8794 + x * (0x3fefffff67a2006e + x * (0x3fe0000e8843bc7a + x * (0x3fc5534a3d00cef1 + x * (0x3fa577ce7a2c8a42 + x * (0x3f7fd8561b37732b + x * 0x3f6007c2b4d0a481)))))
 	{
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3fe0000000000001 },
-		{.l = 0x3fc5555555553ced },
-		{.l = 0x3fa5555556351b25 },
-		{.l = 0x3f81110d40415ef6 },
-		{.l = 0x3f56d16f7657ba80 },
+		{.l = 0x3ff00000007f8794 },
+		{.l = 0x3fefffff67a2006e },
+		{.l = 0x3fe0000e8843bc7a },
+		{.l = 0x3fc5534a3d00cef1 },
+		{.l = 0x3fa577ce7a2c8a42 },
+		{.l = 0x3f7fd8561b37732b },
+		{.l = 0x3f6007c2b4d0a481 },
 	},
-	// P = fpminimax(exp(x), [|0,1,2,3,4,5,6,7|], [|D...|], [1b-53,log(2)/128]); printexpansion(P);
-	// 0x3ff0000000000000 + x * (0x3ff0000000000000 + x * (0x3fe0000000000000 + x * (0x3fc5555555555556 + x * (0x3fa5555555554678 + x * (0x3f811111119057bf + x * (0x3f56c167f90022e5 + x * 0x3f2a12305f6902c9))))))
+	// P = fpminimax(exp(x), i, [|D...|], [1b-53,log(2)]); printexpansion(P);i=i+1;
+	// 0x3feffffffffa7933 + x * (0x3ff000000223a698 + x * (0x3fdffffeee95ea7e + x * (0x3fc5556efb1563ba + x * (0x3fa552ff9841c69d + x * (0x3f812e413bf82e32 + x * (0x3f5533dd87f4dc2e + x * 0x3f3253f8202f16f3))))))
 	{
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3ff0000000000000 },
-		{.l = 0x3fe0000000000000 },
-		{.l = 0x3fc5555555555565 },
-		{.l = 0x3fa5555555554678 },
-		{.l = 0x3f811111119057bf },
-		{.l = 0x3f56c167f90022e5 },
-		{.l = 0x3f2a12305f6902c9 },
+		{.l = 0x3feffffffffa7933 },
+		{.l = 0x3ff000000223a698 },
+		{.l = 0x3fdffffeee95ea7e },
+		{.l = 0x3fc5556efb1563ba },
+		{.l = 0x3fa552ff9841c69d },
+		{.l = 0x3f812e413bf82e32 },
+		{.l = 0x3f5533dd87f4dc2e },
+		{.l = 0x3f3253f8202f16f3 },
 	}
 };
 
