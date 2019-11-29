@@ -18,9 +18,6 @@
     <ClCompile Include="source.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="model.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="k_cos.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -45,57 +42,6 @@
     <ClCompile Include="gccCorrectnessTest.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="model_32.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_64.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_128.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_256.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_512.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_fpminimax_pi_16.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_fpminimax_pi_32.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_fpminimax_pi_64.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_fpminimax_pi_128.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_fpminimax_pi_256.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="mpfr_data_gen.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_fpminimax_test_pi_512.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_fpminimax_pi_512.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_16.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_8.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_4.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="model_fpminimax_pi_512_cleanversion.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="performance_test.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -109,9 +55,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="gccCorrectnessTest_exp.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="log_gen.c">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="log_sw.c">
@@ -133,9 +76,6 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="log_model.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="log_glibc.c">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="gccCorrectnessTest_sin.c">
