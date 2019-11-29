@@ -6,10 +6,10 @@
 #include "myhead.h"
 
 struct test_data {
-	double sum;
-	double max;
+	DL max;
 	_UL max_times;
-	double average;
+	DL sum;
+	DL average;
 };
 
 double exp_gen(double);
@@ -34,9 +34,10 @@ struct test_data test(void)
 	double ulpdiff_max, ulpdiff, ulpdiff_sum, temp;
 	mpfr_t mpfr_mine, mpfr_ulpdiff, mpfr_temp, mpfr_result;
 
-	correctness_result.sum = 0.0;
-	correctness_result.max = 0.0;
+	correctness_result.sum.d = 0.0;
+	correctness_result.max.d = 0.0;
 	correctness_result.max_times = 0;
+	correctness_result.average.d = 0;
 	ulpdiff_sum = 0.0;
 	ulpdiff_max = 0.0;
 	max_times = 0;
@@ -114,10 +115,10 @@ struct test_data test(void)
 	}
 	
 	fclose(inputData);
-	correctness_result.sum = ulpdiff_sum;
-	correctness_result.max = ulpdiff_max;
+	correctness_result.sum.d = ulpdiff_sum;
+	correctness_result.max.d = ulpdiff_max;
 	correctness_result.max_times = max_times;
-	correctness_result.average = (double)ulpdiff_sum / RUN_COUNT;
+	correctness_result.average.d = (double)ulpdiff_sum / RUN_COUNT;
 	return correctness_result;
 }
 
@@ -125,9 +126,9 @@ int main(int argc, char *argv[]) {
 	struct test_data correctness_result;
 	correctness_result = test();
 	//printf("%d %d %d\n", p->max, p->max_times, p->sum);
-	printf("%le\n", correctness_result.max);
+	printf("%lx\n", correctness_result.max.l);
 	printf("%lu\n", correctness_result.max_times);
-	printf("%le\n", correctness_result.sum);
-	printf("%le\n", correctness_result.average);
+	printf("%lx\n", correctness_result.sum.l);
+	printf("%lx\n", correctness_result.average.l);
 	return 0;
 }

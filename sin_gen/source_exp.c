@@ -791,7 +791,7 @@ int gen(struct constraint input_parameter) {
 	b = input_parameter.end;
 	precision = input_parameter.precision;
 	bit = input_parameter.bit;
-	bit = 7;
+	//bit = 7;
 	bitnum = 1 << bit;
 	bitnum_1 = bitnum - 1;
 	fnum = input_parameter.fnum;
