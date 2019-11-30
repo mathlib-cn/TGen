@@ -1,14 +1,13 @@
-//#include "libm.h"
 #include "myhead.h"
-extern	const DL	_logtabhi[];
-extern	const DL	_logtablo[];
-extern	const DL	_log_ru[];
 
-static const long long twop7 =
-0x4060000000000000ll; // 128
+#define BIT 7
+#define BITNUM 128
+#define DEGREE 8
 
-static	const DL twopm7 =
-{ .l = 0x3f80000000000000 }; // 1/128
+static const long long	twop7 =
+{ 0x4060000000000000ll }; // 128
+
+static const double twopm7 = 0.0078125;
 
 static const DL	log2_lead =
 { .l = 0x3fe62e42fefa4000 };
@@ -20,7 +19,7 @@ static const DL	log2_trail =
 // P = fpminimax(log(1+x), [|1,2,3,4,5,6,7|], [|D...|], [1b-53,1/128]);
 // x * (0x3ff0000000000000 + x * (0xbfdffffffffffffc + x * (0x3fd5555555552dde + x * (0xbfcffffffefe562d + x * (0x3fc9999817d3a50f + x * (0xbfc554317b3f67a5 + x * 0x3fc1dc5c45e09c18))))))
 static const DL
-C[] = {
+C[DEGREE - 1] = {
 	{.l = 0x3ff0000000000000},
 	{.l = 0xbfdffffffffffffc},
 	{.l = 0x3fd5555555552dde},
@@ -29,11 +28,13 @@ C[] = {
 	{.l = 0xbfc554317b3f67a5},
 	{.l = 0x3fc1dc5c45e09c18},
 };
-const DL _logtabhi[] =
+
+static const DL
+logtabhi[] =
 {
 	{.l = 0x0000000000000000 },
-	{.l = 0x3f7fe02a6b200000 }, // ln(1+1/128)
-	{.l = 0x3f8fc0a8b1000000 }, // ln(1+2/128)
+	{.l = 0x3f7fe02a6b200000 },
+	{.l = 0x3f8fc0a8b1000000 },
 	{.l = 0x3f97b91b07d80000 },
 	{.l = 0x3f9f829b0e780000 },
 	{.l = 0x3fa39e87ba000000 },
@@ -162,7 +163,8 @@ const DL _logtabhi[] =
 	{.l = 0x0000000000000000 },
 };
 
-const DL _logtablo[] =
+static const DL
+logtablo[] =
 {
 	{.l = 0x0000000000000000 },
 	{.l = 0xbd6f30ee07912df9 },
@@ -295,7 +297,8 @@ const DL _logtablo[] =
 	{.l = 0x0000000000000000 },
 };
 
-const DL _log_ru[] =
+static const DL
+log_ru[] =
 {
 	{.l = 0x3ff0000000000000 },
 	{.l = 0x3fefc07f01fc07f0 },
@@ -429,9 +432,9 @@ const DL _log_ru[] =
 };
 
 double log_gen(double x) {
-	unsigned long long ix;
+	_UL ix;
 	int	j, m, k;
-	double	u, t, xmu, q, l_lead, l_trail, w, result;
+	double	w, u, t, xmu, q, l_lead, l_trail, result;
 
 	/* extract exponent and sign of x for some quick screening */
 
@@ -445,19 +448,17 @@ double log_gen(double x) {
 	/* normalize x and compute the nearest 1/128th to x */
 
 	ix &= DMANTISSA;	/* get the mantissa of x */
-	ix |= twop7;	/* set exponent of x to 0x406 */
+	ix |= twop7;	/* set exponent of x to 7 */
 
-	/* adjust scaled arg	*/
-	
 	w = *(double *)(&ix);
 	k = w;
 	u = k;
 
-	k -= 128; // the number 128 here is for zhengshu bit "1"
+	k -= BITNUM; // the number 128 here is for zhengshu bit "1"
 
-	xmu = twopm7.d*(w - u);
+	xmu = twopm7*(w - u);
 
-	t = _log_ru[k].d*xmu;
+	t = log_ru[k].d*xmu;
 
 	/* avoid loss of significance for values of x near two
 		by adjusting index; effectively u is divided by two.
@@ -466,18 +467,15 @@ double log_gen(double x) {
 
 	if (k > 64)
 		m++;
+
 	q = (((((C[6].d*t + C[5].d)*t + C[4].d)*t + C[3].d)*t + C[2].d)*t + C[1].d)*(t*t);
 
-	l_lead = _logtabhi[k].d;
-	l_trail = _logtablo[k].d;
-
+	l_lead = logtabhi[k].d;
+	l_trail = logtablo[k].d;
 	l_lead += m * log2_lead.d;
 	l_trail += m * log2_trail.d;
 
 	result = l_lead + (C[0].d * t + (q + l_trail));
 
-	if (x == 1) {
-		result = 0;
-	}
 	return result;
 }
