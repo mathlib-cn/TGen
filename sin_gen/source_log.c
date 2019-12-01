@@ -423,7 +423,7 @@ const DL log_ru[] =
 static const DL
 coefficient_1div_128[COEFFICIENTS][COEFFICIENTS] = {
 	{
-		{.l = 0}
+		{.l = 0x3cafffffffffff7f}
 	},
 	// P = fpminimax(log(1 + x),[| 1 | ],[| D... | ],[1b - 53,1 / 128]); printexpansion(P);
 	// x * 0x3feff00d46bd8a01
@@ -494,7 +494,7 @@ coefficient_1div_128[COEFFICIENTS][COEFFICIENTS] = {
 static const DL
 coefficient_1div_64[COEFFICIENTS][COEFFICIENTS] = {
 	{
-		{.l = 0}
+		{.l = 0x3cafffffffffffbf}
 	},
 	
 			
@@ -567,7 +567,7 @@ coefficient_1div_64[COEFFICIENTS][COEFFICIENTS] = {
 static const DL
 coefficient_1div_32[COEFFICIENTS][COEFFICIENTS] = {
 	{
-		{.l = 0}
+		{.l = 0x3cafffffffffffdf}
 	},
 	// > P = fpminimax(log(1 + x),[| 1 | ],[| D... | ],[1b - 53,1 / 32]); printexpansion(P);
 	// x * 0x3fefc0d1bd3af815
@@ -639,7 +639,7 @@ coefficient_1div_32[COEFFICIENTS][COEFFICIENTS] = {
 static const DL
 coefficient_1div_16[COEFFICIENTS][COEFFICIENTS] = {
 	{
-		{.l = 0},
+		{.l = 0x3cafffffffffffef},
 	},
 
 	// P = fpminimax(log(1+x), [|1|], [|D...|], [1b-53,1/16]);
@@ -717,7 +717,7 @@ coefficient_1div_16[COEFFICIENTS][COEFFICIENTS] = {
 static const DL
 coefficient_1div_8[COEFFICIENTS][COEFFICIENTS] = {
 	{
-		{.l = 0},
+		{.l = 0x3caffffffffffff7},
 	},
 
 	// P = fpminimax(log(1+x), [|1|], [|D...|], [1b-53,1/8]);
@@ -796,7 +796,7 @@ coefficient_1div_8[COEFFICIENTS][COEFFICIENTS] = {
 static const DL
 coefficient_1div_4[COEFFICIENTS][COEFFICIENTS] = {
 	{
-		{.l = 0},
+		{.l = 0x3caffffffffffffb},
 	},
 
 	// P = fpminimax(log(1+x), [|1|], [|D...|], [1b-53,1/4]);
@@ -875,7 +875,7 @@ coefficient_1div_4[COEFFICIENTS][COEFFICIENTS] = {
 static const DL
 coefficient_1div_2[COEFFICIENTS][COEFFICIENTS] = {
 	{
-		{.l = 0},
+		{.l = 0x3caffffffffffffd},
 	},
 
 	// P = fpminimax(log(1+x), [|1|], [|D...|], [1b-53,1/2]);
@@ -954,7 +954,7 @@ coefficient_1div_2[COEFFICIENTS][COEFFICIENTS] = {
 static const DL
 coefficient_1div_1[COEFFICIENTS][COEFFICIENTS] = {
 	{
-		{.l = 0},
+		{.l = 0x3caffffffffffffe},
 	},
 
 	// P = fpminimax(log(1+x), [|1|], [|D...|], [1b-53,1/1]);
@@ -1048,7 +1048,7 @@ int gen(struct constraint input_parameter) {
 	b = input_parameter.end;
 	precision = input_parameter.precision;
 	bit = input_parameter.bit;
-	bit = 7;
+	//bit = 7;
 	bitnum = 1 << bit;
 	bitnum_1 = bitnum - 1;
 	fnum = input_parameter.fnum;
@@ -1073,8 +1073,8 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "#define BITNUM %d\n", bitnum);
 		fprintf(func, "#define DEGREE %d\n", degree + 1); // 常数项被省略
 		fprintf(func, "\n");
-		fprintf(func, "static const long long	twop7 =\n");
-		fprintf(func, "{ 0x4060000000000000ll }; // 128\n");
+		fprintf(func, "static const long long	twop%d =\n", bit);
+		fprintf(func, "{ 0x%03d0000000000000ll }; // %d\n", (399 + bit), bitnum);
 		fprintf(func, "\n");
 		fprintf(func, "static const double twopm%d = %-.10e;\n", bit, 1.0/bitnum);
 		fprintf(func, "\n");
@@ -1085,16 +1085,23 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "{ .l = 0xbd48432a1b0e2634 };\n");
 		fprintf(func, "\n");
 		// degree
-		fprintf(func, "/* coefficients for polynomial approximation of log(1 + t) on +/- 1/256   */\n");
-		fprintf(func, "// P = fpminimax(log(1+x), [|1,2,3,4,5,6,7|], [|D...|], [1b-53,1/128]);\n");
-		fprintf(func, "// x * (0x3ff0000000000000 + x * (0xbfdffffffffffffc + x * (0x3fd5555555552dde + x * (0xbfcffffffefe562d + x * (0x3fc9999817d3a50f + x * (0xbfc554317b3f67a5 + x * 0x3fc1dc5c45e09c18))))))\n");
-		fprintf(func, "static const DL\n");
-		fprintf(func, "C[DEGREE - 1] = {\n");
-		for (i = 1; i <= degree; i++) {
-			fprintf(func, "\t{.l = 0x%lx},\n", link[bit][degree * COEFFICIENTS + i].l);
-			//fprintf(func, "\t{.l = 0x%lx},\n", coefficient[degree][i].l);
+		if (degree > 0)	{
+			//fprintf(func, "// P = fpminimax(log(1+x), [|1,2,3,4,5,6,7|], [|D...|], [1b-53,1/128]);\n");
+			//fprintf(func, "// x * (0x3ff0000000000000 + x * (0xbfdffffffffffffc + x * (0x3fd5555555552dde + x * (0xbfcffffffefe562d + x * (0x3fc9999817d3a50f + x * (0xbfc554317b3f67a5 + x * 0x3fc1dc5c45e09c18))))))\n");
+			fprintf(func, "static const DL\n");
+			fprintf(func, "C[DEGREE - 1] = {\n");
+			for (i = 1; i <= degree; i++) {
+				fprintf(func, "\t{.l = 0x%lx},\n", link[bit][degree * COEFFICIENTS + i].l);
+				//fprintf(func, "\t{.l = 0x%lx},\n", coefficient[degree][i].l);
+			}
+			fprintf(func, "};\n");
 		}
-		fprintf(func, "};\n");
+		else {
+			fprintf(func, "static const DL\n");
+			fprintf(func, "C = {\n");
+				fprintf(func, "\t.l = 0x%lx\n", link[bit][0].l);
+			fprintf(func, "};\n");
+		}
 		// loghi
 		fprintf(func, "static const DL\n");
 		fprintf(func, "logtabhi[BITNUM] = {\n");
@@ -1191,7 +1198,10 @@ int gen(struct constraint input_parameter) {
 			fprintf(func, "	l_lead += m * log2_lead.d;\n");
 			fprintf(func, "	l_trail += m * log2_trail.d;\n");
 			fprintf(func, "\n");
-			fprintf(func, "	result = l_lead + l_trail;\n");
+			fprintf(func, "	result = l_lead + (l_trail + C.d);\n");
+			fprintf(func, "if (x == 1) {\n");
+			fprintf(func, "\tresult = 0;\n");
+			fprintf(func, "}\n");
 		}
 
 		fprintf(func, "\n");
