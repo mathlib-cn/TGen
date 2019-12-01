@@ -7,7 +7,7 @@ import struct
 # init
 target = input("please input the target function type: ")
 basicPath = subprocess.getoutput("pwd")
-targetPath = basicPath + "/" + target + "_gen/"
+targetPath = "./" + target + "_gen/"
 print(targetPath)
 generator = "gcc source_" + target + ".c -o source_" + target + ".out"
 rc, out = subprocess.getstatusoutput(generator)
@@ -37,7 +37,7 @@ elif target == 'exp':
 elif target == "log":
 	bit_range = 7
 	fnum_range = 1
-	degree_range = 7
+	degree_range = 8
 elif target == "asin":
 	bit_range = 7
 	fnum_range = 1
