@@ -4,21 +4,17 @@ import re
 if (len(sys.argv) == 2):
 	bit = sys.argv[1]
 else:
-	bit = str(128)
-print('coefficient_1div_' + bit + '[COEFFICIENTS][COEFFICIENTS] = {')
-C = ['[|1|]', '[|1,2|]', '[|1,2,3|]', '[|1,2,3,4|]', '[|1,2,3,4,5|]', '[|1,2,3,4,5,6|]', '[|1,2,3,4,5,6,7|]', ]
+	bit = str(16)
+print('coefficient_' + bit + '[COEFFICIENTS_NUM][COEFFICIENTS_NUM] = {')
+C = ['[|1|]', '[|1,3|]', '[|1,3,5|]', '[|1,3,5,7|]', '[|1,3,5,7,9|]', '[|1,3,5,7,9,11|]', '[|1,3,5,7,9,11,13|]', '[|1,3,5,7,9,11,13,15|]']
 f = open("1")
 line = f.readline().replace('\n','')
-print('\t{')
-print('\t\t{.l = 0},')
-print('\t},')
 i = 0
 while line:
 	print()
-	print('\t// ' + 'P = fpminimax(log(1+x), ' + C[i] + ', [|D...|], [1b-53,1/' + bit + ']);')
+	print('\t// ' + 'P = fpminimax(asin(x), ' + C[i] + ', [|D...|], [0,sqrt(1 - (' + str(int(bit)-1) + '/' + bit + ')^2)]);')
 	print('\t// ' +line)
 	print('\t{')
-	print('\t\t{.l = 0},')
 	temp = re.findall(r'(?<=0x)[0-9,a-f]{16}', line)
 	temp1 = [('\t\t{.l = 0x' + i + ' },') for i in temp]
 	[print(i) for i in temp1]

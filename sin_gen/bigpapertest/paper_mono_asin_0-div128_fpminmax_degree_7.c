@@ -5,7 +5,7 @@
 #define NUM 8
 #define TABLE_NUM 128
 #define M 7
-
+/*
 static const DL
 P[] =
 {
@@ -18,7 +18,7 @@ P[] =
 {.l = 0x3f91b0c9c6fc9434},
 {.l = 0x3f8fb249579227f4},
 };
-
+*/
 // P = fpminimax(asin(x), 7, [|D...|], [1b-53,1/128]); printexpansion(P);
 // 0x35cc77c32eae1aa9 + x * (0x3ff0000000000000 + x * (0xbc403ae51587b8f4 + x * (0x3fc55555555555eb + x * (0xbd8c9a43059767fa + x * (0x3fb3333338215db5 + x * (0xbe8a24c43b8193ec + x * 0x3fa6dd3ada2167d3))))))
 /*
@@ -32,10 +32,11 @@ C[NUM] = {
 	{.l = 0x3fb3333338215db5},
 	{.l = 0xbe8a24c43b8193ec},
 	{.l = 0x3fa6dd3ada2167d3},
-};
-*/
+};*/
+
 // P = fpminimax(asin(x), [|1,2,3,4,5,6,7|], [|D...|], [1b-53,1/128]);
 // x * (0x3ff0000000000000 + x * (0xbc403ae5159fa71b + x * (0x3fc55555555555eb + x * (0xbd8c9a430593c449 + x * (0x3fb3333338215db5 + x * (0xbe8a24c43b897ad7 + x * 0x3fa6dd3ada2168bd))))))
+/*
 static const DL
 C[NUM] = {
 	{.l = 0},
@@ -47,7 +48,35 @@ C[NUM] = {
 	{.l = 0xbe8a24c43b897ad7},
 	{.l = 0x3fa6dd3ada2168bd},
 };
+*/
+// P = fpminimax(asin(x), [| 1, 2, 3, 4, 5, 6, 7 | ], [| D... | ], [1b - 53, sqrt(1 - (127 / 128)*(127 / 128))]);
+// x * (0x3ff000000000102d + x * (0xbe07d47346694dd4 + x * (0x3fc555560c366832 + x * (0xbed048df440fe2d4 + x * (0x3fb3389a4b4b8267 + x * (0xbf4bee0d67e4eda5 + x * 0x3fa8be5421c359e5))))))
+/*static const DL
+C[NUM] = {
+	{.l = 0},
+	{.l = 0x3ff000000000102d},
+	{.l = 0xbe07d47346694dd4},
+	{.l = 0x3fc555560c366832},
+	{.l = 0xbed048df440fe2d4},
+	{.l = 0x3fb3389a4b4b8267},
+	{.l = 0xbf4bee0d67e4eda5},
+	{.l = 0x3fa8be5421c359e5},
+};*/
+// P = fpminimax(asin(x), [| 1, 3, 5, 7, 9, 11, 13, 15| ], [| D... | ], [0, sqrt(1 - (127 / 128)*(127 / 128))]); printexpansion(P);
+// x * (0x3ff0000000000000 + x ^ 2 * (0x3fc5555555555556 + x ^ 2 * (0x3fb3333333332cb8 + x ^ 2 * (0x3fa6db6db6f2a213 + x ^ 2 * (0x3f9f1c719dc96a96 + x ^ 2 * (0x3f96e8ce755ff3f7 + x ^ 2 * (0x3f91bf59a4e08f79 + x ^ 2 * 0x3f8e340c0c874f30)))))))
+static const DL
+C[NUM] = {
+	{.l = 0x3ff0000000000000},
+	{.l = 0x3fc5555555555556},
+	{.l = 0x3fb3333333332cb8},
+	{.l = 0x3fa6db6db6f2a213},
+	{.l = 0x3f9f1c719dc96a96},
+	{.l = 0x3f96e8ce755ff3f7},
+	{.l = 0x3f91bf59a4e08f79},
+	{.l = 0x3f8e340c0c874f30},
+};
 
+static const DL Twopm28 = { .l = 0x3e30000000000000 };
 static const DL
 asin_tab[TABLE_NUM] = {
 	{.l = 0x0000000000000000},
@@ -459,19 +488,26 @@ double asin_gen(double x) {
 	//temp = x * (double)order;
 	//temp = (double)order / m;
 	//delta = x * sqrt(1 - temp * temp) - temp * sqrt(1 - x * x);
-	delta = x * ck[order].d - sk[order].d * sqrt(1 - x * x);
+	delta = x * ck[order].d - sk[order].d * sqrt(1.0 - x + x * (1.0 -x));
 	//delta = x * sqrt(1 - temp + (1 - temp) * temp) - temp * sqrt(1.0 - x + (1.0 - x) * x);
-
+	
 	x = delta;
+	if (fabs(delta) < Twopm28.d)
+		x = 0.0;
 	zsq = x * x;
+	//result = zsq * (C[2].d + x * (C[3].d + x * (C[4].d + x * (C[5].d +x * (C[6].d + x * (C[7].d))))));
 	//result = C[0].d + x * (C[1].d + x * (C[2].d + x * (C[3].d + x * (C[4].d + x * (C[5].d +x * (C[6].d + x * (C[7].d)))))));
 	//result = zsq * (C[2].d + x * (C[3].d + x * (C[4].d + x * (C[5].d +x * (C[6].d + x * (C[7].d))))));
 	//result = C[0].d + zsq * (C[2].d + zsq * (C[4].d + zsq * C[6].d)) + x * (C[1].d + zsq * (C[3].d + zsq * (C[5].d + zsq * C[7].d)));
-	result = zsq * (C[2].d + zsq * (C[4].d + zsq * C[6].d)) + x * zsq * (C[3].d + zsq * (C[5].d + zsq * C[7].d));
+	//result = zsq * (C[2].d + zsq * (C[4].d + zsq * C[6].d)) + x * zsq * (C[3].d + zsq * (C[5].d + zsq * C[7].d));
 	//result = x * C[1].d + x * zsq * (C[3].d + zsq * (C[5].d + zsq * (C[7].d + zsq * (C[9].d))));
 	//result = x * C[1].d + x * zsq * (C[3].d + zsq * (C[5].d + zsq * (C[7].d + zsq * (C[9].d + zsq * C[11].d))));
 	//result = ((((((P[7].d*zsq + P[6].d)*zsq + P[5].d)*zsq + P[4].d)*zsq + P[3].d)*zsq + P[2].d)*zsq + P[1].d)*(zsq*x) + x;
 		
-	result =  asin_tab[order].d + C[0].d + x * C[1].d + result;
+	//result =  asin_tab[order].d + C[0].d + x * C[1].d + result;
+
+	result = ((((((C[7].d*zsq + C[6].d)*zsq + C[5].d)*zsq + C[4].d)*zsq + C[3].d)*zsq + C[2].d)*zsq + C[1].d)*(zsq*delta) + delta;
+	result = asin_tab[order].d + result;
+
 	return result;
 }

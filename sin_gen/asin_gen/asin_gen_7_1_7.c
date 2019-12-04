@@ -1,5 +1,5 @@
-#include "myhead.h"
 #include <math.h>
+#include "myhead.h"
 
 #define BIT 7
 #define TABLE_NUM 128
@@ -8,18 +8,17 @@
 
 // static const DL Twopm28 = { .l = 0x3e30000000000000 };
 
-// P = fpminimax(asin(x), [| 1, 3, 5, 7, 9, 11, 13, 15| ], [| D... | ], [0, sqrt(1 - (127 / 128)*(127 / 128))]); printexpansion(P);
-// x * (0x3ff0000000000000 + x ^ 2 * (0x3fc5555555555556 + x ^ 2 * (0x3fb3333333332cb8 + x ^ 2 * (0x3fa6db6db6f2a213 + x ^ 2 * (0x3f9f1c719dc96a96 + x ^ 2 * (0x3f96e8ce755ff3f7 + x ^ 2 * (0x3f91bf59a4e08f79 + x ^ 2 * 0x3f8e340c0c874f30)))))))
+// P = fpminimax(asin(x), [| 1, 3, 5, 7, 9, 11, 13, 15| ], [| D... | ], [0, sqrt(1 - (127 / 128)^2)]); printexpansion(P);
 static const DL
 C[COEFFICIENTS_NUM] = {
-	{.l = 0x3ff0000000000000},	// 1
-	{.l = 0x3fc5555555555556},	// 3
-	{.l = 0x3fb3333333332cb8},	// 5
-	{.l = 0x3fa6db6db6f2a213},	// 7
-	{.l = 0x3f9f1c719dc96a96},	// 9
-	{.l = 0x3f96e8ce755ff3f7},	// 11
-	{.l = 0x3f91bf59a4e08f79},	// 13
-	{.l = 0x3f8e340c0c874f30},	// 15
+	{.l = 0x3ff0000000000000},
+	{.l = 0x3fc5555555555556},
+	{.l = 0x3fb3333333332cb8},
+	{.l = 0x3fa6db6db6f2a213},
+	{.l = 0x3f9f1c719dc96a96},
+	{.l = 0x3f96e8ce755ff3f7},
+	{.l = 0x3f91bf59a4e08f79},
+	{.l = 0x3f8e340c0c874f30},
 };
 
 /* asin value: 0~1, step = 1/128 */
@@ -152,12 +151,13 @@ asin_tab[TABLE_NUM] = {
 	{.l = 0x3ff51f4bd13f8591},
 	{.l = 0x3ff5a96e34bc532b},
 	{.l = 0x3ff64cf55148366f},
-	{.l = 0x3ff721a5d8718655}
+	{.l = 0x3ff721a5d8718655},
 };
 
 /* cos(y) = sqrt(1-[x]^2) value: 0~1, step = 1/128 */
 static const DL
-sk[TABLE_NUM] = {
+sk[TABLE_NUM] = 
+{
 	{.l = 0x0000000000000000},
 	{.l = 0x3f80000000000000},
 	{.l = 0x3f90000000000000},
@@ -285,12 +285,13 @@ sk[TABLE_NUM] = {
 	{.l = 0x3fef000000000000},
 	{.l = 0x3fef400000000000},
 	{.l = 0x3fef800000000000},
-	{.l = 0x3fefc00000000000}
+	{.l = 0x3fefc00000000000},
 };
 
 /* sin(y) = [x] value: 0~1, step = 1/128 */
 static const DL
-ck[TABLE_NUM] = {
+ck[TABLE_NUM] = 
+{
 	{.l = 0x3ff0000000000000},
 	{.l = 0x3fefffbfffbfff80},
 	{.l = 0x3feffefffbffdfff},
@@ -418,7 +419,7 @@ ck[TABLE_NUM] = {
 	{.l = 0x3fcfbfbf7ebc755f},
 	{.l = 0x3fcb8cc9d3952a45},
 	{.l = 0x3fc689f26c6b01d0},
-	{.l = 0x3fbfeffbfdfebf1f}
+	{.l = 0x3fbfeffbfdfebf1f},
 };
 
 double asin_gen(double x) {
@@ -436,7 +437,8 @@ double asin_gen(double x) {
 	//	x = 0.0;
 	zsq = x * x;
 
-	result = delta + (delta * zsq) * (C[1].d + zsq * (C[2].d + zsq * (C[3].d + zsq * (C[4].d + zsq * (C[5].d + zsq * (C[6].d + zsq * (C[7].d)))))));
+	result = C[0].d * delta + (delta * zsq) * (C[1].d + zsq * (C[2].d + zsq * (C[3].d + zsq * (C[4].d + zsq * (C[5].d + zsq * (C[6].d + zsq * (C[7].d)))))));
+
 	result = asin_tab[order].d + result;
 
 	return result;
