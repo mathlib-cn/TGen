@@ -5,7 +5,7 @@
 #define DEGREE 5
 
 static const long long	twop0 =
-{ 0x3990000000000000ll }; // 1
+{ 0x3ff0000000000000ll }; // 1
 
 static const double twopm0 = 1.0000000000e+00;
 

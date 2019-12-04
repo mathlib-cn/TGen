@@ -1074,7 +1074,7 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "#define DEGREE %d\n", degree + 1); // 常数项被省略
 		fprintf(func, "\n");
 		fprintf(func, "static const long long	twop%d =\n", bit);
-		fprintf(func, "{ 0x%03d0000000000000ll }; // %d\n", (399 + bit), bitnum);
+		fprintf(func, "{ 0x%03x0000000000000ll }; // %d\n", (0x3ff + bit), bitnum);
 		fprintf(func, "\n");
 		fprintf(func, "static const double twopm%d = %-.10e;\n", bit, 1.0/bitnum);
 		fprintf(func, "\n");
