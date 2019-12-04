@@ -135,6 +135,7 @@
     <ClCompile Include="log_sw.c" />
     <ClCompile Include="performance_test.c" />
     <ClCompile Include="source.c" />
+    <ClCompile Include="source_asin.c" />
     <ClCompile Include="source_exp.c" />
     <ClCompile Include="source_log.c" />
     <ClCompile Include="testpy.c" />
