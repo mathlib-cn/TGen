@@ -1130,7 +1130,7 @@ int gen(struct constraint input_parameter) {
 	{
 		fprintf(func, "double log_gen(double x) {\n");
 		fprintf(func, "	_UL ix;\n");
-		fprintf(func, "	int	j, m, k;\n");
+		fprintf(func, "	int	m, k;\n");
 		fprintf(func, "	double	w, u, t, xmu, q, l_lead, l_trail, result;\n");
 		fprintf(func, "\n");
 		fprintf(func, "	/* extract exponent and sign of x for some quick screening */\n");
@@ -1138,7 +1138,6 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "	ix = *(unsigned long long *)(&x);	/* copy arg to a long long */\n");
 		fprintf(func, "\n");
 		fprintf(func, "	m = (ix >> DMANTWIDTH);		/* shift off mantissa	*/\n");
-		fprintf(func, "	j = m - MINEXP;\n");
 		fprintf(func, "\n");
 		fprintf(func, "	m -= DEXPBIAS;\n");
 		fprintf(func, "\n");
