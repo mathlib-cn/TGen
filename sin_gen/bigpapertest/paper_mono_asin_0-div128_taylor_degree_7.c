@@ -21,18 +21,14 @@ P[] =
 
 static const DL
 C[NUM] = {
-	{.l = 0},
-	{.l = 0x3ff0000000000000},//asin 1
-	{.l = 0},
-	{.l = 0x3fc5555555555555},//asin 1/6
- 	{.l = 0},
-	{.l = 0x3fb3333333333333},//asin 3/40
-	{.l = 0},
-	{.l = 0x3fa6db6db6db6db7},//asin 5/112
-	{.l = 0},
-	{.l = 0x3f9f1c71c71c71c7},//asin 35/1152
-	{.l = 0},
-	{.l = 0x3fa6e8ba2e8ba2e9},//asin 63/1408
+	{.l = 0x3ff0000000000000},//asin 1: 1
+	{.l = 0x3fc5555555555555},//asin 3: 1/6
+	{.l = 0x3fb3333333333333},//asin 5: 3/40
+	{.l = 0x3fa6db6db6db6db7},//asin 7: 5/112
+	{.l = 0x3f9f1c71c71c71c7},//asin 9: 35/1152
+	{.l = 0x3fa6e8ba2e8ba2e9},//asin 11: 63/1408
+	{.l = 0x3f91c4ec4ec4ec4f},//asin 13: 231/13312
+	{.l = 0x3fac99999999999a},//asin 15: 3003/53760
 };
 
 static const DL
@@ -431,33 +427,25 @@ ck[TABLE_NUM] = {
 	{.l = 0x3fbfeffbfdfebf1f}
 };
 
-double asin_gen(double x) {
-	double result;
-	double temp;
-	double delta;
-	double zsq;
-	int order;
-	int m = 1 << M;
-	int step = 1 << (7 - M);
 
-	temp = x * (double)m;
+double asin_gen(double x) {
+	double result, temp, delta, zsq;
+	int order;
+
+	temp = x * (double)TABLE_NUM;
 	order = temp;
-	order = order * step;
-	//temp = x * (double)order;
-	//temp = (double)order / m;
-	//delta = x * sqrt(1 - temp * temp) - temp * sqrt(1 - x * x);
-	delta = x * ck[order].d - sk[order].d * sqrt(1 - x * x);
-	//delta = x * sqrt(1 - temp + (1 - temp) * temp) - temp * sqrt(1.0 - x + (1.0 - x) * x);
+	
+	// delta = x * sqrt(1 - temp * temp) - temp * sqrt(1 - x * x);
+	delta = x * ck[order].d - sk[order].d * sqrt(1.0 - x + x * (1.0 - x));
 
 	x = delta;
+	// if (delta < Twopm28.d)
+	//	x = 0.0;
 	zsq = x * x;
-	//result = C[0].d + x * (C[1].d + x * (C[2].d + x * (C[3].d + x * (C[4].d + x * (C[5].d +x * (C[6].d + x * (C[7].d + x * (C[8].d + x * (C[9].d)))))))));
-	// result = x * C[1].d + x * zsq * (C[3].d + zsq * (C[5].d + zsq * (C[7].d + zsq * (C[9].d))));
-	result = x * C[1].d + x * zsq * (C[3].d + zsq * (C[5].d + zsq * (C[7].d)));
-	//result = x * C[1].d + x * zsq * (C[3].d + zsq * (C[5].d + zsq * (C[7].d + zsq * (C[9].d + zsq * C[11].d))));
 
-	//result = ((((((P[7].d*zsq + P[6].d)*zsq + P[5].d)*zsq + P[4].d)*zsq + P[3].d)*zsq + P[2].d)*zsq + P[1].d)*(zsq*x) + x;
-		
-	result = result + asin_tab[order].d;
+	result = C[0].d * delta + (delta * zsq) * (C[1].d + zsq * (C[2].d + zsq * (C[3].d + zsq * (C[4].d + zsq * (C[5].d + zsq * (C[6].d + zsq * (C[7].d)))))));
+
+	result = asin_tab[order].d + result;
+
 	return result;
 }
