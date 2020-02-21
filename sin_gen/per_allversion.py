@@ -61,7 +61,7 @@ subprocess.call(data_gen, shell=True)
 # generate all possible implementations within the parameters space
 # and run the correctness test
 # TODO: performance test
-for bit in range(7, bit_range + 1):
+for bit in range(0, bit_range + 1):
 	for fnum in range(1, fnum_range + 1):
 		for degree in range(0, degree_range):
 			# print basic info
