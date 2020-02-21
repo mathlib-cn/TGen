@@ -1,5 +1,5 @@
 /** target func:	sin
-*** target domain:	[0.000000, 100.000000]
+*** target domain:	[0.000000, 1.000000]
 *** target precision:	23
 **/
 
