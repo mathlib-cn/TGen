@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="source.c">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="k_cos.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -82,6 +79,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="source_asin.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="source_sin.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

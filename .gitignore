@@ -268,3 +268,9 @@ __pycache__/
 /sin_gen/exp_gen.c
 /sin_gen/sin_gen.c
 /sin_gen/1
+/sin_gen/
+/cos_gen/
+/tan_gen/
+/exp_gen/
+/log_gen/
+/asin_gen/
