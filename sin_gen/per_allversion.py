@@ -30,6 +30,10 @@ if target == 'sin':
 	bit_range = 7			# [0,1,2,3,4,5,6,7] mean 2^[0,1,2,3,4,5,6,7] for approximate interval
 	fnum_range = 1			# 1, dont mind now
 	degree_range = 7		# [0,1,2,3,4,5,6] for the highest degree
+elif target == 'cos':
+	bit_range = 7
+	fnum_range = 1
+	degree_range = 7
 elif target == 'exp':
 	bit_range = 7
 	fnum_range = 1
@@ -69,18 +73,29 @@ for bit in range(0, bit_range + 1):
 			
 			# compile code
 			target_gen_run = main + ' ' + start + ' ' + end + ' ' + precision + ' ' + str(bit) + ' ' + str(fnum) + ' ' + str(degree)
-			subprocess.getstatusoutput(target_gen_run)
+			rc, out = subprocess.getstatusoutput(target_gen_run)
+			if rc > 0:
+				print("compile status: ", rc)
+				print(target_gen_run)
 			
 			# rename and move file
 			newfilename = targetPath + target + "_gen_" + str(bit) + "_" + str(fnum) + "_" + str(degree) + ".c"
 			shellscript = "mv " + target + "_gen.c " + newfilename
-			subprocess.getstatusoutput(shellscript)
-			
+			rc, out = subprocess.getstatusoutput(shellscript)
+			if rc > 0:
+				print("rename & move status: ", rc)
+				print(out)
+
 			# correctness test
 			correctness_test = "gcc gccCorrectnessTest_" + target + ".c " + newfilename + " binary.c -lm -lgmp -lmpfr -o gccCorrectnessTest_" + target + ".out"
-			subprocess.getstatusoutput(correctness_test)
+			rc, out = subprocess.getstatusoutput(correctness_test)
+			if rc > 0:
+				print("correctness_compile: ", rc)
+				print(out)
 			rc, out = subprocess.getstatusoutput(correctness_run)
-			
+			if rc > 0:
+				print("correctness_run: ", rc)
+				print(out)
 			# collect function's precision info
 			#temp = [eval(i) for i in out.split()]
 			temp = out.split()
