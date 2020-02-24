@@ -34,6 +34,10 @@ elif target == 'cos':
 	bit_range = 7
 	fnum_range = 1
 	degree_range = 7
+elif target == 'tan':
+	bit_range = 7
+	fnum_range = 1
+	degree_range = 7
 elif target == 'exp':
 	bit_range = 7
 	fnum_range = 1
@@ -77,6 +81,7 @@ for bit in range(0, bit_range + 1):
 			if rc > 0:
 				print("compile status: ", rc)
 				print(target_gen_run)
+				exit(1)
 			
 			# rename and move file
 			newfilename = targetPath + target + "_gen_" + str(bit) + "_" + str(fnum) + "_" + str(degree) + ".c"
@@ -85,6 +90,7 @@ for bit in range(0, bit_range + 1):
 			if rc > 0:
 				print("rename & move status: ", rc)
 				print(out)
+				exit(1)
 
 			# correctness test
 			correctness_test = "gcc gccCorrectnessTest_" + target + ".c " + newfilename + " binary.c -lm -lgmp -lmpfr -o gccCorrectnessTest_" + target + ".out"
@@ -92,15 +98,21 @@ for bit in range(0, bit_range + 1):
 			if rc > 0:
 				print("correctness_compile: ", rc)
 				print(out)
+				exit(1)
 			rc, out = subprocess.getstatusoutput(correctness_run)
 			if rc > 0:
 				print("correctness_run: ", rc)
 				print(out)
+				exit(1)
 			# collect function's precision info
 			#temp = [eval(i) for i in out.split()]
 			temp = out.split()
 			maxUlp = struct.unpack('>d', bytes.fromhex(temp[0]))[0]
 			averageUlp = struct.unpack('>d', bytes.fromhex(temp[3]))[0]
+			if math.isnan(maxUlp) or math.isinf(maxUlp) or math.isnan(averageUlp) or math.isinf(averageUlp):
+				print("maxUlp: ", maxUlp)
+				print("averageUlp: ", maxUlp)
+				continue	
 			precision_item = []
 			precision_item.append(maxUlp)
 			precision_item.append(int(52 - math.ceil(math.log(maxUlp, 2))))

@@ -1325,7 +1325,7 @@ table[NUM] = { //pi/2 * T, T = 0, 1, 2, ......
 	29.845130209103035765395112141155,
 	31.415926535897932384626433832795
 };
-//extern double cos_gen(double);
+//extern double sin_gen(double);
 
 int gen(struct constraint input_parameter) {
 	double a, b;
@@ -1339,7 +1339,7 @@ int gen(struct constraint input_parameter) {
 	int num, bit, bitnum, bitnum_1, degree, fnum, format;
 	num = 100;
 	
-	if ((func = fopen("cos_gen.c", "w")) == (FILE *)0) {
+	if ((func = fopen("tan_gen.c", "w")) == (FILE *)0) {
 		printf("open file error!\n");
 		return 1;
 	}
@@ -1378,10 +1378,10 @@ int gen(struct constraint input_parameter) {
 	b2 = ((double)btemp) * pi_2;
 	*/
 
-	// generate code for cos_gen
+	// generate code for sin_gen
 	{
 		// comments
-		fprintf(func, "/** target func:\tcos\n");
+		fprintf(func, "/** target func:\tsin\n");
 		fprintf(func, "*** target domain:\t[%lf, %lf]\n", a, b);
 		fprintf(func, "*** target precision:\t%d\n", precision);
 		fprintf(func, "**/\n\n");
@@ -1462,25 +1462,24 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "};\n\n");
 
 		// func
-		//fprintf(func, "double cos_gen(double x) {\n");
+		//fprintf(func, "double sin_gen(double x) {\n");
 		//fprintf(func, "\tdouble ix, iix, iiix, y, appro_s, appro_c;\n");
-		fprintf(func, "double cos_gen(double ix) {\n");
-		fprintf(func, "\tdouble iix, iiix, y, appro_s, appro_c;\n");
-		//fprintf(func, "\tlong int temp, table_order, status_pi_4, status_pi_2, status_pi_1, flag, sign, sin_or_cos;\n");
-		fprintf(func, "\tlong int temp, table_order, status_pi_4, status_pi_2, status_pi_1, sign, sin_or_cos;\n");
+		fprintf(func, "double tan_gen(double ix) {\n");
+		fprintf(func, "\tdouble iix, iiix, y, y1, y2, appro_s, appro_c;\n");
+		fprintf(func, "\tlong int temp, table_order, status_pi_4, status_pi_2, status_pi_1, flag, sign, sin_or_cos;\n");
 		fprintf(func, "\tint i;\n");
 		fprintf(func, "\n");
 		//fprintf(func, "\tix = x - X;\n");
 		fprintf(func, "\ttemp = *((long int *)(&ix));\n");
-		//fprintf(func, "\tflag = temp >> %d; // - is 1, + is 0\n", format - 1);
+		fprintf(func, "\tflag = temp >> %d; // - is 1, + is 0\n", format - 1);
 		fprintf(func, "\ttemp = temp & 0x7fffffffffffffff;\n");
 		fprintf(func, "\tix = *((double *)(&temp)); // at this time, ix is absolute value\n");
 		fprintf(func, "\t\n");
-		//fprintf(func, "\t// if ix is too little, then return ix;\n");
-		//fprintf(func, "\tif (temp < 0x3e40000000000000) {\n");
-		//fprintf(func, "\t\treturn (1 - flag * 2) * ix;\n");
-		//fprintf(func, "\t}\n");
-		//fprintf(func, "\n");
+		fprintf(func, "\t// if ix is too little, then return ix;\n");
+		fprintf(func, "\tif (temp < 0x3e40000000000000) {\n");
+		fprintf(func, "\t\treturn (1 - flag * 2) * ix;\n");
+		fprintf(func, "\t}\n");
+		fprintf(func, "\n");
 		fprintf(func, "\t// new\n");
 		fprintf(func, "\t// iix = ix - [ix * invpio4] * pi_4\n");
 		fprintf(func, "\t// iiix = iix - i / %d * pi_4\n", bitnum);
@@ -1506,10 +1505,8 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "\t//iiix = iiix - ((double)table_order) / BITNUM * pi_4_2t.d;\n");
 		fprintf(func, "\t//iiix = iiix - ((double)table_order) / BITNUM * pi_4_3.d;\n");
 		fprintf(func, "\t//iiix = iiix - ((double)table_order) / BITNUM * pi_4_3t.d;\n");
-		//fprintf(func, "\tsign = flag ^ status_pi_1; // ornot£¬0 is +, 1 is -\n");
-		fprintf(func, "\tsign = status_pi_1; // ornot£¬0 is +, 1 is -\n");
-		//fprintf(func, "\tsin_or_cos = status_pi_2 ^ status_pi_4; // ornot, 0 is sin, 1 is cos\n");
-		fprintf(func, "\tsin_or_cos = 1 - status_pi_2 ^ status_pi_4; // ornot, 0 is sin, 1 is cos\n");
+		fprintf(func, "\tsign = flag ^ status_pi_2; // ornot£¬0 is +, 1 is -\n");
+		fprintf(func, "\tsin_or_cos = status_pi_2 ^ status_pi_4; // ornot, 0 is sin, 1 is cos\n");
 		fprintf(func, "\n");
 		
 		fprintf(func, "\t// new, sin(x+x') = sin(x)cos(x') + sin(x')cos(x), x' = iiix\n");
@@ -1525,7 +1522,7 @@ int gen(struct constraint input_parameter) {
 		}
 		fprintf(func, ";\n");
 		//fprintf(func, "\tappro_c = coefficient[1][0].d");
-		fprintf(func, "\tappro_c = 0.0");
+		fprintf(func, "\tappro_c = 1.0");
 		for (i = 1; i <= degree; i++) {
 			fprintf(func, " + iiix * (coefficient[1][%ld].d", i);
 		}
@@ -1537,9 +1534,11 @@ int gen(struct constraint input_parameter) {
 		//fprintf(func, "\tappro_s = coefficient[0][0].d + iiix * (coefficient[0][1].d + iiix * (coefficient[0][2].d + iiix * (coefficient[0][3].d + iiix * (coefficient[0][4].d + iiix * coefficient[0][5].d))));\n");
 		//fprintf(func, "\tappro_c = coefficient[1][0].d + iiix * (coefficient[1][1].d + iiix * (coefficient[1][2].d + iiix * (coefficient[1][3].d + iiix * (coefficient[1][4].d + iiix * coefficient[1][5].d))));\n");
 		fprintf(func, "\n");
-		fprintf(func, "\ty = interpolate[sin_or_cos][table_order] * appro_c + (1 - sin_or_cos * 2) * interpolate[1 - sin_or_cos][table_order] * appro_s;\n");
-		fprintf(func, "\ty += (1 - sin_or_cos * 2) * interpolate[1 - sin_or_cos][table_order] * coefficient[0][0].d + interpolate[sin_or_cos][table_order] * coefficient[1][0].d;\n");
-		fprintf(func, "\ty = (1 - sign * 2) * y;\n");
+		fprintf(func, "\ty1 = interpolate[sin_or_cos][table_order] * appro_c + (1 - sin_or_cos * 2) * interpolate[1 - sin_or_cos][table_order] * appro_s;\n");
+		fprintf(func, "\tsin_or_cos = 1 - sin_or_cos;\n");
+		fprintf(func, "\ty2 = interpolate[sin_or_cos][table_order] * appro_c + (1 - sin_or_cos * 2) * interpolate[1 - sin_or_cos][table_order] * appro_s;\n");
+		
+		fprintf(func, "\ty = (1 - sign * 2) * y1 / y2;\n");
 		fprintf(func, "\n");
 		fprintf(func, "\treturn y;\n");
 		fprintf(func, "}\n");
