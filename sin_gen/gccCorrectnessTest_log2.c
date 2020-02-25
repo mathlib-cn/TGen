@@ -12,7 +12,7 @@ struct test_data {
 	DL average;
 };
 
-double log_gen(double);
+double log2_gen(double);
 void getbinary(_UL, int *);
 _UL getUL(int *);
 void printbinary(int *);
@@ -64,9 +64,9 @@ struct test_data test(void)
 		temp_ul = getUL(result);
 		input = itofd(temp_ul);
 
-		y1 = log_gen(input);
+		y1 = log2_gen(input);
 		mpfr_set_d(mpfr_temp, input, MPFR_RNDN);
-		mpfr_log(mpfr_result, mpfr_temp, MPFR_RNDN);
+		mpfr_log2(mpfr_result, mpfr_temp, MPFR_RNDN);
 		y2 = mpfr_get_d(mpfr_result, MPFR_RNDN);
 
 		mpfr_set_d(mpfr_mine, y1, MPFR_RNDN);
@@ -95,10 +95,10 @@ struct test_data test(void)
 		//ulpdiff = computeULPDiff(y1, y2);
 
 		//printf("for x = %.17e:\n", input);
-		//printf("\tlog_gen = %.17e\n\tlog     = %.17e\n", y1, y2);
-		//printf("binary of log_gen is ");
+		//printf("\tlog2_gen = %.17e\n\tlog2     = %.17e\n", y1, y2);
+		//printf("binary of log2_gen is ");
 		//binaryshow(y1);
-		//printf("binary of log     is ");
+		//printf("binary of log2     is ");
 		//binaryshow(y2);
 
 		if (ulpdiff_max < ulpdiff) {
@@ -126,9 +126,9 @@ int main(int argc, char *argv[]) {
 	struct test_data correctness_result;
 	correctness_result = test();
 	//printf("%d %d %d\n", p->max, p->max_times, p->sum);
-	printf("max ulp is %le\n", correctness_result.max.d);
-	printf("average ulp is %le\n", correctness_result.average.d);
-	printf("effective bit is %f\n", 52 - log2(correctness_result.max.d));
+	//printf("max ulp is %le\n", correctness_result.max.d);
+	//printf("average ulp is %le\n", correctness_result.average.d);
+	//printf("effective bit is %f\n", 52 - log2(correctness_result.max.d));
 	printf("%lx\n", correctness_result.max.l);
 	printf("%lu\n", correctness_result.max_times);
 	printf("%lx\n", correctness_result.sum.l);

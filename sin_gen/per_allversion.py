@@ -46,6 +46,10 @@ elif target == "log":
 	bit_range = 7
 	fnum_range = 1
 	degree_range = 8
+elif target == "log2":
+	bit_range = 7
+	fnum_range = 1
+	degree_range = 8
 elif target == "asin":
 	bit_range = 7
 	fnum_range = 1
