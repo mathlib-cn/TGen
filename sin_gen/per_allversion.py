@@ -42,6 +42,10 @@ elif target == 'exp':
 	bit_range = 7
 	fnum_range = 1
 	degree_range = 8
+elif target == 'exp2':
+	bit_range = 7
+	fnum_range = 1
+	degree_range = 8
 elif target == "log":
 	bit_range = 7
 	fnum_range = 1
@@ -114,7 +118,7 @@ for bit in range(0, bit_range + 1):
 				exit(1)
 			# collect function's precision info
 			#temp = [eval(i) for i in out.split()]
-			temp = out.split()
+			temp = out.split()[-4:]
 			maxUlp = struct.unpack('>d', bytes.fromhex(temp[0]))[0]
 			averageUlp = struct.unpack('>d', bytes.fromhex(temp[3]))[0]
 			if math.isnan(maxUlp) or math.isinf(maxUlp) or math.isnan(averageUlp) or math.isinf(averageUlp):
