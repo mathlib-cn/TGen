@@ -278,3 +278,5 @@ __pycache__/
 /sin_gen/log2_gen/
 /sin_gen/log10_gen/
 /sin_gen/asin_gen/
+/sin_gen/acos_gen/
+/sin_gen/atan_gen/
