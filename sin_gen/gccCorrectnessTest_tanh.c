@@ -12,7 +12,7 @@ struct test_data {
 	DL average;
 };
 
-double sin_gen(double);
+double tanh_gen(double);
 void getbinary(_UL, int *);
 _UL getUL(int *);
 void printbinary(int *);
@@ -64,9 +64,9 @@ struct test_data test(void)
 		temp_ul = getUL(result);
 		input = itofd(temp_ul);
 
-		y1 = sin_gen(input);
+		y1 = tanh_gen(input);
 		mpfr_set_d(mpfr_temp, input, MPFR_RNDN);
-		mpfr_sin(mpfr_result, mpfr_temp, MPFR_RNDN);
+		mpfr_tanh(mpfr_result, mpfr_temp, MPFR_RNDN);
 		y2 = mpfr_get_d(mpfr_result, MPFR_RNDN);
 
 		mpfr_set_d(mpfr_mine, y1, MPFR_RNDN);
@@ -95,10 +95,10 @@ struct test_data test(void)
 		//ulpdiff = computeULPDiff(y1, y2);
 
 		//printf("for x = %.17e:\n", input);
-		//printf("\tsin_gen = %.17e\n\tsin     = %.17e\n", y1, y2);
-		//printf("binary of sin_gen is ");
+		//printf("\ttanh_gen = %.17e\n\ttanh     = %.17e\n", y1, y2);
+		//printf("binary of tanh_gen is ");
 		//binaryshow(y1);
-		//printf("binary of sin     is ");
+		//printf("binary of tanh     is ");
 		//binaryshow(y2);
 
 		if (ulpdiff_max < ulpdiff) {
