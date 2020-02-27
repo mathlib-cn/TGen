@@ -78,6 +78,10 @@ elif target == "sinh":
 	bit_range = 7
 	fnum_range = 1
 	degree_range = 8
+elif target == "cosh":
+	bit_range = 7
+	fnum_range = 1
+	degree_range = 8
 else:
 	bit_range = 7
 	fnum_range = 1
