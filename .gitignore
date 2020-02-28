@@ -284,3 +284,5 @@ __pycache__/
 /sin_gen/cosh_gen/
 /sin_gen/tanh_gen/
 /sin_gen/asinh_gen/
+/sin_gen/acosh_gen/
+/sin_gen/atanh_gen/
