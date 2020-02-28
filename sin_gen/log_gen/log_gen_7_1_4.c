@@ -420,7 +420,7 @@ log_ru[BITNUM] = {
 
 double log_gen(double x) {
 	_UL ix;
-	int	j, m, k;
+	int	m, k;
 	double	w, u, t, xmu, q, l_lead, l_trail, result;
 
 	/* extract exponent and sign of x for some quick screening */
@@ -428,7 +428,6 @@ double log_gen(double x) {
 	ix = *(unsigned long long *)(&x);	/* copy arg to a long long */
 
 	m = (ix >> DMANTWIDTH);		/* shift off mantissa	*/
-	j = m - MINEXP;
 
 	m -= DEXPBIAS;
 
