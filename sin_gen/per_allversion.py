@@ -66,6 +66,14 @@ elif target == "asinh":
 	bit_range = 7
 	fnum_range = 1
 	degree_range = 8
+elif target == "acosh":
+	bit_range = 7
+	fnum_range = 1
+	degree_range = 8
+elif target == "atanh":
+	bit_range = 7
+	fnum_range = 1
+	degree_range = 8
 elif target == "asin":
 	bit_range = 7
 	fnum_range = 1
