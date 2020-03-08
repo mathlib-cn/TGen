@@ -98,6 +98,10 @@ elif target == "tanh":
 	bit_range = 7
 	fnum_range = 1
 	degree_range = 8
+elif target == "sin1":
+	bit_range = 7
+	fnum_range = 1
+	degree_range = 7
 else:
 	bit_range = 7
 	fnum_range = 1

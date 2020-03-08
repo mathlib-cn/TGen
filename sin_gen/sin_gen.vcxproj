@@ -138,6 +138,7 @@
     <ClCompile Include="source_exp.c" />
     <ClCompile Include="source_log.c" />
     <ClCompile Include="source_sin.c" />
+    <ClCompile Include="source_sin1.c" />
     <ClCompile Include="testpy.c" />
   </ItemGroup>
   <ItemGroup>

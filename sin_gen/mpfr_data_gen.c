@@ -4,8 +4,8 @@
 #include <math.h>
 #define PRECISION 128
 #define INTERVAL 4
-#define BIT 5
-#define BITNUM 32
+#define BIT 7
+#define BITNUM 128
 
 int main() {
 	//printf ("MPFR library: %-12s\nMPFR header: %s (based on %d.%d.%d)\nMPFR_PREC_MIN is %d, MPFR_PREC_MAX is %ld.\n", mpfr_get_version (), MPFR_VERSION_STRING, MPFR_VERSION_MAJOR, MPFR_VERSION_MINOR, MPFR_VERSION_PATCHLEVEL, MPFR_PREC_MIN, MPFR_PREC_MAX);
@@ -61,12 +61,12 @@ int main() {
 		temp_d = temp_d * 0.5;
 		//mpfr_set_d(mpfr_temp, temp_d, MPFR_RNDN);
 		mpfr_mul_d(mpfr_temp, mpfr_pi, temp_d, MPFR_RNDN);
-		mpfr_sin(mpfr_result[i], mpfr_temp, MPFR_RNDN);
+		mpfr_cos(mpfr_result[i], mpfr_temp, MPFR_RNDN);
 		//mpfr_ui_pow(mpfr_result[i], 2, mpfr_temp, MPFR_RNDN);
 		//mpfr_printf("%.17RNe,\n", mpfr_result[i]);
 		result[i] = mpfr_get_d(mpfr_result[i], MPFR_RNDN);
-		//printf("i = %03d, sin(2, %03d/%03d) = 0x%16lx\n", i, i, BITNUM, *((unsigned long int *)&(result[i])));
-		printf("\t\t%.19le,\n", result[i]);
+		printf("i = %03d, cos(2, %03d/%03d) =\t\t{.l = 0x%016lx},\t\t%.19le,\n", i, i, BITNUM, *((unsigned long int *)&(result[i])), result[i]);
+		//printf("\t\t%.19le,\n", result[i]);
 		//printf("%le\n", result[i]);
 	}
 	
