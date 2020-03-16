@@ -178,11 +178,14 @@ for bit in range(0, bit_range + 1):
 print("precision is")
 print(precisions)
 precisions.sort(key = lambda x : (x[0], x[2]), reverse = True)
-print("after sorting, precisoin is")
+print("after sorting, precision is")
 print(precisions)
 print()
 
-for i in range(len(precisions)):
-	temp = precisions[i]
-	print("%.8e\t%d\t%.8e\t%d\t%d\t%d"%(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]))
-	print()
+listfilename = target + '_gen_' + start + '-' + end + '_precision.list'
+with open(listfilename, 'w') as listfile:
+	for i in range(len(precisions)):
+		temp = precisions[i]
+		print("%.8e\t%d\t%.8e\t%d\t%d\t%d\t"%(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]))
+		listfile.write("%.8e\t%d\t%.8e\t%d\t%d\t%d\t\n"%(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]))
+		print()
