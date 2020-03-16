@@ -184,8 +184,9 @@ print()
 
 listfilename = target + '_gen_' + start + '-' + end + '_precision.list'
 with open(listfilename, 'w') as listfile:
+	#listfile.write("max ULP\t\t\tP\taverage ULP\t\tP\tbit\tdegree\n")
 	for i in range(len(precisions)):
 		temp = precisions[i]
 		print("%.8e\t%d\t%.8e\t%d\t%d\t%d\t"%(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]))
-		listfile.write("%.8e\t%d\t%.8e\t%d\t%d\t%d\t\n"%(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]))
+		listfile.write("%.8e\t\t%d\t%.8e\t\t%d\t%d\t%d\t\n"%(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5]))
 		print()

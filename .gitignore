@@ -263,6 +263,7 @@ __pycache__/
 *.txt
 *.swp
 *.out
+*.list
 /sin_gen/temp
 *.o
 /sin_gen/exp_gen.c
