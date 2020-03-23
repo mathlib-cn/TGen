@@ -125,7 +125,7 @@ struct test_data test(void)
 int main(int argc, char *argv[]) {
 	struct test_data correctness_result;
 	correctness_result = test();
-	printf("%d %d %d\n", p->max, p->max_times, p->sum);
+	//printf("%d %d %d\n", p->max, p->max_times, p->sum);
 	printf("max ulp is %le\n", correctness_result.max.d);
 	printf("average ulp is %le\n", correctness_result.average.d);
 	printf("effective bit is %f\n", 52 - log2(correctness_result.max.d));

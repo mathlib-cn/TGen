@@ -56,6 +56,7 @@ int main(int argc, char *argv[]) {
 	
 	unsigned long r_temp;
 	double input, r;
+	double d_temp;
 	
 	if (argc != 4) {
 		printf("input parameters number is not right\n");
@@ -66,14 +67,33 @@ int main(int argc, char *argv[]) {
 	b = atof(argv[2]);
 	n = atoi(argv[3]);
 
-	if (a < 0 || b < 0 || b < a || n == 0){
-		printf("check your input ：b>a>0, n !=0\n");
+	printf("a = %e\n",a);		
+	printf("b = %e\n",b);		
+	printf("n = %d\n",n);		
+	
+	//if (a < 0 || b < 0 || b < a || n == 0){
+	if (b < a){
+		//printf("check your input ：b>a>0, n !=0\n");
+		printf("check your input ：b>a, n != 0\n");
 		return 1;
 	}	
-	printf("a\t= %e\n",a);		
-	printf("b\t= %e\n",b);		
-	printf("n\t= %d\n",n);		
-
+	else if (a < 0 && b > 0) {
+		printf("!!!!!!!!!!!!!! a < 0 < b, so have to do something to a, n\n");
+		a = 0;
+		n = n * (b / (b - a));
+		printf("After something, the new a, n are:\n");
+		printf("a = %e\n",a);		
+		printf("n = %d\n",n);		
+	}
+	else if (b < 0) {
+		printf("!!!!!!!!!!!!!! a < b < 0, so have to do something to a, b\n");
+		d_temp = a;
+		a = -b;
+		b = -d_temp;
+		printf("After something, the new a, b are:\n");
+		printf("a = %e\n",a);		
+		printf("b = %e\n",b);		
+	}
 	a_int = *((unsigned long *)(&a));
 	b_int = *((unsigned long *)(&b));
 	temp = b_int - a_int;
