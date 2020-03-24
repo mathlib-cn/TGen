@@ -264,6 +264,7 @@ __pycache__/
 *.swp
 *.out
 *.list
+*.tar.gz
 /sin_gen/temp
 *.o
 /sin_gen/exp_gen.c
