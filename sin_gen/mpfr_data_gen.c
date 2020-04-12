@@ -4,8 +4,8 @@
 #include <math.h>
 #define PRECISION 128
 #define INTERVAL 4
-#define BIT 5
-#define BITNUM 32
+#define BIT 3
+#define BITNUM 8
 
 int main() {
 	//printf ("MPFR library: %-12s\nMPFR header: %s (based on %d.%d.%d)\nMPFR_PREC_MIN is %d, MPFR_PREC_MAX is %ld.\n", mpfr_get_version (), MPFR_VERSION_STRING, MPFR_VERSION_MAJOR, MPFR_VERSION_MINOR, MPFR_VERSION_PATCHLEVEL, MPFR_PREC_MIN, MPFR_PREC_MAX);
@@ -54,7 +54,7 @@ int main() {
 		//mpfr_printf("%.17RNe,\n", mpfr_result[i]);
 	}
 	*/
-	double start = 1;
+	double start = 0;
 	for (i = 0; i < BITNUM; i++) {
 		mpfr_init2(mpfr_result[i], PRECISION);
 		temp_d = start + (double)i / (double)BITNUM;

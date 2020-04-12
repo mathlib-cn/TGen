@@ -102,6 +102,10 @@ elif target == "sin1":
 	bit_range = 7
 	fnum_range = 1
 	degree_range = 7
+elif target == "sin0-1":
+	bit_range = 7
+	fnum_range = 1
+	degree_range = 7
 else:
 	bit_range = 7
 	fnum_range = 1
@@ -121,11 +125,11 @@ subprocess.call(data_gen, shell=True)
 # generate all possible implementations within the parameters space
 # and run the correctness test
 # TODO: performance test
-#for bit in range(0, bit_range + 1):
-for bit in range(3, 6):
+for bit in range(0, bit_range + 1):
+#for bit in range(3, 6):
 	for fnum in range(1, fnum_range + 1):
-		#for degree in range(0, degree_range):
-		for degree in range(3, 6):
+		for degree in range(0, degree_range):
+		#for degree in range(3, 6):
 			# print basic info
 			print("bit = " + str(bit) + " fnum = " + str(fnum) + " degree = " + str(degree))
 			
