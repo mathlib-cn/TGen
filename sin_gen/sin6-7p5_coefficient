@@ -1,0 +1,1096 @@
+
+static const DL
+coefficient_1_1[COEFFICIENTS_NUM][2][COEFFICIENTS_NUM] = {
+	// 1 coefficient
+	{
+		// P = fpminimax(sin(x), [|0|], [|D...|], [1b-53,1.5/1]); printexpansion(P);
+		// 0x3cafffffffffffff
+		{
+			{ .l = 0x3cafffffffffffff },
+		},
+		// P = fpminimax(cos(x), [|0|], [|D...|], [1b-53,1.5/1]); printexpansion(P);
+		// 0x3fc0e9924c5d777a
+		{
+			{ .l = 0x3fc0e9924c5d777a },
+		},
+	},
+	// 2 coefficients
+	{
+		// P = fpminimax(sin(x), [|1|], [|D...|], [1b-53,1.5/1]); printexpansion(P);
+		// x * 0x3fe98fbd71153c75
+		{
+			{ .l = 0 },
+			{ .l = 0x3fe98fbd71153c75 },
+		},
+		// P = fpminimax(cos(x), [|2|], [|D...|], [1b-53,1.5/1], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * 0xbfdaa679d3168946
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdaa679d3168946 },
+		},
+	},
+	// 3 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3|], [|D...|], [1b-53,1.5/1]); printexpansion(P);
+		// x * (0x3fefcf794af0d8cc + x^2 * 0xbfc2f1f07fc98d1c)
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefcf794af0d8cc },
+			{ .l = 0xbfc2f1f07fc98d1c },
+		},
+		// P = fpminimax(cos(x), [|2,4|], [|D...|], [1b-53,1.5/1], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdfba0b20d07ed8 + x^2 * 0x3fa2d5fba36ffcbc)
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdfba0b20d07ed8 },
+			{ .l = 0x3fa2d5fba36ffcbc },
+		},
+	},
+	// 4 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5|], [|D...|], [1b-53,1.5/1]); printexpansion(P);
+		// x * (0x3fefff566c6700c1 + x^2 * (0xbfc54227f96f52ff + x^2 * 0x3f7f677f1205aeb1))
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefff566c6700c1 },
+			{ .l = 0xbfc54227f96f52ff },
+			{ .l = 0x3f7f677f1205aeb1 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6|], [|D...|], [1b-53,1.5/1], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffe9a788c32aa + x^2 * (0x3fa53d997052290e + x^2 * 0xbf54d294b5db6cd5))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffe9a788c32aa },
+			{ .l = 0x3fa53d997052290e },
+			{ .l = 0xbf54d294b5db6cd5 },
+		},
+	},
+	// 5 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7|], [|D...|], [1b-53,1.5/1]); printexpansion(P);
+		// x * (0x3feffffea8c4e02b + x^2 * (0xbfc5550f0f928b40 + x^2 * (0x3f8107be5ede0ae7 + x^2 * 0xbf2863795b47dbb4)))
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffffea8c4e02b },
+			{ .l = 0xbfc5550f0f928b40 },
+			{ .l = 0x3f8107be5ede0ae7 },
+			{ .l = 0xbf2863795b47dbb4 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8|], [|D...|], [1b-53,1.5/1], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffc4330dece + x^2 * (0x3fa554ede29ffbfe + x^2 * (0xbf56b2b5e33bf6bb + x^2 * 0x3ef84a0f8e95ef78)))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffc4330dece },
+			{ .l = 0x3fa554ede29ffbfe },
+			{ .l = 0xbf56b2b5e33bf6bb },
+			{ .l = 0x3ef84a0f8e95ef78 },
+		},
+	},
+	// 6 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9|], [|D...|], [1b-53,1.5/1]); printexpansion(P);
+		// x * (0x3feffffffe3afae0 + x^2 * (0xbfc55554c2785a8f + x^2 * (0x3f8110f1d8c9e97c + x^2 * (0xbf29f831f70f3bcf + x^2 * 0x3ec5f0916c487333))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffffffe3afae0 },
+			{ .l = 0xbfc55554c2785a8f },
+			{ .l = 0x3f8110f1d8c9e97c },
+			{ .l = 0xbf29f831f70f3bcf },
+			{ .l = 0x3ec5f0916c487333 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10|], [|D...|], [1b-53,1.5/1], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffff9db0edb + x^2 * (0x3fa55554580d8719 + x^2 * (0xbf56c134c801fc79 + x^2 * (0x3ef9f6c0cd249c96 + x^2 * 0xbe917f8460d8df39))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffff9db0edb },
+			{ .l = 0x3fa55554580d8719 },
+			{ .l = 0xbf56c134c801fc79 },
+			{ .l = 0x3ef9f6c0cd249c96 },
+			{ .l = 0xbe917f8460d8df39 },
+		},
+	},
+	// 7 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9,11|], [|D...|], [1b-53,1.5/1]); printexpansion(P);
+		// x * (0x3feffffffffe5b53 + x^2 * (0xbfc55555548f02e2 + x^2 * (0x3f811110d366b07f + x^2 * (0xbf2a0183bc367955 + x^2 * (0x3ec717f0f6b8704a + x^2 * 0xbe59bd79b364f23d)))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffffffffe5b53 },
+			{ .l = 0xbfc55555548f02e2 },
+			{ .l = 0x3f811110d366b07f },
+			{ .l = 0xbf2a0183bc367955 },
+			{ .l = 0x3ec717f0f6b8704a },
+			{ .l = 0xbe59bd79b364f23d },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10,12|], [|D...|], [1b-53,1.5/1], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffffff92a52 + x^2 * (0x3fa5555553cb6788 + x^2 * (0xbf56c16b9c94347d + x^2 * (0x3efa017c612b99f0 + x^2 * (0xbe9278ecf38cda9b + x^2 * 0x3e211ea451feb136)))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffffff92a52 },
+			{ .l = 0x3fa5555553cb6788 },
+			{ .l = 0xbf56c16b9c94347d },
+			{ .l = 0x3efa017c612b99f0 },
+			{ .l = 0xbe9278ecf38cda9b },
+			{ .l = 0x3e211ea451feb136 },
+		},
+	},
+};
+
+static const DL
+coefficient_1_2[COEFFICIENTS_NUM][2][COEFFICIENTS_NUM] = {
+	// 1 coefficient
+	{
+		// P = fpminimax(sin(x), [|0|], [|D...|], [1b-53,1.5/2]); printexpansion(P);
+		// 0x3cafffffffffffff
+		{
+			{ .l = 0x3cafffffffffffff },
+		},
+		// P = fpminimax(cos(x), [|0|], [|D...|], [1b-53,1.5/2]); printexpansion(P);
+		// 0x3feb0ab752e496f4
+		{
+			{ .l = 0x3feb0ab752e496f4 },
+		},
+	},
+	// 2 coefficients
+	{
+		// P = fpminimax(sin(x), [|1|], [|D...|], [1b-53,1.5/2]); printexpansion(P);
+		// x * 0x3fee78d44681575a
+		{
+			{ .l = 0 },
+			{ .l = 0x3fee78d44681575a },
+		},
+		// P = fpminimax(cos(x), [|2|], [|D...|], [1b-53,1.5/2], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * 0xbfdebf452f2a09dd
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdebf452f2a09dd },
+		},
+	},
+	// 3 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3|], [|D...|], [1b-53,1.5/2]); printexpansion(P);
+		// x * (0x3feffd39ac1f333b + x^2 * 0xbfc4bbf9dbc4cb28)
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffd39ac1f333b },
+			{ .l = 0xbfc4bbf9dbc4cb28 },
+		},
+		// P = fpminimax(cos(x), [|2,4|], [|D...|], [1b-53,1.5/2], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffcc105972bdf + x^2 * 0x3fa4c51e0e9ced40)
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffcc105972bdf },
+			{ .l = 0x3fa4c51e0e9ced40 },
+		},
+	},
+	// 4 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5|], [|D...|], [1b-53,1.5/2]); printexpansion(P);
+		// x * (0x3feffffd9c61ae77 + x^2 * (0xbfc5542ab7808542 + x^2 * 0x3f80b96e52260303))
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffffd9c61ae77 },
+			{ .l = 0xbfc5542ab7808542 },
+			{ .l = 0x3f80b96e52260303 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6|], [|D...|], [1b-53,1.5/2], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffc5c9030ca + x^2 * (0x3fa554269256fcce + x^2 * 0xbf564ff10292c800))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffc5c9030ca },
+			{ .l = 0x3fa554269256fcce },
+			{ .l = 0xbf564ff10292c800 },
+		},
+	},
+	// 5 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7|], [|D...|], [1b-53,1.5/2]); printexpansion(P);
+		// x * (0x3feffffffecd4f79 + x^2 * (0xbfc5555449fd2baa + x^2 * (0x3f81107e27d83d85 + x^2 * 0xbf2999bf6e18b0a4)))
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffffffecd4f79 },
+			{ .l = 0xbfc5555449fd2baa },
+			{ .l = 0x3f81107e27d83d85 },
+			{ .l = 0xbf2999bf6e18b0a4 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8|], [|D...|], [1b-53,1.5/2], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffffdc084ed + x^2 * (0x3fa55554294eb34f + x^2 * (0xbf56c0a78ea91839 + x^2 * 0x3ef99b659624805b)))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffffdc084ed },
+			{ .l = 0x3fa55554294eb34f },
+			{ .l = 0xbf56c0a78ea91839 },
+			{ .l = 0x3ef99b659624805b },
+		},
+	},
+	// 6 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9|], [|D...|], [1b-53,1.5/2]); printexpansion(P);
+		// x * (0x3fefffffffff9b6e + x^2 * (0xbfc5555554cbebfa + x^2 * (0x3f81111098359024 + x^2 * (0xbf2a010ac0143b87 + x^2 * 0x3ec6d254fe998964))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefffffffff9b6e },
+			{ .l = 0xbfc5555554cbebfa },
+			{ .l = 0x3f81111098359024 },
+			{ .l = 0xbf2a010ac0143b87 },
+			{ .l = 0x3ec6d254fe998964 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10|], [|D...|], [1b-53,1.5/2], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdfffffffff1fb9 + x^2 * (0x3fa5555554aa4ea3 + x^2 * (0xbf56c16b6bf29487 + x^2 * (0x3efa010a59b0af77 + x^2 * 0xbe92426e7abed3fe))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdfffffffff1fb9 },
+			{ .l = 0x3fa5555554aa4ea3 },
+			{ .l = 0xbf56c16b6bf29487 },
+			{ .l = 0x3efa010a59b0af77 },
+			{ .l = 0xbe92426e7abed3fe },
+		},
+	},
+	// 7 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9,11|], [|D...|], [1b-53,1.5/2]); printexpansion(P);
+		// x * (0x3fefffffffffffe9 + x^2 * (0xbfc55555555527a1 + x^2 * (0x3f81111110d65097 + x^2 * (0xbf2a019fab51f1d0 + x^2 * (0x3ec71d85393b23b9 + x^2 * 0xbe5a9be104ec2e77)))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefffffffffffe9 },
+			{ .l = 0xbfc55555555527a1 },
+			{ .l = 0x3f81111110d65097 },
+			{ .l = 0xbf2a019fab51f1d0 },
+			{ .l = 0x3ec71d85393b23b9 },
+			{ .l = 0xbe5a9be104ec2e77 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10,12|], [|D...|], [1b-53,1.5/2], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdfffffffffffc4 + x^2 * (0x3fa5555555551663 + x^2 * (0xbf56c16c1668e6c2 + x^2 * (0x3efa019fa702b038 + x^2 * (0xbe927e03eadfc0d0 + x^2 * 0x3e21bd87b562fedb)))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdfffffffffffc4 },
+			{ .l = 0x3fa5555555551663 },
+			{ .l = 0xbf56c16c1668e6c2 },
+			{ .l = 0x3efa019fa702b038 },
+			{ .l = 0xbe927e03eadfc0d0 },
+			{ .l = 0x3e21bd87b562fedb },
+		},
+	},
+};
+
+static const DL
+coefficient_1_4[COEFFICIENTS_NUM][2][COEFFICIENTS_NUM] = {
+	// 1 coefficient
+	{
+		// P = fpminimax(sin(x), [|0|], [|D...|], [1b-53,1.5/4]); printexpansion(P);
+		// 0x3caffffffffffffd
+		{
+			{ .l = 0x3caffffffffffffd },
+		},
+		// P = fpminimax(cos(x), [|0|], [|D...|], [1b-53,1.5/4]); printexpansion(P);
+		// 0x3feed91ceeeb5df1
+		{
+			{ .l = 0x3feed91ceeeb5df1 },
+		},
+	},
+	// 2 coefficients
+	{
+		// P = fpminimax(sin(x), [|1|], [|D...|], [1b-53,1.5/4]); printexpansion(P);
+		// x * 0x3fef9f8ce6c42f03
+		{
+			{ .l = 0 },
+			{ .l = 0x3fef9f8ce6c42f03 },
+		},
+		// P = fpminimax(cos(x), [|2|], [|D...|], [1b-53,1.5/4], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * 0xbfdfb053a52ee0dc
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdfb053a52ee0dc },
+		},
+	},
+	// 3 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3|], [|D...|], [1b-53,1.5/4]); printexpansion(P);
+		// x * (0x3fefffd48225b1ef + x^2 * 0xbfc52ef2fe005ab2)
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefffd48225b1ef },
+			{ .l = 0xbfc52ef2fe005ab2 },
+		},
+		// P = fpminimax(cos(x), [|2,4|], [|D...|], [1b-53,1.5/4], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdfffcdd9c79b08 + x^2 * 0x3fa53199db2f3a5c)
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdfffcdd9c79b08 },
+			{ .l = 0x3fa53199db2f3a5c },
+		},
+	},
+	// 4 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5|], [|D...|], [1b-53,1.5/4]); printexpansion(P);
+		// x * (0x3feffffff6ab8007 + x^2 * (0xbfc55542c858fcef + x^2 * 0x3f80fb21f4006ebb))
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffffff6ab8007 },
+			{ .l = 0xbfc55542c858fcef },
+			{ .l = 0x3f80fb21f4006ebb },
+		},
+		// P = fpminimax(cos(x), [|2,4,6|], [|D...|], [1b-53,1.5/4], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffff231a1c9 + x^2 * (0x3fa55542dfc7fb1c + x^2 * 0xbf56a5438ce3c2ec))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffff231a1c9 },
+			{ .l = 0x3fa55542dfc7fb1c },
+			{ .l = 0xbf56a5438ce3c2ec },
+		},
+	},
+	// 5 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7|], [|D...|], [1b-53,1.5/4]); printexpansion(P);
+		// x * (0x3feffffffffed53a + x^2 * (0xbfc55555513422ce + x^2 * (0x3f811107ea13995b + x^2 * 0xbf29e7a0ee5942ca)))
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffffffffed53a },
+			{ .l = 0xbfc55555513422ce },
+			{ .l = 0x3f811107ea13995b },
+			{ .l = 0xbf29e7a0ee5942ca },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8|], [|D...|], [1b-53,1.5/4], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffffffde45a + x^2 * (0x3fa5555550d1af1a + x^2 * (0xbf56c16009f857eb + x^2 * 0x3ef9e83a317e805d)))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffffffde45a },
+			{ .l = 0x3fa5555550d1af1a },
+			{ .l = 0xbf56c16009f857eb },
+			{ .l = 0x3ef9e83a317e805d },
+		},
+	},
+	// 6 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9|], [|D...|], [1b-53,1.5/4]); printexpansion(P);
+		// x * (0x3fefffffffffffe8 + x^2 * (0xbfc555555554ceaf + x^2 * (0x3f8111110f323f86 + x^2 * (0xbf2a0196cbde95a6 + x^2 * 0x3ec70afd5d2f4dc8))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefffffffffffe8 },
+			{ .l = 0xbfc555555554ceaf },
+			{ .l = 0x3f8111110f323f86 },
+			{ .l = 0xbf2a0196cbde95a6 },
+			{ .l = 0x3ec70afd5d2f4dc8 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10|], [|D...|], [1b-53,1.5/4], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdfffffffffffcc + x^2 * (0x3fa555555554b292 + x^2 * (0xbf56c16c142abc98 + x^2 * (0x3efa0196e46a4023 + x^2 * 0xbe926f6c8f767577))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdfffffffffffcc },
+			{ .l = 0x3fa555555554b292 },
+			{ .l = 0xbf56c16c142abc98 },
+			{ .l = 0x3efa0196e46a4023 },
+			{ .l = 0xbe926f6c8f767577 },
+		},
+	},
+	// 7 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9,11|], [|D...|], [1b-53,1.5/4]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc555555555554d + x^2 * (0x3f8111111110dde4 + x^2 * (0xbf2a01a01864ecfd + x^2 * (0x3ec71dddf165ae96 + x^2 * 0xbe5ad3e674ff3542)))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc555555555554d },
+			{ .l = 0x3f8111111110dde4 },
+			{ .l = 0xbf2a01a01864ecfd },
+			{ .l = 0x3ec71dddf165ae96 },
+			{ .l = 0xbe5ad3e674ff3542 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10,12|], [|D...|], [1b-53,1.5/4], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa555555555554f + x^2 * (0xbf56c16c16c134b0 + x^2 * (0x3efa01a0189fa072 + x^2 * (0xbe927e4b97d06277 + x^2 * 0x3e21e3326c917f1d)))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa555555555554f },
+			{ .l = 0xbf56c16c16c134b0 },
+			{ .l = 0x3efa01a0189fa072 },
+			{ .l = 0xbe927e4b97d06277 },
+			{ .l = 0x3e21e3326c917f1d },
+		},
+	},
+};
+
+static const DL
+coefficient_1_8[COEFFICIENTS_NUM][2][COEFFICIENTS_NUM] = {
+	// 1 coefficient
+	{
+		// P = fpminimax(sin(x), [|0|], [|D...|], [1b-53,1.5/8]); printexpansion(P);
+		// 0x3caffffffffffffb
+		{
+			{ .l = 0x3caffffffffffffb },
+		},
+		// P = fpminimax(cos(x), [|0|], [|D...|], [1b-53,1.5/8]); printexpansion(P);
+		// 0x3fefb79375aaac3f
+		{
+			{ .l = 0x3fefb79375aaac3f },
+		},
+	},
+	// 2 coefficients
+	{
+		// P = fpminimax(sin(x), [|1|], [|D...|], [1b-53,1.5/8]); printexpansion(P);
+		// x * 0x3fefe7f8cd30d152
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefe7f8cd30d152 },
+		},
+		// P = fpminimax(cos(x), [|2|], [|D...|], [1b-53,1.5/8], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * 0xbfdfec1be68e7157
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdfec1be68e7157 },
+		},
+	},
+	// 3 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3|], [|D...|], [1b-53,1.5/8]); printexpansion(P);
+		// x * (0x3feffffd4ba3fae7 + x^2 * 0xbfc54bbbfd57b1d1)
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffffd4ba3fae7 },
+			{ .l = 0xbfc54bbbfd57b1d1 },
+		},
+		// P = fpminimax(cos(x), [|2,4|], [|D...|], [1b-53,1.5/8], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffce3f02315 + x^2 * 0x3fa54c6acc3f4707)
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffce3f02315 },
+			{ .l = 0x3fa54c6acc3f4707 },
+		},
+	},
+	// 4 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5|], [|D...|], [1b-53,1.5/8]); printexpansion(P);
+		// x * (0x3fefffffffdae622 + x^2 * (0xbfc555542cf5b860 + x^2 * 0x3f810b94ddc1ceb3))
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefffffffdae622 },
+			{ .l = 0xbfc555542cf5b860 },
+			{ .l = 0x3f810b94ddc1ceb3 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6|], [|D...|], [1b-53,1.5/8], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdfffffffc96f23 + x^2 * (0x3fa555542f9d27bf + x^2 * 0xbf56ba64cea5f7aa))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdfffffffc96f23 },
+			{ .l = 0x3fa555542f9d27bf },
+			{ .l = 0xbf56ba64cea5f7aa },
+		},
+	},
+	// 5 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7|], [|D...|], [1b-53,1.5/8]); printexpansion(P);
+		// x * (0x3feffffffffffed7 + x^2 * (0xbfc555555544dbe4 + x^2 * (0x3f8111107ebc9149 + x^2 * 0xbf29fb1fd2745b33)))
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffffffffffed7 },
+			{ .l = 0xbfc555555544dbe4 },
+			{ .l = 0x3f8111107ebc9149 },
+			{ .l = 0xbf29fb1fd2745b33 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8|], [|D...|], [1b-53,1.5/8], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffffffffdec + x^2 * (0x3fa5555555436cf5 + x^2 * (0xbf56c16b56c0a5cc + x^2 * 0x3ef9fb48b12175e9)))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffffffffdec },
+			{ .l = 0x3fa5555555436cf5 },
+			{ .l = 0xbf56c16b56c0a5cc },
+			{ .l = 0x3ef9fb48b12175e9 },
+		},
+	},
+	// 6 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9|], [|D...|], [1b-53,1.5/8]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc55555555554f2 + x^2 * (0x3f811111110a7695 + x^2 * (0xbf2a019f8d5d498e + x^2 * 0x3ec719438701d20e))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc55555555554f2 },
+			{ .l = 0x3f811111110a7695 },
+			{ .l = 0xbf2a019f8d5d498e },
+			{ .l = 0x3ec719438701d20e },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10|], [|D...|], [1b-53,1.5/8], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa555555555550f + x^2 * (0xbf56c16c16ba7ce1 + x^2 * (0x3efa019fa1202876 + x^2 * 0xbe927adeea30aba7))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa555555555550f },
+			{ .l = 0xbf56c16c16ba7ce1 },
+			{ .l = 0x3efa019fa1202876 },
+			{ .l = 0xbe927adeea30aba7 },
+		},
+	},
+	// 7 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9,11|], [|D...|], [1b-53,1.5/8]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc5555555555555 + x^2 * (0x3f81111111110c3f + x^2 * (0xbf2a01a019a39c9c + x^2 * (0x3ec71de0a31a0ebc + x^2 * 0xbe5ad32c87292859)))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc5555555555555 },
+			{ .l = 0x3f81111111110c3f },
+			{ .l = 0xbf2a01a019a39c9c },
+			{ .l = 0x3ec71de0a31a0ebc },
+			{ .l = 0xbe5ad32c87292859 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10,12|], [|D...|], [1b-53,1.5/8], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa5555555555555 + x^2 * (0xbf56c16c16c16447 + x^2 * (0x3efa01a0197fafd8 + x^2 * (0xbe927e4c15bb717e + x^2 * 0x3e21db0483ef2449)))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa5555555555555 },
+			{ .l = 0xbf56c16c16c16447 },
+			{ .l = 0x3efa01a0197fafd8 },
+			{ .l = 0xbe927e4c15bb717e },
+			{ .l = 0x3e21db0483ef2449 },
+		},
+	},
+};
+
+static const DL
+coefficient_1_16[COEFFICIENTS_NUM][2][COEFFICIENTS_NUM] = {
+	// 1 coefficient
+	{
+		// P = fpminimax(sin(x), [|0|], [|D...|], [1b-53,1.5/16]); printexpansion(P);
+		// 0x3caffffffffffff5
+		{
+			{ .l = 0x3caffffffffffff5 },
+		},
+		// P = fpminimax(cos(x), [|0|], [|D...|], [1b-53,1.5/16]); printexpansion(P);
+		// 0x3fefedf93dd8919a
+		{
+			{ .l = 0x3fefedf93dd8919a },
+		},
+	},
+	// 2 coefficients
+	{
+		// P = fpminimax(sin(x), [|1|], [|D...|], [1b-53,1.5/16]); printexpansion(P);
+		// x * 0x3feff9ff8cce590b
+		{
+			{ .l = 0 },
+			{ .l = 0x3feff9ff8cce590b },
+		},
+		// P = fpminimax(cos(x), [|2|], [|D...|], [1b-53,1.5/16], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * 0xbfdffb07658f4c56
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffb07658f4c56 },
+		},
+	},
+	// 3 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3|], [|D...|], [1b-53,1.5/16]); printexpansion(P);
+		// x * (0x3fefffffd4c82b4c + x^2 * 0xbfc552eef30b51a0)
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefffffd4c82b4c },
+			{ .l = 0xbfc552eef30b51a0 },
+		},
+		// P = fpminimax(cos(x), [|2,4|], [|D...|], [1b-53,1.5/16], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdfffffce579e6c + x^2 * 0x3fa5531af5a27e13)
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdfffffce579e6c },
+			{ .l = 0x3fa5531af5a27e13 },
+		},
+	},
+	// 4 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5|], [|D...|], [1b-53,1.5/16]); printexpansion(P);
+		// x * (0x3fefffffffff6bd0 + x^2 * (0xbfc5555542d1175d + x^2 * 0x3f810fb1fd5f8acd))
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefffffffff6bd0 },
+			{ .l = 0xbfc5555542d1175d },
+			{ .l = 0x3f810fb1fd5f8acd },
+		},
+		// P = fpminimax(cos(x), [|2,4,6|], [|D...|], [1b-53,1.5/16], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdfffffffff2660 + x^2 * (0x3fa555554300208f + x^2 * 0xbf56bfaa706c57c6))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdfffffffff2660 },
+			{ .l = 0x3fa555554300208f },
+			{ .l = 0xbf56bfaa706c57c6 },
+		},
+	},
+	// 5 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7|], [|D...|], [1b-53,1.5/16]); printexpansion(P);
+		// x * (0x3fefffffffffffff + x^2 * (0xbfc55555555515bc + x^2 * (0x3f811111080c4765 + x^2 * 0xbf2a000209910e5c)))
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefffffffffffff },
+			{ .l = 0xbfc55555555515bc },
+			{ .l = 0x3f811111080c4765 },
+			{ .l = 0xbf2a000209910e5c },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8|], [|D...|], [1b-53,1.5/16], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffffffffffe + x^2 * (0x3fa5555555550f23 + x^2 * (0xbf56c16c0ae0e2fd + x^2 * 0x3efa000be69915c4)))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffffffffffe },
+			{ .l = 0x3fa5555555550f23 },
+			{ .l = 0xbf56c16c0ae0e2fd },
+			{ .l = 0x3efa000be69915c4 },
+		},
+	},
+	// 6 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9|], [|D...|], [1b-53,1.5/16]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc5555555555555 + x^2 * (0x3f8111111110f8a7 + x^2 * (0xbf2a01a0118f9c21 + x^2 * 0x3ec71cc056bcf644))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc5555555555555 },
+			{ .l = 0x3f8111111110f8a7 },
+			{ .l = 0xbf2a01a0118f9c21 },
+			{ .l = 0x3ec71cc056bcf644 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10|], [|D...|], [1b-53,1.5/16], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa5555555555555 + x^2 * (0xbf56c16c16c14cb8 + x^2 * (0x3efa01a011e47451 + x^2 * 0xbe927d6c6f7cec34))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa5555555555555 },
+			{ .l = 0xbf56c16c16c14cb8 },
+			{ .l = 0x3efa01a011e47451 },
+			{ .l = 0xbe927d6c6f7cec34 },
+		},
+	},
+	// 7 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9,11|], [|D...|], [1b-53,1.5/16]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc5555555555555 + x^2 * (0x3f8111111110fe1b + x^2 * (0xbf2a01a014637769 + x^2 * (0x3ec71d3553570098 + x^2 * 0xbe47ff460548a02a)))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc5555555555555 },
+			{ .l = 0x3f8111111110fe1b },
+			{ .l = 0xbf2a01a014637769 },
+			{ .l = 0x3ec71d3553570098 },
+			{ .l = 0xbe47ff460548a02a },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10,12|], [|D...|], [1b-53,1.5/16], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa5555555555555 + x^2 * (0xbf56c16c16c14d1b + x^2 * (0x3efa01a012121ea1 + x^2 * (0xbe927d733297c86d + x^2 * 0x3dd4bc4a5b160f1d)))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa5555555555555 },
+			{ .l = 0xbf56c16c16c14d1b },
+			{ .l = 0x3efa01a012121ea1 },
+			{ .l = 0xbe927d733297c86d },
+			{ .l = 0x3dd4bc4a5b160f1d },
+		},
+	},
+};
+
+static const DL
+coefficient_1_32[COEFFICIENTS_NUM][2][COEFFICIENTS_NUM] = {
+	// 1 coefficient
+	{
+		// P = fpminimax(sin(x), [|0|], [|D...|], [1b-53,1.5/32]); printexpansion(P);
+		// 0x3cafffffffffffeb
+		{
+			{ .l = 0x3cafffffffffffeb },
+		},
+		// P = fpminimax(cos(x), [|0|], [|D...|], [1b-53,1.5/32]); printexpansion(P);
+		// 0x3feffb7f93f7642b
+		{
+			{ .l = 0x3feffb7f93f7642b },
+		},
+	},
+	// 2 coefficients
+	{
+		// P = fpminimax(sin(x), [|1|], [|D...|], [1b-53,1.5/32]); printexpansion(P);
+		// x * 0x3feffe7ff8ccd2fa
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffe7ff8ccd2fa },
+		},
+		// P = fpminimax(cos(x), [|2|], [|D...|], [1b-53,1.5/32], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * 0xbfdffec1e01388ac
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffec1e01388ac },
+		},
+	},
+	// 3 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3|], [|D...|], [1b-53,1.5/32]); printexpansion(P);
+		// x * (0x3feffffffd4cba49 + x^2 * 0xbfc554bbbbfd9097)
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffffffd4cba49 },
+			{ .l = 0xbfc554bbbbfd9097 },
+		},
+		// P = fpminimax(cos(x), [|2,4|], [|D...|], [1b-53,1.5/32], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffffce5dbac + x^2 * 0x3fa554c6c18721e1)
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffffce5dbac },
+			{ .l = 0x3fa554c6c18721e1 },
+		},
+	},
+	// 4 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5|], [|D...|], [1b-53,1.5/32]); printexpansion(P);
+		// x * (0x3feffffffffffdaf + x^2 * (0xbfc55555542d0b1f + x^2 * 0x3f8110b94a88bf8a))
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffffffffffdaf },
+			{ .l = 0xbfc55555542d0b1f },
+			{ .l = 0x3f8110b94a88bf8a },
+		},
+		// P = fpminimax(cos(x), [|2,4,6|], [|D...|], [1b-53,1.5/32], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffffffffc9a + x^2 * (0x3fa55555543015a6 + x^2 * 0xbf56c0fbaf13228e))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffffffffc9a },
+			{ .l = 0x3fa55555543015a6 },
+			{ .l = 0xbf56c0fbaf13228e },
+		},
+	},
+	// 5 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7|], [|D...|], [1b-53,1.5/32]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc5555555555490 + x^2 * (0x3f811111108d759b + x^2 * 0xbf2a013bceadda60)))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc5555555555490 },
+			{ .l = 0x3f811111108d759b },
+			{ .l = 0xbf2a013bceadda60 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8|], [|D...|], [1b-53,1.5/32], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa55555555554ce + x^2 * (0xbf56c16c16357b06 + x^2 * 0x3efa0145d0a82600)))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa55555555554ce },
+			{ .l = 0xbf56c16c16357b06 },
+			{ .l = 0x3efa0145d0a82600 },
+		},
+	},
+	// 6 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9|], [|D...|], [1b-53,1.5/32]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc5555555555555 + x^2 * (0x3f8111111110e01e + x^2 * (0xbf2a019ff7e6f82c + x^2 * 0x3ec7165ea552c835))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc5555555555555 },
+			{ .l = 0x3f8111111110e01e },
+			{ .l = 0xbf2a019ff7e6f82c },
+			{ .l = 0x3ec7165ea552c835 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10|], [|D...|], [1b-53,1.5/32], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa5555555555555 + x^2 * (0xbf56c16c16c11945 + x^2 * (0x3efa019fe6e0ce77 + x^2 * 0xbe927418c372e3ef))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa5555555555555 },
+			{ .l = 0xbf56c16c16c11945 },
+			{ .l = 0x3efa019fe6e0ce77 },
+			{ .l = 0xbe927418c372e3ef },
+		},
+	},
+	// 7 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9,11|], [|D...|], [1b-53,1.5/32]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc5555555555555 + x^2 * (0x3f8111111110c538 + x^2 * (0xbf2a019fc01da8bc + x^2 * (0x3ec6f24ea4031ef2 + x^2 * 0x3ecd96c1a72e1804)))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc5555555555555 },
+			{ .l = 0x3f8111111110c538 },
+			{ .l = 0xbf2a019fc01da8bc },
+			{ .l = 0x3ec6f24ea4031ef2 },
+			{ .l = 0x3ecd96c1a72e1804 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10,12|], [|D...|], [1b-53,1.5/32], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa5555555555555 + x^2 * (0xbf56c16c16c0f022 + x^2 * (0x3efa019f9aff2b28 + x^2 * (0xbe924728a498e0c2 + x^2 * 0xbea138edf48ced6c)))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa5555555555555 },
+			{ .l = 0xbf56c16c16c0f022 },
+			{ .l = 0x3efa019f9aff2b28 },
+			{ .l = 0xbe924728a498e0c2 },
+			{ .l = 0xbea138edf48ced6c },
+		},
+	},
+};
+
+static const DL
+coefficient_1_64[COEFFICIENTS_NUM][2][COEFFICIENTS_NUM] = {
+	// 1 coefficient
+	{
+		// P = fpminimax(sin(x), [|0|], [|D...|], [1b-53,1.5/64]); printexpansion(P);
+		// 0x3cafffffffffffd5
+		{
+			{ .l = 0x3cafffffffffffd5 },
+		},
+		// P = fpminimax(cos(x), [|0|], [|D...|], [1b-53,1.5/64]); printexpansion(P);
+		// 0x3feffedff93fdd93
+		{
+			{ .l = 0x3feffedff93fdd93 },
+		},
+	},
+	// 2 coefficients
+	{
+		// P = fpminimax(sin(x), [|1|], [|D...|], [1b-53,1.5/64]); printexpansion(P);
+		// x * 0x3fefff9fff8ccce5
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefff9fff8ccce5 },
+		},
+		// P = fpminimax(cos(x), [|2|], [|D...|], [1b-53,1.5/64], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * 0xbfdfffb0786fa205
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdfffb0786fa205 },
+		},
+	},
+	// 3 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3|], [|D...|], [1b-53,1.5/64]); printexpansion(P);
+		// x * (0x3fefffffffd4cc83 + x^2 * 0xbfc5552eeef315fa)
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefffffffd4cc83 },
+			{ .l = 0xbfc5552eeef315fa },
+		},
+		// P = fpminimax(cos(x), [|2,4|], [|D...|], [1b-53,1.5/64], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdfffffffce5f41 + x^2 * 0x3fa55531b0a37b7f)
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdfffffffce5f41 },
+			{ .l = 0x3fa55531b0a37b7f },
+		},
+	},
+	// 4 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5|], [|D...|], [1b-53,1.5/64]); printexpansion(P);
+		// x * (0x3feffffffffffff7 + x^2 * (0xbfc555555542eeee + x^2 * 0x3f8110fb2a1e4971))
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffffffffffff7 },
+			{ .l = 0xbfc555555542eeee },
+			{ .l = 0x3f8110fb2a1e4971 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6|], [|D...|], [1b-53,1.5/64], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffffffffff2 + x^2 * (0x3fa555555542bf92 + x^2 * 0xbf56c14fd5e36fc6))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffffffffff2 },
+			{ .l = 0x3fa555555542bf92 },
+			{ .l = 0xbf56c14fd5e36fc6 },
+		},
+	},
+	// 5 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7|], [|D...|], [1b-53,1.5/64]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc5555555555552 + x^2 * (0x3f81111111088610 + x^2 * 0xbf2a0186a6c6d935)))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc5555555555552 },
+			{ .l = 0x3f81111111088610 },
+			{ .l = 0xbf2a0186a6c6d935 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8|], [|D...|], [1b-53,1.5/64], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa5555555555553 + x^2 * (0xbf56c16c16b82e69 + x^2 * 0x3efa0188fd331c27)))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa5555555555553 },
+			{ .l = 0xbf56c16c16b82e69 },
+			{ .l = 0x3efa0188fd331c27 },
+		},
+	},
+	// 6 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9|], [|D...|], [1b-53,1.5/64]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc5555555555555 + x^2 * (0x3f81111111104e05 + x^2 * (0xbf2a019dfe9b526c + x^2 * 0x3ec54ce9df0542c6))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc5555555555555 },
+			{ .l = 0x3f81111111104e05 },
+			{ .l = 0xbf2a019dfe9b526c },
+			{ .l = 0x3ec54ce9df0542c6 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10|], [|D...|], [1b-53,1.5/64], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa5555555555555 + x^2 * (0xbf56c16c16c02176 + x^2 * (0x3efa019ceccc8971 + x^2 * 0xbe8ff84a5af7c7fb))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa5555555555555 },
+			{ .l = 0xbf56c16c16c02176 },
+			{ .l = 0x3efa019ceccc8971 },
+			{ .l = 0xbe8ff84a5af7c7fb },
+		},
+	},
+	// 7 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9,11|], [|D...|], [1b-53,1.5/64]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc5555555555555 + x^2 * (0x3f811111110fe1a9 + x^2 * (0xbf2a019a7ba39053 + x^2 * (0x3eb870abb7a16780 + x^2 * 0x3f4dcd525bc90e61)))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc5555555555555 },
+			{ .l = 0x3f811111110fe1a9 },
+			{ .l = 0xbf2a019a7ba39053 },
+			{ .l = 0x3eb870abb7a16780 },
+			{ .l = 0x3f4dcd525bc90e61 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10,12|], [|D...|], [1b-53,1.5/64], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa5555555555555 + x^2 * (0xbf56c16c16bf7c3b + x^2 * (0x3efa0198299a6d52 + x^2 * (0xbe72cfd2a55ab261 + x^2 * 0xbf214bb00cb8286f)))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa5555555555555 },
+			{ .l = 0xbf56c16c16bf7c3b },
+			{ .l = 0x3efa0198299a6d52 },
+			{ .l = 0xbe72cfd2a55ab261 },
+			{ .l = 0xbf214bb00cb8286f },
+		},
+	},
+};
+
+static const DL
+coefficient_1_128[COEFFICIENTS_NUM][2][COEFFICIENTS_NUM] = {
+	// 1 coefficient
+	{
+		// P = fpminimax(sin(x), [|0|], [|D...|], [1b-53,1.5/128]); printexpansion(P);
+		// 0x3cafffffffffffab
+		{
+			{ .l = 0x3cafffffffffffab },
+		},
+		// P = fpminimax(cos(x), [|0|], [|D...|], [1b-53,1.5/128]); printexpansion(P);
+		// 0x3fefffb7ff93ff76
+		{
+			{ .l = 0x3fefffb7ff93ff76 },
+		},
+	},
+	// 2 coefficients
+	{
+		// P = fpminimax(sin(x), [|1|], [|D...|], [1b-53,1.5/128]); printexpansion(P);
+		// x * 0x3fefffe7fff8cccd
+		{
+			{ .l = 0 },
+			{ .l = 0x3fefffe7fff8cccd },
+		},
+		// P = fpminimax(cos(x), [|2|], [|D...|], [1b-53,1.5/128], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * 0xbfdfffec1e229392
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdfffec1e229392 },
+		},
+	},
+	// 3 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3|], [|D...|], [1b-53,1.5/128]); printexpansion(P);
+		// x * (0x3feffffffffd4ccc + x^2 * 0xbfc5554bbbbc33be)
+		{
+			{ .l = 0 },
+			{ .l = 0x3feffffffffd4ccc },
+			{ .l = 0xbfc5554bbbbc33be },
+		},
+		// P = fpminimax(cos(x), [|2,4|], [|D...|], [1b-53,1.5/128], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfdffffffffce5fa + x^2 * 0x3fa5554c6c2cd081)
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfdffffffffce5fa },
+			{ .l = 0x3fa5554c6c2cd081 },
+		},
+	},
+	// 4 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5|], [|D...|], [1b-53,1.5/128]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc5555555546eef + x^2 * 0x3f81110bf2593b40))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc5555555546eef },
+			{ .l = 0x3f81110bf2593b40 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6|], [|D...|], [1b-53,1.5/128], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa555555554b9a4 + x^2 * 0xbf56c1665580931f))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa555555554b9a4 },
+			{ .l = 0xbf56c1665580931f },
+		},
+	},
+	// 5 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7|], [|D...|], [1b-53,1.5/128]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc5555555555555 + x^2 * (0x3f811111110f1aaa + x^2 * 0xbf2a0192f76f78b5)))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc5555555555555 },
+			{ .l = 0x3f811111110f1aaa },
+			{ .l = 0xbf2a0192f76f78b5 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8|], [|D...|], [1b-53,1.5/128], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa5555555555555 + x^2 * (0xbf56c16c16be28f8 + x^2 * 0x3efa018e951f7e93)))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa5555555555555 },
+			{ .l = 0xbf56c16c16be28f8 },
+			{ .l = 0x3efa018e951f7e93 },
+		},
+	},
+	// 6 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9|], [|D...|], [1b-53,1.5/128]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc5555555555555 + x^2 * (0x3f811111110e04e1 + x^2 * (0xbf2a017e63cd1ce5 + x^2 * 0xbee74758dcb90828))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc5555555555555 },
+			{ .l = 0x3f811111110e04e1 },
+			{ .l = 0xbf2a017e63cd1ce5 },
+			{ .l = 0xbee74758dcb90828 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10|], [|D...|], [1b-53,1.5/128], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa5555555555555 + x^2 * (0xbf56c16c16bc4192 + x^2 * (0x3efa016d46b1fbb8 + x^2 * 0x3ec1c1561f1cb363))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa5555555555555 },
+			{ .l = 0xbf56c16c16bc4192 },
+			{ .l = 0x3efa016d46b1fbb8 },
+			{ .l = 0x3ec1c1561f1cb363 },
+		},
+	},
+	// 7 coefficients
+	{
+		// P = fpminimax(sin(x), [|1,3,5,7,9,11|], [|D...|], [1b-53,1.5/128]); printexpansion(P);
+		// x * (0x3ff0000000000000 + x^2 * (0xbfc5555555555555 + x^2 * (0x3f811111110c5371 + x^2 * (0xbf2a0146342253e8 + x^2 * (0xbf15122d05a4a3c5 + x^2 * 0x3fcdcd8a338837c9)))))
+		{
+			{ .l = 0 },
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfc5555555555555 },
+			{ .l = 0x3f811111110c5371 },
+			{ .l = 0xbf2a0146342253e8 },
+			{ .l = 0xbf15122d05a4a3c5 },
+			{ .l = 0x3fcdcd8a338837c9 },
+		},
+		// P = fpminimax(cos(x), [|2,4,6,8,10,12|], [|D...|], [1b-53,1.5/128], 1); printexpansion(P);
+		// 0x3ff0000000000000 + x^2 * (0xbfe0000000000000 + x^2 * (0x3fa5555555555555 + x^2 * (0xbf56c16c16b9aca2 + x^2 * (0x3efa012112e4341f + x^2 * (0x3eeb00f643ada02b + x^2 * 0xbfa14be8df6af2ac)))))
+		{
+			{ .l = 0x3ff0000000000000 },
+			{ .l = 0xbfe0000000000000 },
+			{ .l = 0x3fa5555555555555 },
+			{ .l = 0xbf56c16c16b9aca2 },
+			{ .l = 0x3efa012112e4341f },
+			{ .l = 0x3eeb00f643ada02b },
+			{ .l = 0xbfa14be8df6af2ac },
+		},
+	},
+};

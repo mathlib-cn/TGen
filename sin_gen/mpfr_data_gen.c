@@ -2,14 +2,20 @@
 #include <gmp.h>
 #include <mpfr.h>
 #include <math.h>
-#define PRECISION 128
+#define PRECISION 256
 #define INTERVAL 4
 #define BIT 3
 #define BITNUM 8
 
+static const double
+pi = 3.1415926535897932384626433832795,
+pi_2 = 1.5707963267948966192313216916398,
+two_pi = 6.283185307179586476925286766559,
+invpio2 = 6.36619772367581382433e-01;
+
 int main() {
 	//printf ("MPFR library: %-12s\nMPFR header: %s (based on %d.%d.%d)\nMPFR_PREC_MIN is %d, MPFR_PREC_MAX is %ld.\n", mpfr_get_version (), MPFR_VERSION_STRING, MPFR_VERSION_MAJOR, MPFR_VERSION_MINOR, MPFR_VERSION_PATCHLEVEL, MPFR_PREC_MIN, MPFR_PREC_MAX);
-	mpfr_t mpfr_r1, mpfr_r2, mpfr_r3, mpfr_r4, mpfr_result[BITNUM], mpfr_pi, mpfr_temp, mpfr_temp1, mpfr_bitnum, mpfr_pi_4, mpfr_invpio4;
+	mpfr_t mpfr_r1, mpfr_r2, mpfr_r3, mpfr_r4, mpfr_result[BITNUM], mpfr_pi, mpfr_temp, mpfr_temp1, mpfr_temp2, mpfr_bitnum, mpfr_pi_4, mpfr_invpio4;
 	double result[BITNUM];
 	int i;
 	double temp_d = 1, bitnum_1 = 1.0 / (double)BITNUM, temp_d2[4] = {2, 6, 24, 120};
@@ -21,6 +27,7 @@ int main() {
 	mpfr_const_pi(mpfr_pi, MPFR_RNDN);
 	mpfr_init2(mpfr_temp, PRECISION);
 	mpfr_init2(mpfr_temp1, PRECISION);
+	mpfr_init2(mpfr_temp2, PRECISION);
 	mpfr_init2(mpfr_bitnum, PRECISION);
 	
 	mpfr_set_d(mpfr_bitnum, (double)BITNUM, MPFR_RNDN);
@@ -54,22 +61,53 @@ int main() {
 		//mpfr_printf("%.17RNe,\n", mpfr_result[i]);
 	}
 	*/
-	double start = 0;
+	double start = 2 * pi;
+	
 	for (i = 0; i < BITNUM; i++) {
 		mpfr_init2(mpfr_result[i], PRECISION);
-		temp_d = start + (double)i / (double)BITNUM;
+		//temp_d = start + (double)i / (double)BITNUM * (7.5 - start);
 		//temp_d = temp_d * 0.5;
-		mpfr_set_d(mpfr_temp, temp_d, MPFR_RNDN);
-		//mpfr_mul_d(mpfr_temp, mpfr_pi, temp_d, MPFR_RNDN);
-		mpfr_sin(mpfr_result[i], mpfr_temp, MPFR_RNDN);
-		//mpfr_ui_pow(mpfr_result[i], 2, mpfr_temp, MPFR_RNDN);
-		//mpfr_printf("%.17RNe,\n", mpfr_result[i]);
-		result[i] = mpfr_get_d(mpfr_result[i], MPFR_RNDN);
-		printf("i = %03d, sin(2, %03d/%03d) =\t\t{.l = 0x%016lx},\t\t%.19le,\n", i, i, BITNUM, *((unsigned long int *)&(result[i])), result[i]);
+		//mpfr_set_d(mpfr_temp, temp_d, MPFR_RNDN);
+		
+		temp_d = 2;
+		mpfr_mul_d(mpfr_temp, mpfr_pi, temp_d, MPFR_RNDN); // mpfr_temp = 2 * pi
+		temp_d = 7.5;
+		mpfr_d_sub(mpfr_temp1, temp_d, mpfr_temp, MPFR_RNDN); // mpfr_temp1 = 7.5 - 2 * pi
+		temp_d = pow(2,i);
+		//mpfr_div_d(mpfr_result[i], mpfr_temp1, temp_d, MPFR_RNDN); // mpfr_result[i] = (7.5 - 2 * pi) / (2^i)
+		mpfr_d_div(mpfr_result[i], temp_d, mpfr_temp1, MPFR_RNDN); // mpfr_result[i] = (2^i) / (7.5 - 2 * pi)
+		
+		mpfr_printf("i = %03d, %.17RNe,\n", i, mpfr_result[i]);
+		//result[i] = mpfr_get_d(mpfr_result[i], MPFR_RNDN);
+		//printf("i = %03d\t\t{.l = 0x%016lx},\t\t%.19le,\n", i, *((unsigned long int *)&(result[i])), result[i]);
 		//printf("\t\t%.19le,\n", result[i]);
 		//printf("%le\n", result[i]);
 	}
-	
+	/*
+	for (i = 0; i < BITNUM; i++) {
+		mpfr_init2(mpfr_result[i], PRECISION);
+		//temp_d = start + (double)i / (double)BITNUM * (7.5 - start);
+		//temp_d = temp_d * 0.5;
+		//mpfr_set_d(mpfr_temp, temp_d, MPFR_RNDN);
+		
+		temp_d = 2;
+		mpfr_mul_d(mpfr_temp, mpfr_pi, temp_d, MPFR_RNDN); // mpfr_temp = 2 * pi
+		temp_d = 7.5;
+		mpfr_d_sub(mpfr_temp1, temp_d, mpfr_temp, MPFR_RNDN); // mpfr_temp1 = 7.5 - 2 * pi
+		temp_d = (double)i / (double)BITNUM;
+		mpfr_mul_d(mpfr_temp2, mpfr_temp1, temp_d, MPFR_RNDN); // mpfr_temp2 = (7.5 - 2 * pi) * i / BITNUM
+		mpfr_add(mpfr_temp, mpfr_temp, mpfr_temp2, MPFR_RNDN); // mpfr_temp = 2 * pi + (7.5 - 2 * pi) * i / BITNUM
+		
+		
+		mpfr_cos(mpfr_result[i], mpfr_temp, MPFR_RNDN);
+		//mpfr_ui_pow(mpfr_result[i], 2, mpfr_temp, MPFR_RNDN);
+		//mpfr_printf("%.17RNe,\n", mpfr_result[i]);
+		result[i] = mpfr_get_d(mpfr_result[i], MPFR_RNDN);
+		printf("i = %03d, cos(2, %03d/%03d) =\t\t{.l = 0x%016lx},\t\t%.19le,\n", i, i, BITNUM, *((unsigned long int *)&(result[i])), result[i]);
+		//printf("\t\t%.19le,\n", result[i]);
+		//printf("%le\n", result[i]);
+	}
+	*/
 	/*
 	mpfr_init2(mpfr_r1, PRECISION);
 	mpfr_init2(mpfr_r2, PRECISION);

@@ -1595,14 +1595,14 @@ int gen(struct constraint input_parameter) {
 		fprintf(func, "\tstatus_pi_1 = (temp2 >> 1) & 0x1;\n");
 		fprintf(func, "\ti1 = 1 - status_pi_2 * 2;\n");
 		fprintf(func, "\tsign = 1 - 2 * (flag ^ status_pi_1); // ornot 0 is +, 1 is -\n");
-		fprintf(func, "\tiix = ix - temp2 * pi_2;\n");
+		fprintf(func, "\t// iix = ix - temp2 * pi_2;\n");
 
-		fprintf(func, "\t// iix = ix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_1;\n");
-		fprintf(func, "\t// iix = iix - ((temp >> (BIT + 1)) + status_pi_4) * pio2_1t;\n");
+		fprintf(func, "\tiix = ix - temp2 * pio2_1;\n");
+		fprintf(func, "\tiix = iix - temp2 * pio2_1t;\n");
 		
 		fprintf(func, "\ttable_order = temp1 & BITNUM_1; // BITNUM - 1 = (2^BIT -1)\n");
-		fprintf(func, "\tiiix = iix - ((double)table_order) / BITNUM * pi_2;\n");
-		fprintf(func, "\t// iiix = iiix - ((double)table_order) / BITNUM * pio2_1t;\n");
+		fprintf(func, "\tiiix = iix - ((double)table_order) / BITNUM * pio2_1;\n");
+		fprintf(func, "\tiiix = iiix - ((double)table_order) / BITNUM * pio2_1t;\n");
 		fprintf(func, "\tz = iiix * iiix;\n");
 		fprintf(func, "\n");
 		
